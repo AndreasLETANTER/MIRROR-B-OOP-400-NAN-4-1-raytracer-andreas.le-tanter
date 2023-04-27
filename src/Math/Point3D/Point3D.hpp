@@ -8,6 +8,10 @@
 #pragma once
 #include "../Vector3D/Vector3D.hpp"
 
+/**
+ * @brief Point3D class, used to create a point in 3D space
+ * @details the point is defined by its x, y and z coordinates
+*/
 namespace Math
 {
     class Point3D {

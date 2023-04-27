@@ -7,6 +7,10 @@
 
 #include "Point3D.hpp"
 
+/**
+ * @brief Construct a new Point3D:: Point3D object
+ * @details set the x, y and z coordinates to 0
+*/
 Math::Point3D::Point3D()
 {
     m_x_component = 0;
@@ -14,6 +18,13 @@ Math::Point3D::Point3D()
     m_z_component = 0;
 }
 
+/**
+ * @brief Construct a new Point3D:: Point3D object
+ * @details set the x, y and z coordinates to the given parameters
+ * @param t_x 
+ * @param t_y 
+ * @param t_z 
+*/
 Math::Point3D::Point3D(double t_x, double t_y, double t_z)
 {
     m_x_component = t_x;
@@ -21,15 +32,28 @@ Math::Point3D::Point3D(double t_x, double t_y, double t_z)
     m_z_component = t_z;
 }
 
+/**
+ * @brief Destroy the Point3D:: Point3D object
+*/
 Math::Point3D::~Point3D()
 {
 }
 
+/**
+ * @brief perform a sum between a point and a vector
+ * @param t_other
+ * @return Math::Point3D 
+*/
 Math::Point3D Math::Point3D::operator+(const Math::Vector3D &t_other)
 {
     return (Math::Point3D(m_x_component + t_other.m_x_component, m_y_component + t_other.m_y_component, m_z_component + t_other.m_z_component));
 }
 
+/**
+ * @brief perform a sum between a point and a vector and store the result in the point
+ * @param t_other 
+ * @return Math::Point3D 
+*/
 Math::Point3D Math::Point3D::operator+=(const Math::Vector3D &t_other)
 {
     m_x_component += t_other.m_x_component;
@@ -38,11 +62,21 @@ Math::Point3D Math::Point3D::operator+=(const Math::Vector3D &t_other)
     return (*this);
 }
 
+/**
+ * @brief perform a substraction between two points
+ * @param t_other 
+ * @return Math::Vector3D 
+*/
 Math::Vector3D Math::Point3D::operator-(const Math::Point3D &t_other)
 {
     return (Math::Vector3D(m_x_component - t_other.m_x_component, m_y_component - t_other.m_y_component, m_z_component - t_other.m_z_component));
 }
 
+/**
+ * @brief perform a substraction between a point and a vector and store the result in the vector
+ * @param t_other 
+ * @return Math::Point3D 
+*/
 Math::Vector3D Math::Point3D::operator-=(const Math::Point3D &t_other)
 {
     m_x_component -= t_other.m_x_component;

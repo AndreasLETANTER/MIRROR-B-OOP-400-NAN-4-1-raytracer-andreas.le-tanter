@@ -7,22 +7,42 @@
 
 #include "Sphere.hpp"
 
+/**
+ * @brief Construct a new Sphere object
+ * @details set the center and the radius of the sphere to 0
+*/
 RayTracer::Sphere::Sphere()
 {
     m_center = Math::Point3D(0, 0, 0);
     m_radius = 0;
 }
 
+/**
+ * @brief Construct a new Sphere object
+ * @details set the center and the radius of the sphere to the given parameters
+ * @param t_center 
+ * @param t_radius 
+ */
 RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius)
 {
     m_center = t_center;
     m_radius = t_radius;
 }
 
+/**
+ * @brief Destroy the Sphere object
+*/
 RayTracer::Sphere::~Sphere()
 {
 }
 
+/**
+ * @brief check if the ray hits the sphere
+ * @details check if the ray hits the sphere using a quadratic equation
+ * @param t_ray 
+ * @return true 
+ * @return false 
+*/
 bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
 {
     Math::Vector3D oc = t_ray.m_origin - m_center;

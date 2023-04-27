@@ -9,6 +9,10 @@
 #include "../../Math/Point3D/Point3D.hpp"
 #include "../../Math/Vector3D/Vector3D.hpp"
 
+/**
+ * @brief Ray class, used to create a ray in 3D space
+ * @details the ray is defined by its origin and its direction
+*/
 namespace RayTracer
 {
     class Ray {

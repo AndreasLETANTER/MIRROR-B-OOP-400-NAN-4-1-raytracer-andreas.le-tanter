@@ -7,6 +7,9 @@
 
 #pragma once
 
+/**
+ * @brief Vector3D class, used to create a vector
+*/
 namespace Math
 {
     class Vector3D {

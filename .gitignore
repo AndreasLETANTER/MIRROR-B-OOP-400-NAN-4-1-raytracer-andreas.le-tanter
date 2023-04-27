@@ -84,3 +84,4 @@ CMakeCache.txt
 cmake_install.cmake
 .bash_history
 output.ppm
+doxygen_output

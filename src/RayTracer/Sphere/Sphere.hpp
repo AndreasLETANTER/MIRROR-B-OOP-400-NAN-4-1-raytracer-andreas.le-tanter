@@ -10,6 +10,10 @@
 #include "../../Math/Vector3D/Vector3D.hpp"
 #include "../../Math/Point3D/Point3D.hpp"
 
+/**
+ * @brief Sphere class, used to create a sphere in 3D space
+ * @details the sphere is defined by its center and its radius
+*/
 namespace RayTracer {
     class Sphere {
         public:

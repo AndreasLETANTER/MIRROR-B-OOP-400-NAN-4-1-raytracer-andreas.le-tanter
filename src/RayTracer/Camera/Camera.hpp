@@ -11,6 +11,10 @@
 #include "../../Rectangle3D.hpp"
 #include "../Ray/Ray.hpp"
 
+/**
+ * @brief Camera class, used to create a camera in 3D space
+ * @details the camera is defined by its origin and its screen
+*/
 namespace RayTracer
 {
     class Camera {

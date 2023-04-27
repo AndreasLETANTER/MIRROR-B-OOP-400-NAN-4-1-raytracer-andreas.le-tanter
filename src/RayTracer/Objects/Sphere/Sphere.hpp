@@ -6,10 +6,10 @@
 */
 
 #pragma once
-#include "../../RayTracer/Ray/Ray.hpp"
-#include "../../Math/Vector3D/Vector3D.hpp"
-#include "../../Math/Point3D/Point3D.hpp"
-#include "../Objects/IObjects.hpp"
+#include "../../../RayTracer/Ray/Ray.hpp"
+#include "../../../Math/Vector3D/Vector3D.hpp"
+#include "../../../Math/Point3D/Point3D.hpp"
+#include "../IObjects.hpp"
 
 /**
  * @brief Sphere class, used to create a sphere in 3D space

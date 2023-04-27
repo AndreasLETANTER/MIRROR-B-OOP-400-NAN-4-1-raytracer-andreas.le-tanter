@@ -6,7 +6,7 @@
 */
 
 #include "RayTracer/Ray/Ray.hpp"
-#include "RayTracer/Sphere/Sphere.hpp"
+#include "RayTracer/Objects/Sphere/Sphere.hpp"
 #include "RayTracer/Camera/Camera.hpp"
 #include "RayTracer/Renderer/Renderer.hpp"
 #include <iostream>

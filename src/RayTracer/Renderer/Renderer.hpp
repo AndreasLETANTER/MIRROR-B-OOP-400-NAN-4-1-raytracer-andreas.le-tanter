@@ -10,7 +10,6 @@
 #include "../../Math/Vector3D/Vector3D.hpp"
 #include "../Camera/Camera.hpp"
 #include "../Ray/Ray.hpp"
-#include "../Sphere/Sphere.hpp"
 #include "../Objects/IObjects.hpp"
 
 namespace RayTracer

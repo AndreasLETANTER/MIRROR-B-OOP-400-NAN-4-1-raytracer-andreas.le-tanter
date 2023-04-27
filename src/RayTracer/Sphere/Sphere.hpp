@@ -9,20 +9,21 @@
 #include "../../RayTracer/Ray/Ray.hpp"
 #include "../../Math/Vector3D/Vector3D.hpp"
 #include "../../Math/Point3D/Point3D.hpp"
+#include "../Objects/IObjects.hpp"
 
 /**
  * @brief Sphere class, used to create a sphere in 3D space
  * @details the sphere is defined by its center and its radius
 */
 namespace RayTracer {
-    class Sphere {
+    class Sphere : public IObjects {
         public:
             Sphere();
             Sphere(Math::Point3D t_center, double t_radius);
             ~Sphere();
             Math::Point3D m_center;
             double m_radius;
-            bool hits(Ray &t_ray);
+            bool hits(Ray &t_ray) override;
 
         protected:
         private:

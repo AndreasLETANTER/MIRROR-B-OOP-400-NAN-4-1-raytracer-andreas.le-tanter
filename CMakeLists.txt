@@ -14,6 +14,7 @@ set(SRC
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Sphere/Sphere.cpp
     src/RayTracer/Camera/Camera.cpp
+    src/RayTracer/Renderer/Renderer.cpp
     src/Rectangle3D.cpp
 )
 set(MAIN

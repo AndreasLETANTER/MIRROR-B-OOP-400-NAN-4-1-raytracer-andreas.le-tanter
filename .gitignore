@@ -71,7 +71,6 @@ dkms.conf
 *.lai
 
 # Executables
-raytracer
 unit_tests
 
 

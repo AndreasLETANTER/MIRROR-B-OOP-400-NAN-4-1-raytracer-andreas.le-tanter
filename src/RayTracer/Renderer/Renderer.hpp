@@ -13,6 +13,10 @@
 #include "../Objects/IObjects.hpp"
 #include <vector>
 
+/**
+ * @brief Renderer class, used to render the scene
+ * @details the renderer is defined by the miss color, the camera, the objects, the width and the height
+*/
 namespace RayTracer
 {
     class Renderer {

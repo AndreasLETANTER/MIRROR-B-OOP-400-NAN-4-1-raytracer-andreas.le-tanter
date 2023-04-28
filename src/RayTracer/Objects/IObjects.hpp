@@ -8,6 +8,9 @@
 #pragma once
 #include "../Ray/Ray.hpp"
 
+/**
+ * @brief IObjects class, used to create an interface for all objects 
+*/
 namespace RayTracer
 {
     class IObjects {

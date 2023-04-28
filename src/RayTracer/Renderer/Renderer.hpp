@@ -12,6 +12,7 @@
 #include "../Ray/Ray.hpp"
 #include "../Objects/IObjects.hpp"
 #include <vector>
+#include <memory>
 
 /**
  * @brief Renderer class, used to render the scene
@@ -27,7 +28,7 @@ namespace RayTracer
             void setMissColor(Math::Vector3D t_color);
             void setWidth(int t_width);
             void setHeight(int t_height);
-            void setObjects(std::vector<RayTracer::IObjects *> t_objects);
+            void setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects);
             void setCamera(RayTracer::Camera t_cam);
             void renderScene();
 
@@ -38,7 +39,7 @@ namespace RayTracer
             void print_header();
             Math::Vector3D m_miss_color;
             RayTracer::Camera m_cam;
-            std::vector<RayTracer::IObjects *> m_objects;
+            std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             int m_width;
             int m_height;
     };

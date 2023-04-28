@@ -22,12 +22,12 @@ int main(void)
     RayTracer::Sphere sphere2(Math::Point3D(-0.5, -5, 0), 0.3, Math::Vector3D(255, 255, 0));
     RayTracer::Sphere sphere3(Math::Point3D(0, -5, 0.5), 0.3, Math::Vector3D(178, 255, 102));
     RayTracer::Sphere sphere4(Math::Point3D(0, -5, -0.5), 0.3, Math::Vector3D(255, 153, 153));
-    std::vector<RayTracer::IObjects *> objects;
+    std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
 
-    objects.push_back(&sphere);
-    objects.push_back(&sphere2);
-    objects.push_back(&sphere3);
-    objects.push_back(&sphere4);
+    objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
+    objects.push_back(std::make_shared<RayTracer::Sphere>(sphere2));
+    objects.push_back(std::make_shared<RayTracer::Sphere>(sphere3));
+    objects.push_back(std::make_shared<RayTracer::Sphere>(sphere4));
     cam.m_origin = Math::Point3D(0, 5, 0);
     cam.m_screen = Rectangle3D(Math::Point3D(-0.5, 0, -0.5), Math::Vector3D(1, 0, 0), Math::Vector3D(0, 0, 1));
     renderer.setCamera(cam);

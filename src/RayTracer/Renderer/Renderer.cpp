@@ -77,7 +77,7 @@ void RayTracer::Renderer::setCamera(RayTracer::Camera t_cam)
  * @brief setObjects function, used to set the objects of the scene
  * @param t_objects 
 */
-void RayTracer::Renderer::setObjects(std::vector<RayTracer::IObjects *> t_objects)
+void RayTracer::Renderer::setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects)
 {
     m_objects = t_objects;
 }
@@ -89,7 +89,7 @@ void RayTracer::Renderer::setObjects(std::vector<RayTracer::IObjects *> t_object
 */
 void RayTracer::Renderer::print_pixel(Math::Vector3D color)
 {
-    std::cout << color.m_x_component << " " << color.m_y_component << " " << color.m_z_component << std::endl;
+    std::cout << (int) color.m_x_component << " " << (int) color.m_y_component << " " << (int) color.m_z_component << std::endl;
 }
 
 /**

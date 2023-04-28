@@ -11,11 +11,11 @@ set(CXX_FLAGS -Wall -Wextra -Werror -g)
 set(SRC
     src/Math/Vector3D/Vector3D.cpp
     src/Math/Point3D/Point3D.cpp
+    src/Math/Rectangle3D/Rectangle3D.cpp
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
-    src/Rectangle3D.cpp
 )
 set(MAIN
     src/main.cpp

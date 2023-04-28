@@ -8,6 +8,7 @@
 #pragma once
 #include "../../Math/Point3D/Point3D.hpp"
 #include "../../Math/Vector3D/Vector3D.hpp"
+#include "../Light/ILights.hpp"
 #include "../Camera/Camera.hpp"
 #include "../Ray/Ray.hpp"
 #include "../Objects/IObjects.hpp"
@@ -29,6 +30,7 @@ namespace RayTracer
             void setWidth(int t_width);
             void setHeight(int t_height);
             void setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects);
+            void setLights(std::vector<std::shared_ptr<RayTracer::ILights>> t_lights);
             void setCamera(RayTracer::Camera t_cam);
             void renderScene();
 
@@ -40,6 +42,7 @@ namespace RayTracer
             Math::Vector3D m_miss_color;
             RayTracer::Camera m_cam;
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
+            std::vector<std::shared_ptr<RayTracer::ILights>> m_lights;
             int m_width;
             int m_height;
     };

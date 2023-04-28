@@ -6,6 +6,9 @@
 */
 
 #pragma once
+#include "../../RayTracer/Light/ILights.hpp"
+#include <vector>
+#include <memory>
 
 namespace Math
 {
@@ -13,9 +16,10 @@ namespace Math
         public:
             LightCalculation();
             ~LightCalculation();
-            double calculateLighting();
+            Math::Vector3D calculateLightEffect(Math::Vector3D t_base_color, std::vector<std::shared_ptr<RayTracer::ILights>> t_lights, Math::Vector3D t_direction, Math::Point3D t_origin);
 
         protected:
         private:
+            std::vector<RayTracer::ILights> m_lights;
     };
 } // namespace Math

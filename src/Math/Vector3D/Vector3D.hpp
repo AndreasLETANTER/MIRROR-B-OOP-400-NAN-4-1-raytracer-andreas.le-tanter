@@ -34,6 +34,7 @@ namespace Math
             Vector3D operator/(const double &t_other);
             Vector3D operator/=(const double &t_other);
             double dot_product(const Vector3D &t_other);
+            void normalize();
             double length();
             double m_x_component;
             double m_y_component;

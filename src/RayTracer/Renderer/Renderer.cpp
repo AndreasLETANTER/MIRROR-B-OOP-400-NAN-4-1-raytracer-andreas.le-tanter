@@ -6,6 +6,7 @@
 */
 
 #include "Renderer.hpp"
+#include "../../Math/Light/LightCalculation.hpp"
 #include <iostream>
 
 /**
@@ -83,6 +84,15 @@ void RayTracer::Renderer::setObjects(std::vector<std::shared_ptr<RayTracer::IObj
 }
 
 /**
+ * @brief setLights function, used to set the lights of the scene
+ * @param t_lights 
+*/
+void RayTracer::Renderer::setLights(std::vector<std::shared_ptr<RayTracer::ILights>> t_lights)
+{
+    m_lights = t_lights;
+}
+
+/**
  * @brief print_pixel function, used to print the color of the pixel
  * @details the function will print the color of the pixel in the ppm format
  * @param color 
@@ -112,10 +122,11 @@ void RayTracer::Renderer::print_header(void)
 void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 {
     bool hit_something = false;
+    Math::LightCalculation light_calculation;
 
     for (size_t i = 0; i < m_objects.size(); i++) {
         if (m_objects[i]->hits(r)) {
-            print_pixel(m_objects[i]->getColor());
+            print_pixel(light_calculation.calculateLightEffect(m_objects[i]->getColor(), m_lights, r.m_direction, r.m_origin));
             hit_something = true;
             return;
         }

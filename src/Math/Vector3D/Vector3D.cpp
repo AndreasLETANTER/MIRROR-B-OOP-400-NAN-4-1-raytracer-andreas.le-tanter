@@ -190,6 +190,14 @@ Math::Vector3D Math::Vector3D::operator/=(const double &t_other)
     return (*this);
 }
 
+void Math::Vector3D::normalize()
+{
+    m_x_component /= this->length();
+    m_y_component /= this->length();
+    m_z_component /= this->length();
+}
+
+
 /**
  * @brief perform a dot product between two vectors
  * @param t_other 

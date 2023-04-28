@@ -19,10 +19,12 @@ namespace RayTracer {
     class Sphere : public IObjects {
         public:
             Sphere();
-            Sphere(Math::Point3D t_center, double t_radius);
+            Sphere(Math::Point3D t_center, double t_radius, Math::Vector3D t_color);
             ~Sphere();
+            Math::Vector3D getColor() override;
             Math::Point3D m_center;
             double m_radius;
+            Math::Vector3D m_color;
             bool hits(Ray &t_ray) override;
 
         protected:

@@ -23,11 +23,6 @@ RayTracer::Renderer::~Renderer()
 {
 }
 
-void RayTracer::Renderer::setHitColor(Math::Vector3D t_color)
-{
-    m_hit_color = t_color;
-}
-
 void RayTracer::Renderer::setMissColor(Math::Vector3D t_color)
 {
     m_miss_color = t_color;
@@ -71,7 +66,7 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 
     for (size_t i = 0; i < m_objects.size(); i++) {
         if (m_objects[i]->hits(r)) {
-            print_pixel(m_hit_color);
+            print_pixel(m_objects[i]->getColor());
             hit_something = true;
             return;
         }

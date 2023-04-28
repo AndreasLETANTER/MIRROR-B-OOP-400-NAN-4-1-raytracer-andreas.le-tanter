@@ -23,10 +23,11 @@ RayTracer::Sphere::Sphere()
  * @param t_center 
  * @param t_radius 
  */
-RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius)
+RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius, Math::Vector3D t_color)
 {
     m_center = t_center;
     m_radius = t_radius;
+    m_color = t_color;
 }
 
 /**
@@ -34,6 +35,15 @@ RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius)
 */
 RayTracer::Sphere::~Sphere()
 {
+}
+
+/**
+ * @brief get the color of the sphere
+ * @return Math::Vector3D 
+*/
+Math::Vector3D RayTracer::Sphere::getColor()
+{
+    return (m_color);
 }
 
 /**

@@ -20,7 +20,6 @@ namespace RayTracer
             Renderer();
             Renderer(int t_width, int t_height, RayTracer::Camera t_cam);
             ~Renderer();
-            void setHitColor(Math::Vector3D t_color);
             void setMissColor(Math::Vector3D t_color);
             void setWidth(int t_width);
             void setHeight(int t_height);
@@ -33,7 +32,6 @@ namespace RayTracer
             void check_hit(RayTracer::Ray r);
             void print_pixel(Math::Vector3D t_color);
             void print_header();
-            Math::Vector3D m_hit_color;
             Math::Vector3D m_miss_color;
             RayTracer::Camera m_cam;
             std::vector<RayTracer::IObjects *> m_objects;

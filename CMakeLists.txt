@@ -28,11 +28,11 @@ set(TESTS
 
 ###############################COMPILATION MAIN PROGRAM###########################
 add_compile_options(${CXX_FLAGS})
+include_directories("/usr/local/include")
+link_directories("/usr/local/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(${NAME} ${SRC} ${MAIN})
-add_custom_target(core
-    COMMAND make ${NAME}
-)
+target_link_libraries(${NAME} config++)
 
 ###############################COMPILATION TESTS##################################
 find_library(CRITERION criterion)

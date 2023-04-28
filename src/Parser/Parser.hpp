@@ -7,6 +7,7 @@
 
 #pragma once
 #include <string>
+#include <libconfig.h++>
 #include "../RayTracer/Objects/IObjects.hpp"
 #include "../RayTracer/Camera/Camera.hpp"
 

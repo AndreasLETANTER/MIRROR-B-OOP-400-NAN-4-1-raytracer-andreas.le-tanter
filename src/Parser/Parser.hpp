@@ -7,6 +7,8 @@
 
 #pragma once
 #include <string>
+#include "../RayTracer/Objects/IObjects.hpp"
+#include "../RayTracer/Camera/Camera.hpp"
 
 namespace Parser
 {

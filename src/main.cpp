@@ -18,8 +18,16 @@ int main(void)
 {
     RayTracer::Camera cam;
     RayTracer::Renderer renderer;
-    RayTracer::Sphere sphere(Math::Point3D(0, -5, 0), 0.3);
+    RayTracer::Sphere sphere(Math::Point3D(0.3, -5, 0), 0.3);
+    RayTracer::Sphere sphere2(Math::Point3D(-0.3, -5, 0), 0.3);
+    RayTracer::Sphere sphere3(Math::Point3D(0, -5, -0.3), 0.3);
+    RayTracer::Sphere sphere4(Math::Point3D(0, -5, -0.6), 0.3);
+    std::vector<RayTracer::IObjects *> objects;
 
+    objects.push_back(&sphere);
+    objects.push_back(&sphere2);
+    objects.push_back(&sphere3);
+    objects.push_back(&sphere4);
     cam.m_origin = Math::Point3D(0, 5, 0);
     cam.m_screen = Rectangle3D(Math::Point3D(-0.5, 0, -0.5), Math::Vector3D(1, 0, 0), Math::Vector3D(0, 0, 1));
     renderer.setCamera(cam);
@@ -27,7 +35,7 @@ int main(void)
     renderer.setHeight(HEIGHT);
     renderer.setHitColor(Math::Vector3D(255, 0, 0));
     renderer.setMissColor(Math::Vector3D(0, 0, 0));
-    renderer.setObject(&sphere);
+    renderer.setObjects(objects);
     renderer.renderScene();
     return 0;
 }

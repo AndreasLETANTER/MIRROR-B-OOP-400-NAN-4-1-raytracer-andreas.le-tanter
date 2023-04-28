@@ -48,9 +48,9 @@ void RayTracer::Renderer::setCamera(RayTracer::Camera t_cam)
     m_cam = t_cam;
 }
 
-void RayTracer::Renderer::setObject(RayTracer::IObjects *t_object)
+void RayTracer::Renderer::setObjects(std::vector<RayTracer::IObjects *> t_objects)
 {
-    m_object = t_object;
+    m_objects = t_objects;
 }
 
 void RayTracer::Renderer::print_pixel(Math::Vector3D color)
@@ -65,6 +65,21 @@ void RayTracer::Renderer::print_header(void)
     std::cout << "255" << std::endl;
 }
 
+void RayTracer::Renderer::check_hit(RayTracer::Ray r)
+{
+    bool hit_something = false;
+
+    for (size_t i = 0; i < m_objects.size(); i++) {
+        if (m_objects[i]->hits(r)) {
+            print_pixel(m_hit_color);
+            hit_something = true;
+            return;
+        }
+    }
+    if (!hit_something)
+        print_pixel(m_miss_color);
+}
+
 void RayTracer::Renderer::renderScene()
 {
     print_header();
@@ -73,11 +88,7 @@ void RayTracer::Renderer::renderScene()
             double u = (double)x / m_height;
             double v = (double)y / m_width;
             RayTracer::Ray r = m_cam.rayAt(u, v);
-            if (m_object->hits(r)) {
-                print_pixel(m_hit_color);
-            } else {
-                print_pixel(m_miss_color);
-            }
+            check_hit(r);
         }
         std::cout << std::endl;
     }

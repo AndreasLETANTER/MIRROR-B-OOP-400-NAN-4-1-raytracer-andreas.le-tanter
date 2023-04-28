@@ -39,7 +39,7 @@ add_executable(${TEST_NAME} ${SRC} ${TESTS})
 #link the tests with the criterion library
 target_link_libraries(${TEST_NAME} ${CRITERION})
 
-###############################CUSTOM TARGETS#####1###############################
+###############################CUSTOM TARGETS#####################################
 add_custom_target(fclean
     COMMAND make clean
     COMMAND find . -name "*~" -delete

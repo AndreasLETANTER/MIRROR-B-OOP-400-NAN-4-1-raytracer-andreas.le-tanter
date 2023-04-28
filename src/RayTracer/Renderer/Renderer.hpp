@@ -11,7 +11,12 @@
 #include "../Camera/Camera.hpp"
 #include "../Ray/Ray.hpp"
 #include "../Objects/IObjects.hpp"
+#include <vector>
 
+/**
+ * @brief Renderer class, used to render the scene
+ * @details the renderer is defined by the miss color, the camera, the objects, the width and the height
+*/
 namespace RayTracer
 {
     class Renderer {
@@ -19,22 +24,21 @@ namespace RayTracer
             Renderer();
             Renderer(int t_width, int t_height, RayTracer::Camera t_cam);
             ~Renderer();
-            void setHitColor(Math::Vector3D t_color);
             void setMissColor(Math::Vector3D t_color);
             void setWidth(int t_width);
             void setHeight(int t_height);
-            void setObject(RayTracer::IObjects *t_object);
+            void setObjects(std::vector<RayTracer::IObjects *> t_objects);
             void setCamera(RayTracer::Camera t_cam);
             void renderScene();
 
         protected:
         private:
+            void check_hit(RayTracer::Ray r);
             void print_pixel(Math::Vector3D t_color);
             void print_header();
-            Math::Vector3D m_hit_color;
             Math::Vector3D m_miss_color;
             RayTracer::Camera m_cam;
-            RayTracer::IObjects *m_object;
+            std::vector<RayTracer::IObjects *> m_objects;
             int m_width;
             int m_height;
     };

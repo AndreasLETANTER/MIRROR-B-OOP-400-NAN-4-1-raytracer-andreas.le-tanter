@@ -8,7 +8,7 @@
 #pragma once
 #include "../../Math/Point3D/Point3D.hpp"
 #include "../../Math/Vector3D/Vector3D.hpp"
-#include "../../Rectangle3D.hpp"
+#include "../../Math/Rectangle3D/Rectangle3D.hpp"
 #include "../Ray/Ray.hpp"
 
 /**

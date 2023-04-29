@@ -21,10 +21,9 @@ RayTracer::AmbiantLight::~AmbiantLight()
 {
 }
 
-double RayTracer::AmbiantLight::getIntensityAt(Math::Point3D t_origin, Math::Vector3D t_direction)
+double RayTracer::AmbiantLight::getIntensityAt(Math::Vector3D t_surfaceNormal)
 {
-    (void)t_origin;
-    (void)t_direction;
+    (void)t_surfaceNormal;
     return (m_intensity);
 }
 

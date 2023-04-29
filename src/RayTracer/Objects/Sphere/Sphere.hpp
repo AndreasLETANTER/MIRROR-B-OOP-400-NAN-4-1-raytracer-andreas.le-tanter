@@ -26,8 +26,10 @@ namespace RayTracer {
             double m_radius;
             Math::Vector3D m_color;
             bool hits(Ray &t_ray) override;
+            Math::Vector3D getSurfaceNormal() override;
 
         protected:
+            Math::Point3D m_hit_point;
         private:
     };
 }

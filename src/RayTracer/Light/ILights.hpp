@@ -14,7 +14,7 @@ namespace RayTracer
     class ILights {
         public:
             virtual ~ILights() = default;
-            virtual double getIntensityAt(Math::Point3D t_origin, Math::Vector3D t_direction) = 0;
+            virtual double getIntensityAt(Math::Vector3D t_surfaceNormal) = 0;
             virtual void setIntensity(double t_intensity) = 0;
 
         protected:

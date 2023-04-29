@@ -99,6 +99,18 @@ void RayTracer::Renderer::setLights(std::vector<std::shared_ptr<RayTracer::ILigh
 */
 void RayTracer::Renderer::print_pixel(Math::Vector3D color)
 {
+    if (color.m_x_component > 255)
+        color.m_x_component = 255;
+    if (color.m_y_component > 255)
+        color.m_y_component = 255;
+    if (color.m_z_component > 255)
+        color.m_z_component = 255;
+    if (color.m_x_component < 0)
+        color.m_x_component = 0;
+    if (color.m_y_component < 0)
+        color.m_y_component = 0;
+    if (color.m_z_component < 0)
+        color.m_z_component = 0;
     std::cout << (int) color.m_x_component << " " << (int) color.m_y_component << " " << (int) color.m_z_component << std::endl;
 }
 
@@ -126,7 +138,7 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 
     for (size_t i = 0; i < m_objects.size(); i++) {
         if (m_objects[i]->hits(r)) {
-            print_pixel(light_calculation.calculateLightEffect(m_objects[i]->getColor(), m_lights, r.m_direction, r.m_origin));
+            print_pixel(light_calculation.calculateLightEffect(m_objects[i]->getColor(), m_lights, m_objects[i]->getSurfaceNormal()));
             hit_something = true;
             return;
         }

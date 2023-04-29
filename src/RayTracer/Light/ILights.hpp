@@ -9,6 +9,11 @@
 #include "../../Math/Point3D/Point3D.hpp"
 #include "../../Math/Rectangle3D/Rectangle3D.hpp"
 
+/**
+ * @brief Interface for lights
+ * @details Interface for lights to be used in the raytracer project
+ * it contains a method to get the intensity at a given point and a method to set the intensity
+ */
 namespace RayTracer
 {
     class ILights {

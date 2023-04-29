@@ -8,6 +8,10 @@
 #pragma once
 #include "../ILights.hpp"
 
+/**
+ * @brief Class for directional light
+ * @details This class is used to create a directional light for the scene
+ */
 namespace RayTracer
 {
     class DirectionalLight : public RayTracer::ILights {

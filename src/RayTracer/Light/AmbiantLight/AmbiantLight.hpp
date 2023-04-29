@@ -8,6 +8,9 @@
 #pragma once
 #include "../ILights.hpp"
 
+/**
+ * @brief Class for ambiant light
+*/
 namespace RayTracer
 {
     class AmbiantLight : public RayTracer::ILights {

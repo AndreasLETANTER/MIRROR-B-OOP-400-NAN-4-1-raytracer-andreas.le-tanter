@@ -190,6 +190,9 @@ Math::Vector3D Math::Vector3D::operator/=(const double &t_other)
     return (*this);
 }
 
+/**
+ * @brief normalize the vector
+*/
 void Math::Vector3D::normalize()
 {
     m_x_component /= this->length();

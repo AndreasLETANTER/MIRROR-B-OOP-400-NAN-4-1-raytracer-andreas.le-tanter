@@ -10,6 +10,9 @@
 #include <vector>
 #include <memory>
 
+/**
+ * @brief Class for light calculation
+*/
 namespace Math
 {
     class LightCalculation {

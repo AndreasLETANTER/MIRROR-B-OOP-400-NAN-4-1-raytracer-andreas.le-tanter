@@ -23,7 +23,7 @@ RayTracer::DirectionalLight::~DirectionalLight()
 
 double RayTracer::DirectionalLight::getIntensityAt(Math::Vector3D t_surfaceNormal)
 {
-    m_intensity = m_direction.dot_product(t_surfaceNormal);
+    m_intensity = -m_direction.dot_product(t_surfaceNormal);
     return (m_intensity);
 }
 

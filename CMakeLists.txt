@@ -11,6 +11,7 @@ set(CXX_FLAGS -Wall -Wextra -Werror -g)
 set(SRC
     src/Math/Vector3D/Vector3D.cpp
     src/Math/Point3D/Point3D.cpp
+    src/Math/Rectangle3D/Rectangle3D.cpp
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
     src/RayTracer/Camera/Camera.cpp
@@ -43,7 +44,7 @@ add_executable(${TEST_NAME} ${SRC} ${TESTS})
 #link the tests with the criterion library
 target_link_libraries(${TEST_NAME} ${CRITERION} config++)
 
-###############################CUSTOM TARGETS#####1###############################
+###############################CUSTOM TARGETS#####################################
 add_custom_target(fclean
     COMMAND make clean
     COMMAND find . -name "*~" -delete

@@ -6,8 +6,8 @@
 */
 
 #pragma once
-#include "Math/Point3D/Point3D.hpp"
-#include "Math/Vector3D/Vector3D.hpp"
+#include "../Point3D/Point3D.hpp"
+#include "../Vector3D/Vector3D.hpp"
 
 /**
  * @brief Rectangle3D class, used to create a rectangle in 3D space (used for the camera) 

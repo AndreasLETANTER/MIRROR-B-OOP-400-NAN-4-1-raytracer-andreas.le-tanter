@@ -22,11 +22,12 @@ namespace Parser
             Parser() = default;
             Parser(const char *filepath);
             ~Parser();
-            void parse_config_file();
             std::vector<RayTracer::IObjects *> getObjects();
             RayTracer::Camera getCamera();
         protected:
             void open_and_read_config_file(const char *filepath);
+            void parse_config_file();
+            void check_config_file();
         private:
             std::vector<RayTracer::IObjects *> m_objects;
             RayTracer::Camera m_cam;

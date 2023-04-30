@@ -23,6 +23,23 @@ Parser::Parser::~Parser()
 {
 }
 
+void Parser::Parser::check_config_file()
+{
+    try {
+        libconfig::Setting &root = m_config.getRoot();
+        libconfig::Setting &camera = root["camera"];
+        libconfig::Setting &objects = root["objects"];
+        if (camera.getLength() != 1)
+            throw std::exception();
+        if (objects.getLength() < 1)
+            throw std::exception();
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+}
+
 void Parser::Parser::parse_config_file()
 {
     libconfig::Setting &root = m_config.getRoot();

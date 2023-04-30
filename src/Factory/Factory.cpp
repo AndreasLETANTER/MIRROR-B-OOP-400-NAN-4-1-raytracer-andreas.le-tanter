@@ -5,6 +5,8 @@
 ** Factory
 */
 
+#include <iostream>
+
 #include "Factory.hpp"
 
 Factory::Factory::Factory()
@@ -18,8 +20,7 @@ Factory::Factory::~Factory()
 RayTracer::Camera Factory::Factory::createCamera(libconfig::Setting &setting)
 {
     RayTracer::Camera cam;
-    setting.lookupValue
-    return RayTracer::Camera();
+    return cam;
 }
 
 RayTracer::IObjects *Factory::Factory::createSphere(libconfig::Setting &setting)

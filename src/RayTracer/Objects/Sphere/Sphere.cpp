@@ -6,12 +6,14 @@
 */
 
 #include "Sphere.hpp"
+#include <cmath>
+#include <iostream>
 
 /**
  * @brief Construct a new Sphere object
  * @details set the center and the radius of the sphere to 0
 */
-RayTracer::Sphere::Sphere()
+RayTracer::Sphere::Sphere(void)
 {
     m_center = Math::Point3D(0, 0, 0);
     m_radius = 0;
@@ -31,17 +33,10 @@ RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius, Math::Vector3
 }
 
 /**
- * @brief Destroy the Sphere object
-*/
-RayTracer::Sphere::~Sphere()
-{
-}
-
-/**
  * @brief get the color of the sphere
  * @return Math::Vector3D 
 */
-Math::Vector3D RayTracer::Sphere::getColor()
+Math::Vector3D RayTracer::Sphere::getColor(void)
 {
     return (m_color);
 }
@@ -60,6 +55,24 @@ bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
     double b = 2.0 * oc.dot_product(t_ray.m_direction);
     double c = oc.dot_product(oc) - m_radius * m_radius;
     double discriminant = b * b - 4 * a * c;
+    double t = (-b - sqrt(discriminant)) / (2.0 * a);
 
-    return (discriminant > 0);
+    if (discriminant < 0)
+        return (false);
+    m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
+    return (true);
+}
+
+/**
+ * @brief get the surface normal of the sphere
+ * @details get the surface normal of the sphere at the given point
+ * @param t_point
+ * @return Math::Vector3D 
+*/
+Math::Vector3D RayTracer::Sphere::getSurfaceNormal(void)
+{
+    Math::Vector3D surface_normal = m_hit_point - m_center;
+
+    surface_normal = surface_normal / surface_normal.length();
+    return (surface_normal);
 }

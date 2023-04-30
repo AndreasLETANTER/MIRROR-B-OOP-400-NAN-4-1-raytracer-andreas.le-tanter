@@ -16,11 +16,12 @@ namespace Parser
     class IParser {
         public:
             virtual ~IParser() = default;
-            virtual void parse_config_file() = 0;
             virtual std::vector<RayTracer::IObjects *> getObjects() = 0;
             virtual RayTracer::Camera getCamera() = 0;
 
         protected:
+            virtual void parse_config_file() = 0;
+
         private:
     };
 }

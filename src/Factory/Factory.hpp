@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** MIRROR-B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter
 ** File description:
-** Parser
+** Factory
 */
 
 #pragma once
@@ -13,25 +13,26 @@
 
 #include "../RayTracer/Objects/IObjects.hpp"
 #include "../RayTracer/Camera/Camera.hpp"
-#include "../Factory/Factory.hpp"
 
-namespace Parser
+namespace Factory
 {
-    class Parser {
+    class Factory {
         public:
-            Parser() = default;
-            Parser(const char *filepath);
-            ~Parser();
-            void parse_config_file();
+            Factory();
+            ~Factory();
+
+            // Getters
             std::vector<RayTracer::IObjects *> getObjects();
             RayTracer::Camera getCamera();
+
+            // Setters
+            RayTracer::Camera createCamera(libconfig::Setting &setting);
+            RayTracer::IObjects *createSphere(libconfig::Setting &setting);
+
         protected:
             void open_and_read_config_file(const char *filepath);
         private:
             std::vector<RayTracer::IObjects *> m_objects;
             RayTracer::Camera m_cam;
-            std::string m_file_path;
-            libconfig::Config m_config;
-            Factory::Factory *m_factory;
     };
 }

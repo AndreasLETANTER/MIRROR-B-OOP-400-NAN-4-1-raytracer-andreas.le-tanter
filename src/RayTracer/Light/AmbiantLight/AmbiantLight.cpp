@@ -25,13 +25,6 @@ RayTracer::AmbiantLight::AmbiantLight(double t_intensity)
 }
 
 /**
- * @brief Destroy the Ray Tracer:: Ambiant Light:: Ambiant Light object
-*/
-RayTracer::AmbiantLight::~AmbiantLight()
-{
-}
-
-/**
  * @brief Get the Intensity of the light based on the surface normal where the ray hit
  * @param t_surfaceNormal Surface normal where the ray hit
  * @return double Intensity of the light

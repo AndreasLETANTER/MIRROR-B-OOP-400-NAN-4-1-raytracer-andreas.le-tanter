@@ -23,7 +23,7 @@ namespace RayTracer
             Ray &operator=(const Ray &t_other) = default;
             Ray(Ray &&t_other) = default;
             Ray &operator=(Ray &&t_other) = default;
-            ~Ray();
+            ~Ray() = default;
             Math::Point3D m_origin;
             Math::Vector3D m_direction;
 

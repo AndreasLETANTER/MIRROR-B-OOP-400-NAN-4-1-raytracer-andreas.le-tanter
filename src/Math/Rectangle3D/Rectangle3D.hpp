@@ -16,7 +16,7 @@ class Rectangle3D {
     public:
         Rectangle3D();
         Rectangle3D(Math::Point3D t_origin, Math::Vector3D t_bottom_side, Math::Vector3D t_left_side);
-        ~Rectangle3D();
+        ~Rectangle3D() = default;
         Math::Point3D pointAt(double u, double v);
         Math::Point3D m_origin;
         Math::Vector3D m_bottom_side;

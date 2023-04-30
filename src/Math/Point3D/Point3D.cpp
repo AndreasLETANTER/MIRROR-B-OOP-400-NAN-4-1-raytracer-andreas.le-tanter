@@ -33,13 +33,6 @@ Math::Point3D::Point3D(double t_x, double t_y, double t_z)
 }
 
 /**
- * @brief Destroy the Point3D:: Point3D object
-*/
-Math::Point3D::~Point3D()
-{
-}
-
-/**
  * @brief perform a sum between a point and a vector
  * @param t_other
  * @return Math::Point3D 

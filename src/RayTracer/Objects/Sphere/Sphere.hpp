@@ -20,7 +20,7 @@ namespace RayTracer {
         public:
             Sphere();
             Sphere(Math::Point3D t_center, double t_radius, Math::Vector3D t_color);
-            ~Sphere();
+            ~Sphere() = default;
             Math::Vector3D getColor() override;
             Math::Point3D m_center;
             double m_radius;

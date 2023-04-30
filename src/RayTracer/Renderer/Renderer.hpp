@@ -23,9 +23,9 @@ namespace RayTracer
 {
     class Renderer {
         public:
-            Renderer();
+            Renderer() = default;
             Renderer(int t_width, int t_height, RayTracer::Camera t_cam);
-            ~Renderer();
+            ~Renderer() = default;
             void setMissColor(Math::Vector3D t_color);
             void setWidth(int t_width);
             void setHeight(int t_height);

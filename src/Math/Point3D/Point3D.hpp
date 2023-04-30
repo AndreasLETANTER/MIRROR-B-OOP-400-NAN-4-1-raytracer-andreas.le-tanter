@@ -22,7 +22,7 @@ namespace Math
             Point3D &operator=(const Point3D &t_other) = default;
             Point3D(Point3D &&t_other) = default;
             Point3D &operator=(Point3D &&t_other) = default;
-            ~Point3D();
+            ~Point3D() = default;
             Point3D operator+(const Vector3D &t_other);
             Point3D operator+=(const Vector3D &t_other);
             Vector3D operator-(const Point3D &t_other);

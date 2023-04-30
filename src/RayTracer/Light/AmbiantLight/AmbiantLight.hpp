@@ -17,7 +17,7 @@ namespace RayTracer
         public:
             AmbiantLight();
             AmbiantLight(double t_intensity);
-            ~AmbiantLight();
+            ~AmbiantLight() = default;
             double getIntensityAt(Math::Vector3D t_surfaceNormal) override;
             void setIntensity(double t_intensity) override;
 

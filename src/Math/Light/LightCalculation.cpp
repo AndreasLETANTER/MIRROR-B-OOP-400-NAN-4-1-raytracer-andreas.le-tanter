@@ -9,20 +9,6 @@
 #include <iostream>
 
 /**
- * @brief Construct a new Math:: Light Calculation:: Light Calculation object
-*/
-Math::LightCalculation::LightCalculation()
-{
-}
-
-/**
- * @brief Destroy the Math:: Light Calculation:: Light Calculation object
-*/
-Math::LightCalculation::~LightCalculation()
-{
-}
-
-/**
  * @brief calculate the light effect on the color
  * @param t_base_color the base color of the object
  * @param t_lights the lights of the scene

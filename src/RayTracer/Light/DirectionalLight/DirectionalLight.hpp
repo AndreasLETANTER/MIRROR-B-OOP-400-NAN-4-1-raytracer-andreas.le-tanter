@@ -16,9 +16,9 @@ namespace RayTracer
 {
     class DirectionalLight : public RayTracer::ILights {
         public:
-            DirectionalLight();
+            DirectionalLight() = default;
             DirectionalLight(Math::Vector3D t_direction);
-            ~DirectionalLight();
+            ~DirectionalLight() = default;
             double getIntensityAt(Math::Vector3D t_surfaceNormal) override;
             void setIntensity(double t_intensity) override;
 

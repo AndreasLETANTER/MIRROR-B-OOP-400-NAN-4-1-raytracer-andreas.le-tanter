@@ -33,13 +33,6 @@ RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius, Math::Vector3
 }
 
 /**
- * @brief Destroy the Sphere object
-*/
-RayTracer::Sphere::~Sphere()
-{
-}
-
-/**
  * @brief get the color of the sphere
  * @return Math::Vector3D 
 */

@@ -28,10 +28,3 @@ RayTracer::Ray::Ray(Math::Point3D t_origin, Math::Vector3D t_direction)
     m_origin = t_origin;
     m_direction = t_direction;
 }
-
-/**
- * @brief Destroy the Ray object
-*/
-RayTracer::Ray::~Ray()
-{
-}

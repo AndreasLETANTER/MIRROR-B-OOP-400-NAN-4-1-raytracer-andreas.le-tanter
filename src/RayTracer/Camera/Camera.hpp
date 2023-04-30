@@ -19,8 +19,8 @@ namespace RayTracer
 {
     class Camera {
         public:
-            Camera();
-            ~Camera();
+            Camera() = default;
+            ~Camera() = default;
             Math::Point3D m_origin;
             Rectangle3D m_screen;
             RayTracer::Ray rayAt(double u, double v);

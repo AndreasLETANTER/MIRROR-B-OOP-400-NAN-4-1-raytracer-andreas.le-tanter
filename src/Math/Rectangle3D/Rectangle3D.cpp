@@ -33,13 +33,6 @@ Rectangle3D::Rectangle3D(Math::Point3D t_origin, Math::Vector3D t_bottom_side, M
 }
 
 /**
- * @brief Destroy the Rectangle3D object
-*/
-Rectangle3D::~Rectangle3D()
-{
-}
-
-/**
  * @brief return the point at the given u and v coordinates
  * @param u 
  * @param v 

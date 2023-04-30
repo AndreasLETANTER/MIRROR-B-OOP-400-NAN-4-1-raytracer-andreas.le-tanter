@@ -11,13 +11,6 @@
 
 /**
  * @brief Construct a new Ray Tracer:: Renderer:: Renderer object
-*/
-RayTracer::Renderer::Renderer()
-{
-}
-
-/**
- * @brief Construct a new Ray Tracer:: Renderer:: Renderer object
  * @details set the width and the height of the scene to the given parameters
  * @details set the camera of the scene to the given parameter
  * @param t_width 
@@ -29,13 +22,6 @@ RayTracer::Renderer::Renderer(int t_width, int t_height, RayTracer::Camera t_cam
     m_width = t_width;
     m_height = t_height;
     m_cam = t_cam;
-}
-
-/**
- * @brief Destroy the Ray Tracer:: Renderer:: Renderer object
-*/
-RayTracer::Renderer::~Renderer()
-{
 }
 
 /**

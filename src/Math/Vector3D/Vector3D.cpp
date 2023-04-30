@@ -12,7 +12,7 @@
  * @brief Construct a new Vector 3D object
  * @details set the x, y and z component of the vector to 0
 */
-Math::Vector3D::Vector3D()
+Math::Vector3D::Vector3D(void)
 {
     m_x_component = 0;
     m_y_component = 0;
@@ -36,7 +36,7 @@ Math::Vector3D::Vector3D(double t_x, double t_y, double t_z)
 /**
  * @brief Destroy the Vector 3D object
 */
-Math::Vector3D::~Vector3D()
+Math::Vector3D::~Vector3D(void)
 {
     m_z_component = 0;
     m_y_component = 0;
@@ -47,7 +47,7 @@ Math::Vector3D::~Vector3D()
  * @brief return the len of the vector
  * @return double 
 */
-double Math::Vector3D::length()
+double Math::Vector3D::length(void)
 {
     return (sqrt(pow(m_x_component, 2) + pow(m_y_component, 2) + pow(m_z_component, 2)));
 }
@@ -193,7 +193,7 @@ Math::Vector3D Math::Vector3D::operator/=(const double &t_other)
 /**
  * @brief normalize the vector
 */
-void Math::Vector3D::normalize()
+void Math::Vector3D::normalize(void)
 {
     m_x_component /= this->length();
     m_y_component /= this->length();

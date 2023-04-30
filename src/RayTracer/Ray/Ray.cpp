@@ -11,7 +11,7 @@
  * @brief Construct a new Ray:: Ray object
  * @details set the origin and the direction of the ray to 0
 */
-RayTracer::Ray::Ray()
+RayTracer::Ray::Ray(void)
 {
     m_origin = Math::Point3D(0, 0, 0);
     m_direction = Math::Vector3D(0, 0, 0);

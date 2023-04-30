@@ -17,8 +17,8 @@ namespace Math
 {
     class LightCalculation {
         public:
-            LightCalculation() = default;
-            ~LightCalculation() = default;
+            LightCalculation(void) = default;
+            ~LightCalculation(void) = default;
             Math::Vector3D calculateLightEffect(Math::Vector3D t_base_color, std::vector<std::shared_ptr<RayTracer::ILights>> t_lights, Math::Vector3D t_surfaceNormal);
 
         protected:

@@ -137,7 +137,7 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
  * @brief renderScene function, used to render the scene
  * @details the function will iterate through all the pixels of the image and check if the ray hits something 
 */
-void RayTracer::Renderer::renderScene()
+void RayTracer::Renderer::renderScene(void)
 {
     print_header();
     for (int y = 0; y < m_height; y++) {

@@ -17,13 +17,13 @@ namespace RayTracer
 {
     class Ray {
         public:
-            Ray(); 
+            Ray(void); 
             Ray(Math::Point3D t_origin, Math::Vector3D t_direction);
             Ray(const Ray &t_other) = default;
             Ray &operator=(const Ray &t_other) = default;
             Ray(Ray &&t_other) = default;
             Ray &operator=(Ray &&t_other) = default;
-            ~Ray() = default;
+            ~Ray(void) = default;
             Math::Point3D m_origin;
             Math::Vector3D m_direction;
 

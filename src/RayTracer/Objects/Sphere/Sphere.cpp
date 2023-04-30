@@ -13,7 +13,7 @@
  * @brief Construct a new Sphere object
  * @details set the center and the radius of the sphere to 0
 */
-RayTracer::Sphere::Sphere()
+RayTracer::Sphere::Sphere(void)
 {
     m_center = Math::Point3D(0, 0, 0);
     m_radius = 0;
@@ -36,7 +36,7 @@ RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius, Math::Vector3
  * @brief get the color of the sphere
  * @return Math::Vector3D 
 */
-Math::Vector3D RayTracer::Sphere::getColor()
+Math::Vector3D RayTracer::Sphere::getColor(void)
 {
     return (m_color);
 }
@@ -69,7 +69,7 @@ bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
  * @param t_point
  * @return Math::Vector3D 
 */
-Math::Vector3D RayTracer::Sphere::getSurfaceNormal()
+Math::Vector3D RayTracer::Sphere::getSurfaceNormal(void)
 {
     Math::Vector3D surface_normal = m_hit_point - m_center;
 

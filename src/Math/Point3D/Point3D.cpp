@@ -11,7 +11,7 @@
  * @brief Construct a new Point3D:: Point3D object
  * @details set the x, y and z coordinates to 0
 */
-Math::Point3D::Point3D()
+Math::Point3D::Point3D(void)
 {
     m_x_component = 0;
     m_y_component = 0;

@@ -23,22 +23,22 @@ namespace RayTracer
 {
     class Renderer {
         public:
-            Renderer() = default;
+            Renderer(void) = default;
             Renderer(int t_width, int t_height, RayTracer::Camera t_cam);
-            ~Renderer() = default;
+            ~Renderer(void) = default;
             void setMissColor(Math::Vector3D t_color);
             void setWidth(int t_width);
             void setHeight(int t_height);
             void setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects);
             void setLights(std::vector<std::shared_ptr<RayTracer::ILights>> t_lights);
             void setCamera(RayTracer::Camera t_cam);
-            void renderScene();
+            void renderScene(void);
 
         protected:
         private:
             void check_hit(RayTracer::Ray r);
             void print_pixel(Math::Vector3D t_color);
-            void print_header();
+            void print_header(void);
             Math::Vector3D m_miss_color;
             RayTracer::Camera m_cam;
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;

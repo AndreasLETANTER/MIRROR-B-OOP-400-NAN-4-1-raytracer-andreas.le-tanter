@@ -18,15 +18,15 @@
 namespace RayTracer {
     class Sphere : public IObjects {
         public:
-            Sphere();
+            Sphere(void);
             Sphere(Math::Point3D t_center, double t_radius, Math::Vector3D t_color);
-            ~Sphere() = default;
-            Math::Vector3D getColor() override;
+            ~Sphere(void) = default;
+            Math::Vector3D getColor(void) override;
             Math::Point3D m_center;
             double m_radius;
             Math::Vector3D m_color;
             bool hits(Ray &t_ray) override;
-            Math::Vector3D getSurfaceNormal() override;
+            Math::Vector3D getSurfaceNormal(void) override;
 
         protected:
             Math::Point3D m_hit_point;

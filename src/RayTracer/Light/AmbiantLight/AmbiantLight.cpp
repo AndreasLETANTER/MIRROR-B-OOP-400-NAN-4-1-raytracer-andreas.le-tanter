@@ -10,7 +10,7 @@
 /**
  * @brief Construct a new Ray Tracer:: Ambiant Light:: Ambiant Light object
 */
-RayTracer::AmbiantLight::AmbiantLight()
+RayTracer::AmbiantLight::AmbiantLight(void)
 {
     m_intensity = 0;
 }

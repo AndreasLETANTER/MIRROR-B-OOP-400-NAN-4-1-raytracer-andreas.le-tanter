@@ -36,9 +36,8 @@ int main(void)
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere4));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
     lights.push_back(std::make_shared<RayTracer::DirectionalLight>(directionalLight));
-    cam.setPosition(Math::Point3D(0, 0, -4));
     cam.setResolution(WIDTH, HEIGHT);
-    cam.setScreen(126.87);
+    cam.setScreen(80, Rectangle3D(Math::Point3D(-0.25, -0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0)));
 
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(105, 105, 105));

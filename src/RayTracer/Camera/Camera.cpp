@@ -18,16 +18,16 @@
 */
 RayTracer::Ray RayTracer::Camera::rayAt(double u, double v)
 {
-    return (RayTracer::Ray(m_position, m_screen.pointAt(u, v) - m_position));
+    return (RayTracer::Ray(m_origin, m_screen.pointAt(u, v) - m_origin));
 }
 
 /**
  * @brief set the position of the camera
  * @param t_origin 
 */
-void RayTracer::Camera::setPosition(Math::Point3D t_origin)
+void RayTracer::Camera::setOrigin(Math::Point3D t_origin)
 {
-    m_screen = Rectangle3D(Math::Point3D(t_origin.m_x_component - 0.25, t_origin.m_y_component - 0.25, t_origin.m_z_component), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0));
+    m_origin = Math::Point3D(t_origin.m_x_component, t_origin.m_y_component, t_origin.m_z_component);
 }
 
 /**
@@ -35,12 +35,11 @@ void RayTracer::Camera::setPosition(Math::Point3D t_origin)
  * @details the screen is defined by its fov and its resolution
  * @param t_fov the fov of the camera in degrees
 */
-void RayTracer::Camera::setScreen(double t_fov)
+void RayTracer::Camera::setScreen(double t_fov, const Rectangle3D& t_screen)
 {
-    double distance = -5; //nugo need to fill this (the value of the distance with the given parameter in the main should give -5 in value)
-
-    (void) t_fov;
-    m_position = Math::Point3D(m_screen.m_origin.m_x_component + 0.25, m_screen.m_origin.m_y_component + 0.25, distance);
+    m_screen = t_screen;
+    double distance = (m_screen.m_bottom_side.m_x_component / 2) / tan((t_fov / 2) * M_PI / 180);
+    setOrigin(Math::Point3D(0, 0, m_screen.m_origin.m_z_component - distance));
 }
 
 /**

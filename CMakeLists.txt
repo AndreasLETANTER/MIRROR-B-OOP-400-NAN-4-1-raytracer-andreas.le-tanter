@@ -17,7 +17,6 @@ set(SRC
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
     src/Parser/Parser.cpp
-    src/Rectangle3D.cpp
     src/Parser/Parser.cpp
     src/Factory/Factory.cpp
 )

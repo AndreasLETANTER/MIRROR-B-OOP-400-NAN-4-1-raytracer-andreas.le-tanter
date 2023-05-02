@@ -27,7 +27,7 @@ namespace Factory
 
             // Setters
             RayTracer::Camera createCamera(libconfig::Setting &setting);
-            RayTracer::IObjects *createSphere(libconfig::Setting &setting);
+            RayTracer::IObjects *createSphere(Math::Point3D position, double radius, Math::Vector3D color);
 
         protected:
             void open_and_read_config_file(const char *filepath);

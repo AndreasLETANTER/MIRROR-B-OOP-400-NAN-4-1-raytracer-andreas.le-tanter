@@ -14,8 +14,8 @@
 #include "RayTracer/Light/ILights.hpp"
 #include <iostream>
 
-#define WIDTH 1500
-#define HEIGHT 1500
+#define WIDTH 2000
+#define HEIGHT 2000
 
 int main(void)
 {
@@ -36,9 +36,9 @@ int main(void)
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere4));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
     lights.push_back(std::make_shared<RayTracer::DirectionalLight>(directionalLight));
-    cam.setPosition(Math::Point3D(0, 0, -5));
+    cam.setPosition(Math::Point3D(0, 0, -4));
     cam.setResolution(WIDTH, HEIGHT);
-    cam.setScreen(1);
+    cam.setScreen(126.87);
 
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(105, 105, 105));

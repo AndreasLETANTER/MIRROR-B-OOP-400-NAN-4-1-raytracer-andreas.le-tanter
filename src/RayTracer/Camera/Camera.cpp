@@ -7,6 +7,7 @@
 
 #include "Camera.hpp"
 #include <iostream>
+#include <cmath>
 
 /**
  * @brief get the ray at the given coordinates
@@ -26,18 +27,20 @@ RayTracer::Ray RayTracer::Camera::rayAt(double u, double v)
 */
 void RayTracer::Camera::setPosition(Math::Point3D t_origin)
 {
-    m_position = t_origin;
+    m_screen = Rectangle3D(Math::Point3D(t_origin.m_x_component - 0.25, t_origin.m_y_component - 0.25, t_origin.m_z_component), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0));
 }
 
 /**
  * @brief set the screen of the camera
  * @details the screen is defined by its fov and its resolution
- * @param t_fov 
+ * @param t_fov the fov of the camera in degrees
 */
 void RayTracer::Camera::setScreen(double t_fov)
 {
+    double distance = -5; //nugo need to fill this (the value of the distance with the given parameter in the main should give -5 in value)
+
     (void) t_fov;
-    m_screen = Rectangle3D(Math::Point3D(m_position.m_x_component - 0.25, m_position.m_y_component - 0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0));
+    m_position = Math::Point3D(m_screen.m_origin.m_x_component + 0.25, m_screen.m_origin.m_y_component + 0.25, distance);
 }
 
 /**

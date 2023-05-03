@@ -23,7 +23,7 @@ namespace RayTracer
             Camera(void) = default;
             ~Camera(void) = default;
             void setOrigin(Math::Point3D t_origin);
-            void setScreen(double t_fov, const Rectangle3D& t_screen);
+            void setScreen(double t_fov, const Rectangle3D &t_screen);
             void setResolution(unsigned int t_width, unsigned int t_height);
             void rotateScreen(Math::Vector3D t_rotation);
             std::tuple<int, int> getResolution(void) { return (std::make_tuple(m_width, m_height)); };

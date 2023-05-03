@@ -26,12 +26,11 @@ int main(void)
     RayTracer::Sphere sphere2(Math::Point3D(-0.5, 0.5, 0), 0.3, Math::Vector3D(255, 255, 0));
     RayTracer::Sphere sphere3(Math::Point3D(0.5, -0.5, 0), 0.3, Math::Vector3D(178, 255, 102));
     RayTracer::Sphere sphere4(Math::Point3D(-0.5, -0.5, 0), 0.3, Math::Vector3D(255, 153, 153));
-    RayTracer::Plane plane(PlaneAxis::Z, 0, Math::Vector3D(125, 255, 255));
+    RayTracer::Plane plane(Math::Point3D(0., 0.2, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(125, 255, 255));
     RayTracer::AmbiantLight ambiantLight(0.2);
     RayTracer::DirectionalLight directionalLight(Math::Vector3D(-1, 1, 1.5));
     std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
-
 
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere2));
@@ -45,7 +44,7 @@ int main(void)
     renderer.setCamera(cam);
     renderer.setWidth(WIDTH);
     renderer.setHeight(HEIGHT);
-    renderer.setMissColor(Math::Vector3D(105, 105, 105));
+    renderer.setMissColor(Math::Vector3D(0, 0, 0));
     renderer.setObjects(objects);
     renderer.setLights(lights);
     renderer.renderScene();

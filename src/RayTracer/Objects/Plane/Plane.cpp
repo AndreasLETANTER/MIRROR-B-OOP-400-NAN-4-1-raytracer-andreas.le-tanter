@@ -9,16 +9,13 @@
 #include <iostream>
 
 /**
- * @brief Plane constructor
- * @details the plane is defined by its axis, its position and its color
- * @param t_axis 
- * @param t_position 
- * @param t_color 
+ * @brief Construct a new Plane object
+ * @details set the position and the normal and the color to the given parameters
 */
-RayTracer::Plane::Plane(PlaneAxis t_axis, double t_position, Math::Vector3D t_color)
+RayTracer::Plane::Plane(Math::Point3D t_plane_position, Math::Vector3D t_plane_normal, Math::Vector3D t_color)
 {
-    m_axis = t_axis;
-    m_position = t_position;
+    m_plane_position = t_plane_position;
+    m_plane_normal = t_plane_normal;
     m_color = t_color;
 }
 
@@ -40,21 +37,15 @@ Math::Vector3D RayTracer::Plane::getColor(void)
 */
 bool RayTracer::Plane::hits(RayTracer::Ray &t_ray)
 {
-    Math::Vector3D PlaneNormal = Math::Vector3D(-1., 0., 0.);
     Math::Vector3D RayDirection = t_ray.m_direction / t_ray.m_direction.length();
-    Math::Point3D PlanePosition = Math::Point3D(0.3, 0., 0.);
     double hitDistance = 0;
-    double denom = PlaneNormal.dot_product(RayDirection);
+    double denom = m_plane_normal.dot_product(RayDirection);
 
     if (std::abs(denom) < 1e-6) {
         return false;
     }
-    Math::Vector3D p0l0 = PlanePosition - t_ray.m_origin;
-    hitDistance = p0l0.dot_product(PlaneNormal) / denom;
-    if (hitDistance < 0) {
-        return false;
-    }
-    m_hit_point = t_ray.m_origin + (RayDirection * hitDistance);
+    Math::Vector3D p0l0 = m_plane_position - t_ray.m_origin;
+    hitDistance = p0l0.dot_product(m_plane_normal) / denom;
     return (hitDistance >= 0);
 }
 
@@ -65,8 +56,5 @@ bool RayTracer::Plane::hits(RayTracer::Ray &t_ray)
 */
 Math::Vector3D RayTracer::Plane::getSurfaceNormal(void)
 {
-    Math::Vector3D surface_normal = m_hit_point - Math::Point3D(-1., 0., 0.);
-
-    surface_normal = surface_normal / surface_normal.length();
-    return (surface_normal);
+    return (Math::Vector3D(0, 0, 0));
 }

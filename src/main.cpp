@@ -15,14 +15,14 @@
 #include "RayTracer/Light/ILights.hpp"
 #include <iostream>
 
-#define WIDTH 2500
-#define HEIGHT 2500
+#define WIDTH 1000
+#define HEIGHT 1000
 
 int main(const int ac, const char **av)
 {
     (void)ac;
     Parser::Parser parser(av[1]);
-    RayTracer::Camera cam;
+    RayTracer::Camera cam = parser.getCamera();
     RayTracer::Renderer renderer;
     RayTracer::AmbiantLight ambiantLight(0.2);
     RayTracer::DirectionalLight directionalLight(Math::Vector3D(-1, 1, 1.5));
@@ -30,7 +30,7 @@ int main(const int ac, const char **av)
 
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
     lights.push_back(std::make_shared<RayTracer::DirectionalLight>(directionalLight));
-    cam.m_origin = Math::Point3D(0, 0, -5);
+    // cam.m_origin = Math::Point3D(0, 0, -5);
     cam.m_screen = Rectangle3D(Math::Point3D(-0.25, -0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0));
     renderer.setCamera(cam);
     renderer.setWidth(WIDTH);

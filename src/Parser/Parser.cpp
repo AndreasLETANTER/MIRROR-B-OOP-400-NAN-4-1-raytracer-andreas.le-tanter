@@ -40,6 +40,18 @@ void Parser::Parser::check_config_file()
     }
 }
 
+void Parser::Parser::parse_camera(libconfig::Setting &root)
+{
+    for (int i = 0; i != root.getLength(); i++) {
+        std::string type = root[i].getName();
+        if (type == "camera") {
+            m_cam.m_origin = parse_position(root, "camera");
+            double fov = root.lookup("camera.fov");
+            (void)fov;
+        }
+    }
+}
+
 Math::Point3D Parser::Parser::parse_position(libconfig::Setting &root, std::string path)
 {
     std::string name = path + ".position.";
@@ -70,6 +82,9 @@ Math::Vector3D Parser::Parser::parse_color(libconfig::Setting &root, std::string
 void Parser::Parser::parse_objects(libconfig::Setting &root)
 {
     for (int i = 0; i != root.getLength(); i++) {
+        std::string type = root[i].getName();
+        if (type == "camera")
+            continue;
         for (int j = 0; j != root[i].getLength(); j++) {
             std::string type = root[i][j].getName();
             if (type.find("sphere-") == 0) {
@@ -77,8 +92,7 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 Math::Point3D position = parse_position(root, path);
                 double radius = parse_radius(root, path);
                 Math::Vector3D color = parse_color(root, path);
-                std::shared_ptr<RayTracer::IObjects> obj = m_factory->createSphere(position, radius, color);
-                m_objects.push_back(obj);
+                m_objects.push_back(m_factory->createSphere(position, radius, color));
             }
         }
     }
@@ -87,6 +101,7 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
 void Parser::Parser::parse_config_file()
 {
     libconfig::Setting &root = m_config.getRoot();
+    Parser::Parser::parse_camera(root);
     Parser::Parser::parse_objects(root);
 }
 

@@ -28,6 +28,7 @@ namespace Parser
             void open_and_read_config_file(const char *filepath);
             void parse_config_file();
             void check_config_file();
+            void parse_camera(libconfig::Setting &camera);
             void parse_objects(libconfig::Setting &objects);
             Math::Point3D parse_position(libconfig::Setting &root, std::string path);
             double parse_radius(libconfig::Setting &root, std::string path);

@@ -20,8 +20,8 @@ RayTracer::Sphere::Sphere()
 /**
  * @brief Construct a new Sphere object
  * @details set the center and the radius of the sphere to the given parameters
- * @param t_center 
- * @param t_radius 
+ * @param t_center
+ * @param t_radius
  */
 RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius)
 {
@@ -39,9 +39,9 @@ RayTracer::Sphere::~Sphere()
 /**
  * @brief check if the ray hits the sphere
  * @details check if the ray hits the sphere using a quadratic equation
- * @param t_ray 
- * @return true 
- * @return false 
+ * @param t_ray
+ * @return true
+ * @return false
 */
 bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
 {

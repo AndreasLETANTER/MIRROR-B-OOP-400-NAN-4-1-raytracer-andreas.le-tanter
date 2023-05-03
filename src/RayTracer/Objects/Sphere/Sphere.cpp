@@ -60,6 +60,7 @@ bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
     if (discriminant < 0)
         return (false);
     m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
+    m_hit_distance = t;
     return (true);
 }
 
@@ -75,4 +76,13 @@ Math::Vector3D RayTracer::Sphere::getSurfaceNormal(void)
 
     surface_normal = surface_normal / surface_normal.length();
     return (surface_normal);
+}
+
+/**
+ * @brief get the distance between the ray origin and the hit point
+ * @return double 
+*/
+double RayTracer::Sphere::getHitDistance(void)
+{
+    return (m_hit_distance);
 }

@@ -47,7 +47,7 @@ void RayTracer::Camera::setScreen(double t_fov, const Rectangle3D &t_screen)
  * @param t_width 
  * @param t_height 
 */
-void RayTracer::Camera::setResolution(int t_width, int t_height)
+void RayTracer::Camera::setResolution(unsigned int t_width, unsigned int t_height)
 {
     m_width = t_width;
     m_height = t_height;

@@ -10,6 +10,7 @@
 #include <string>
 #include <libconfig.h++>
 #include <vector>
+#include <memory>
 
 #include "../RayTracer/Objects/IObjects.hpp"
 #include "../RayTracer/Camera/Camera.hpp"
@@ -27,7 +28,7 @@ namespace Factory
 
             // Setters
             RayTracer::Camera createCamera(libconfig::Setting &setting);
-            RayTracer::IObjects *createSphere(Math::Point3D position, double radius, Math::Vector3D color);
+            std::shared_ptr<RayTracer::IObjects> createSphere(Math::Point3D position, double radius, Math::Vector3D color);
 
         protected:
             void open_and_read_config_file(const char *filepath);

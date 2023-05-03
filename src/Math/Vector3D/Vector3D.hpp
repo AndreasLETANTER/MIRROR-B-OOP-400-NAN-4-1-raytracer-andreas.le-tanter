@@ -14,13 +14,13 @@ namespace Math
 {
     class Vector3D {
         public:
-            Vector3D(); // Constructor
+            Vector3D(void); // Constructor
             Vector3D(double t_x, double t_y, double t_z); // Constructor
             Vector3D(const Vector3D &t_other) = default;
             Vector3D &operator=(const Vector3D &t_other) = default;
             Vector3D(Vector3D &&t_other) = default;
             Vector3D &operator=(Vector3D &&t_other) = default;
-            ~Vector3D();
+            ~Vector3D(void);
             Vector3D operator+(const Vector3D &t_other);
             Vector3D operator+=(const Vector3D &t_other);
             Vector3D operator-(const Vector3D &t_other);
@@ -34,7 +34,8 @@ namespace Math
             Vector3D operator/(const double &t_other);
             Vector3D operator/=(const double &t_other);
             double dot_product(const Vector3D &t_other);
-            double length();
+            void normalize(void);
+            double length(void);
             double m_x_component;
             double m_y_component;
             double m_z_component;

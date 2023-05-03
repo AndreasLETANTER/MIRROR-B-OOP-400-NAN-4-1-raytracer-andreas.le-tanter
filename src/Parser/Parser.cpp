@@ -77,7 +77,7 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 Math::Point3D position = parse_position(root, path);
                 double radius = parse_radius(root, path);
                 Math::Vector3D color = parse_color(root, path);
-                RayTracer::IObjects *obj = m_factory->createSphere(position, radius, color);
+                std::shared_ptr<RayTracer::IObjects> obj = m_factory->createSphere(position, radius, color);
                 m_objects.push_back(obj);
             }
         }
@@ -90,7 +90,7 @@ void Parser::Parser::parse_config_file()
     Parser::Parser::parse_objects(root);
 }
 
-std::vector<RayTracer::IObjects *> Parser::Parser::getObjects()
+std::vector<std::shared_ptr<RayTracer::IObjects>> Parser::Parser::getObjects()
 {
     return m_objects;
 }

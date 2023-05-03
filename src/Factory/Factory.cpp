@@ -26,8 +26,8 @@ RayTracer::Camera Factory::Factory::createCamera(libconfig::Setting &setting)
     return cam;
 }
 
-RayTracer::IObjects *Factory::Factory::createSphere(Math::Point3D position, double radius, Math::Vector3D color)
+std::shared_ptr<RayTracer::IObjects> Factory::Factory::createSphere(Math::Point3D position, double radius, Math::Vector3D color)
 {
-    RayTracer::IObjects *sphere = new RayTracer::Sphere(position, radius, color);
+    std::shared_ptr<RayTracer::IObjects> sphere = std::make_shared<RayTracer::Sphere>(position, radius, color);
     return sphere;
 }

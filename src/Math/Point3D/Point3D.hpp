@@ -16,13 +16,13 @@ namespace Math
 {
     class Point3D {
         public:
-            Point3D();
+            Point3D(void);
             Point3D(double t_x, double t_y, double t_z);
             Point3D(const Point3D &t_other) = default;
             Point3D &operator=(const Point3D &t_other) = default;
             Point3D(Point3D &&t_other) = default;
             Point3D &operator=(Point3D &&t_other) = default;
-            ~Point3D();
+            ~Point3D(void) = default;
             Point3D operator+(const Vector3D &t_other);
             Point3D operator+=(const Vector3D &t_other);
             Vector3D operator-(const Point3D &t_other);

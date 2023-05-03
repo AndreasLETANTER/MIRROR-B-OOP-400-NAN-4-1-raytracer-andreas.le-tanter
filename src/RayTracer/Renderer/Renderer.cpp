@@ -6,14 +6,8 @@
 */
 
 #include "Renderer.hpp"
+#include "../../Math/Light/LightCalculation.hpp"
 #include <iostream>
-
-/**
- * @brief Construct a new Ray Tracer:: Renderer:: Renderer object
-*/
-RayTracer::Renderer::Renderer()
-{
-}
 
 /**
  * @brief Construct a new Ray Tracer:: Renderer:: Renderer object
@@ -28,13 +22,6 @@ RayTracer::Renderer::Renderer(int t_width, int t_height, RayTracer::Camera t_cam
     m_width = t_width;
     m_height = t_height;
     m_cam = t_cam;
-}
-
-/**
- * @brief Destroy the Ray Tracer:: Renderer:: Renderer object
-*/
-RayTracer::Renderer::~Renderer()
-{
 }
 
 /**
@@ -77,9 +64,18 @@ void RayTracer::Renderer::setCamera(RayTracer::Camera t_cam)
  * @brief setObjects function, used to set the objects of the scene
  * @param t_objects 
 */
-void RayTracer::Renderer::setObjects(std::vector<RayTracer::IObjects *> t_objects)
+void RayTracer::Renderer::setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects)
 {
     m_objects = t_objects;
+}
+
+/**
+ * @brief setLights function, used to set the lights of the scene
+ * @param t_lights 
+*/
+void RayTracer::Renderer::setLights(std::vector<std::shared_ptr<RayTracer::ILights>> t_lights)
+{
+    m_lights = t_lights;
 }
 
 /**
@@ -89,7 +85,19 @@ void RayTracer::Renderer::setObjects(std::vector<RayTracer::IObjects *> t_object
 */
 void RayTracer::Renderer::print_pixel(Math::Vector3D color)
 {
-    std::cout << color.m_x_component << " " << color.m_y_component << " " << color.m_z_component << std::endl;
+    if (color.m_x_component > 255)
+        color.m_x_component = 255;
+    if (color.m_y_component > 255)
+        color.m_y_component = 255;
+    if (color.m_z_component > 255)
+        color.m_z_component = 255;
+    if (color.m_x_component < 0)
+        color.m_x_component = 0;
+    if (color.m_y_component < 0)
+        color.m_y_component = 0;
+    if (color.m_z_component < 0)
+        color.m_z_component = 0;
+    std::cout << (int) color.m_x_component << " " << (int) color.m_y_component << " " << (int) color.m_z_component << std::endl;
 }
 
 /**
@@ -112,10 +120,11 @@ void RayTracer::Renderer::print_header(void)
 void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 {
     bool hit_something = false;
+    Math::LightCalculation light_calculation;
 
     for (size_t i = 0; i < m_objects.size(); i++) {
         if (m_objects[i]->hits(r)) {
-            print_pixel(m_objects[i]->getColor());
+            print_pixel(light_calculation.calculateLightEffect(m_objects[i]->getColor(), m_lights, m_objects[i]->getSurfaceNormal()));
             hit_something = true;
             return;
         }
@@ -128,7 +137,7 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
  * @brief renderScene function, used to render the scene
  * @details the function will iterate through all the pixels of the image and check if the ray hits something 
 */
-void RayTracer::Renderer::renderScene()
+void RayTracer::Renderer::renderScene(void)
 {
     print_header();
     for (int y = 0; y < m_height; y++) {

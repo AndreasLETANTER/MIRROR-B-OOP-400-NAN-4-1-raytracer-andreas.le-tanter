@@ -11,7 +11,7 @@
  * @brief Construct a new Point3D:: Point3D object
  * @details set the x, y and z coordinates to 0
 */
-Math::Point3D::Point3D()
+Math::Point3D::Point3D(void)
 {
     m_x_component = 0;
     m_y_component = 0;
@@ -30,13 +30,6 @@ Math::Point3D::Point3D(double t_x, double t_y, double t_z)
     m_x_component = t_x;
     m_y_component = t_y;
     m_z_component = t_z;
-}
-
-/**
- * @brief Destroy the Point3D:: Point3D object
-*/
-Math::Point3D::~Point3D()
-{
 }
 
 /**

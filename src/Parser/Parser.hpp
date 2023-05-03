@@ -22,7 +22,7 @@ namespace Parser
             Parser() = default;
             Parser(const char *filepath);
             ~Parser();
-            std::vector<RayTracer::IObjects *> getObjects();
+            std::vector<std::shared_ptr<RayTracer::IObjects>> getObjects();
             RayTracer::Camera getCamera();
         protected:
             void open_and_read_config_file(const char *filepath);
@@ -33,7 +33,7 @@ namespace Parser
             double parse_radius(libconfig::Setting &root, std::string path);
             Math::Vector3D parse_color(libconfig::Setting &root, std::string path);
         private:
-            std::vector<RayTracer::IObjects *> m_objects;
+            std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             RayTracer::Camera m_cam;
             std::string m_file_path;
             libconfig::Config m_config;

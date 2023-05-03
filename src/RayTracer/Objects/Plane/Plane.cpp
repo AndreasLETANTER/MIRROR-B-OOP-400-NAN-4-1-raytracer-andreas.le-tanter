@@ -47,6 +47,7 @@ bool RayTracer::Plane::hits(RayTracer::Ray &t_ray)
     Math::Vector3D p0l0 = m_plane_position - t_ray.m_origin;
     t = p0l0.dot_product(m_plane_normal) / denom;
     m_hit_point = t_ray.m_origin + RayDirection * t;
+    m_hit_distance = t;
     return (t >= 0);
 }
 
@@ -61,4 +62,13 @@ Math::Vector3D RayTracer::Plane::getSurfaceNormal(void)
 
     surface_normal = surface_normal / surface_normal.length();
     return (surface_normal);
+}
+
+/**
+ * @brief get the distance between the ray origin and the hit point
+ * @return double 
+*/
+double RayTracer::Plane::getHitDistance(void)
+{
+    return (m_hit_distance);
 }

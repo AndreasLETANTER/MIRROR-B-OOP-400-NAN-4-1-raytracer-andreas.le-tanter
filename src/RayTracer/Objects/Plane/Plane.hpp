@@ -18,10 +18,12 @@ namespace RayTracer
             Math::Vector3D getColor(void) override;
             bool hits(Ray &t_ray) override;
             Math::Vector3D getSurfaceNormal(void) override;
+            double getHitDistance(void) override;
             Math::Vector3D m_color;
             Math::Point3D m_plane_position;
             Math::Vector3D m_plane_normal;
             Math::Point3D m_hit_point;
+            double m_hit_distance;
 
         protected:
         private:

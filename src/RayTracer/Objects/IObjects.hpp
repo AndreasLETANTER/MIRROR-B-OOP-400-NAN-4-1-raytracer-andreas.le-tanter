@@ -17,9 +17,10 @@ namespace RayTracer
         public:
             virtual ~IObjects(void) = default;
             virtual bool hits(Ray &t_ray) = 0;
+            virtual double getHitDistance(void) = 0;
             virtual Math::Vector3D getSurfaceNormal(void) = 0;
             virtual Math::Vector3D getColor(void) = 0;
         protected:
         private:
     };
-} // namespace RayTracer
+}

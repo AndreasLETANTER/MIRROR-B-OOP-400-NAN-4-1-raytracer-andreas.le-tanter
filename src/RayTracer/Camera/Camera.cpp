@@ -35,7 +35,7 @@ void RayTracer::Camera::setOrigin(Math::Point3D t_origin)
  * @details the screen is defined by its fov and its resolution
  * @param t_fov the fov of the camera in degrees
 */
-void RayTracer::Camera::setScreen(double t_fov, const Rectangle3D& t_screen)
+void RayTracer::Camera::setScreen(double t_fov, const Rectangle3D &t_screen)
 {
     m_screen = t_screen;
     double distance = (m_screen.m_bottom_side.m_x_component / 2) / tan((t_fov / 2) * M_PI / 180);

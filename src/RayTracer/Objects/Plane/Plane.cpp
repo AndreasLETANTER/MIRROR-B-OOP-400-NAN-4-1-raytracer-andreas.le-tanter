@@ -38,15 +38,16 @@ Math::Vector3D RayTracer::Plane::getColor(void)
 bool RayTracer::Plane::hits(RayTracer::Ray &t_ray)
 {
     Math::Vector3D RayDirection = t_ray.m_direction / t_ray.m_direction.length();
-    double hitDistance = 0;
+    double t = 0;
     double denom = m_plane_normal.dot_product(RayDirection);
 
     if (std::abs(denom) < 1e-6) {
         return false;
     }
     Math::Vector3D p0l0 = m_plane_position - t_ray.m_origin;
-    hitDistance = p0l0.dot_product(m_plane_normal) / denom;
-    return (hitDistance >= 0);
+    t = p0l0.dot_product(m_plane_normal) / denom;
+    m_hit_point = t_ray.m_origin + RayDirection * t;
+    return (t >= 0);
 }
 
 /**
@@ -56,5 +57,8 @@ bool RayTracer::Plane::hits(RayTracer::Ray &t_ray)
 */
 Math::Vector3D RayTracer::Plane::getSurfaceNormal(void)
 {
-    return (Math::Vector3D(0, 0, 0));
+    Math::Vector3D surface_normal = m_hit_point - Math::Point3D(0, 0, 0);
+
+    surface_normal = surface_normal / surface_normal.length();
+    return (surface_normal);
 }

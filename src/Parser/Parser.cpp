@@ -40,16 +40,54 @@ void Parser::Parser::check_config_file()
     }
 }
 
+void Parser::Parser::parse_lights(libconfig::Setting &root)
+{
+    for (int i = 0; i != root.getLength(); i++) {
+        std::string type = root[i].getName();
+        if (type == "camera" || type == "objects")
+            continue;
+        for (int j = 0; j != root[i].getLength(); j++) {
+            std::string type = root[i][j].getName();
+            if (type.find("ambient-") == 0) {
+                std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
+                double intensity = parse_intensity(root, path);
+                m_lights.push_back(m_factory->createAmbiantLight(intensity));
+            } else if (type.find("directional-") == 0) {
+                std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
+                Math::Vector3D position = parse_direction(root, path);
+                m_lights.push_back(m_factory->createDirectionalLight(position));
+            }
+        }
+    }
+}
+
 void Parser::Parser::parse_camera(libconfig::Setting &root)
 {
     for (int i = 0; i != root.getLength(); i++) {
         std::string type = root[i].getName();
-        if (type == "camera") {
-            m_cam.m_origin = parse_position(root, "camera");
-            double fov = root.lookup("camera.fov");
-            (void)fov;
-        }
+        if (type == "objects" || type == "lights")
+            continue;
+        m_cam.m_origin = parse_position(root, "camera");
+        double fov = root.lookup("camera.fov");
+        (void)fov;
     }
+}
+
+Math::Vector3D Parser::Parser::parse_direction(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".direction.";
+    double x = root.lookup(name + "x");
+    double y = root.lookup(name + "y");
+    double z = root.lookup(name + "z");
+    Math::Vector3D direction(x, y, z);
+    return direction;
+}
+
+double Parser::Parser::parse_intensity(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".intensity";
+    double intensity = root.lookup(name);
+    return intensity;
 }
 
 Math::Point3D Parser::Parser::parse_position(libconfig::Setting &root, std::string path)
@@ -83,7 +121,7 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
 {
     for (int i = 0; i != root.getLength(); i++) {
         std::string type = root[i].getName();
-        if (type == "camera")
+        if (type == "camera" || type == "lights")
             continue;
         for (int j = 0; j != root[i].getLength(); j++) {
             std::string type = root[i][j].getName();
@@ -103,6 +141,7 @@ void Parser::Parser::parse_config_file()
     libconfig::Setting &root = m_config.getRoot();
     Parser::Parser::parse_camera(root);
     Parser::Parser::parse_objects(root);
+    Parser::Parser::parse_lights(root);
 }
 
 std::vector<std::shared_ptr<RayTracer::IObjects>> Parser::Parser::getObjects()
@@ -113,6 +152,11 @@ std::vector<std::shared_ptr<RayTracer::IObjects>> Parser::Parser::getObjects()
 RayTracer::Camera Parser::Parser::getCamera()
 {
     return m_cam;
+}
+
+std::vector<std::shared_ptr<RayTracer::ILights>> Parser::Parser::getLights()
+{
+    return m_lights;
 }
 
 void Parser::Parser::open_and_read_config_file(const char *filepath)

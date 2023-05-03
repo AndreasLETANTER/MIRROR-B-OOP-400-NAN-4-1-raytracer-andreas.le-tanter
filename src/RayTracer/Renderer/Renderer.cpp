@@ -120,11 +120,11 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 void RayTracer::Renderer::renderScene(void)
 {
     print_header();
-    int m_width = get<0>(m_cam.getResolution());
-    int m_height = get<1>(m_cam.getResolution());
+    unsigned int m_width = get<0>(m_cam.getResolution());
+    unsigned int m_height = get<1>(m_cam.getResolution());
 
-    for (int y = 0; y < m_height; y++) {
-        for (int x = 0; x < m_width; x++) {
+    for (unsigned int y = 0; y < m_height; y++) {
+        for (unsigned int x = 0; x < m_width; x++) {
             double u = (double)x / m_height;
             double v = (double)y / m_width;
             RayTracer::Ray r = m_cam.rayAt(u, v);

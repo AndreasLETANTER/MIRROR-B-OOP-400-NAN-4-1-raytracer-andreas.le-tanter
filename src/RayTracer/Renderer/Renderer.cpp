@@ -17,10 +17,8 @@
  * @param t_height 
  * @param t_cam 
 */
-RayTracer::Renderer::Renderer(int t_width, int t_height, RayTracer::Camera t_cam)
+RayTracer::Renderer::Renderer(RayTracer::Camera t_cam)
 {
-    m_width = t_width;
-    m_height = t_height;
     m_cam = t_cam;
 }
 
@@ -31,24 +29,6 @@ RayTracer::Renderer::Renderer(int t_width, int t_height, RayTracer::Camera t_cam
 void RayTracer::Renderer::setMissColor(Math::Vector3D t_color)
 {
     m_miss_color = t_color;
-}
-
-/**
- * @brief setWidth function, used to set the width of the scene
- * @param t_width 
-*/
-void RayTracer::Renderer::setWidth(int t_width)
-{
-    m_width = t_width;
-}
-
-/**
- * @brief setHeight function, used to set the height of the scene
- * @param t_height 
-*/
-void RayTracer::Renderer::setHeight(int t_height)
-{
-    m_height = t_height;
 }
 
 /**
@@ -107,7 +87,7 @@ void RayTracer::Renderer::print_pixel(Math::Vector3D color)
 void RayTracer::Renderer::print_header(void)
 {
     std::cout << "P3" << std::endl;
-    std::cout << m_height << " " << m_width << std::endl;
+    std::cout << get<0>(m_cam.getResolution()) << " " << get<1>(m_cam.getResolution()) << std::endl;
     std::cout << "255" << std::endl;
 }
 
@@ -143,8 +123,11 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 void RayTracer::Renderer::renderScene(void)
 {
     print_header();
-    for (int y = 0; y < m_height; y++) {
-        for (int x = 0; x < m_width; x++) {
+    unsigned int m_width = get<0>(m_cam.getResolution());
+    unsigned int m_height = get<1>(m_cam.getResolution());
+
+    for (unsigned int y = 0; y < m_height; y++) {
+        for (unsigned int x = 0; x < m_width; x++) {
             double u = (double)x / m_height;
             double v = (double)y / m_width;
             RayTracer::Ray r = m_cam.rayAt(u, v);

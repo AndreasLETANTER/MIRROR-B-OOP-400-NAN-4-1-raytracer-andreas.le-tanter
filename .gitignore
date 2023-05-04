@@ -86,3 +86,5 @@ cmake_install.cmake
 output.ppm
 doxygen_output
 .vscode
+.DS_Store
+.idea

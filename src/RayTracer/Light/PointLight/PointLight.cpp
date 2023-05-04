@@ -9,13 +9,15 @@
 #include <iostream>
 
 /**
- * @brief Construct a new Ray Tracer:: Directional Light:: Directional Light object
- * @details set the direction of the light to the given parameter and normalize it
- * @param t_direction
+ * @brief Construct a new Point Light:: Point Light object
+ * @details set the position and the intensity of the light to the given parameters
+ * @param t_position 
+ * @param t_intensity 
 */
-RayTracer::PointLight::PointLight(Math::Vector3D t_direction)
+RayTracer::PointLight::PointLight(Math::Point3D t_position, double t_intensity)
 {
-    m_direction = t_direction / t_direction.length();
+    m_position = t_position;
+    m_intensity = t_intensity;
 }
 
 /**
@@ -25,8 +27,16 @@ RayTracer::PointLight::PointLight(Math::Vector3D t_direction)
 */
 double RayTracer::PointLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
 {
-    m_intensity = -m_direction.dot_product(t_object->getSurfaceNormal());
-    return (m_intensity);
+    Math::Vector3D lightDirection = m_position - t_object->getIntersectionPoint();
+    double angle = acos(t_object->getSurfaceNormal().dot_product(lightDirection));
+    double intensity = 0;
+
+    if (angle > 1.5708) {
+        return (0);
+    } else {
+        intensity = m_intensity * (1.0 - (angle / 1.5708));
+        return (intensity);
+    }
 }
 
 /**

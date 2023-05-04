@@ -17,7 +17,7 @@ namespace RayTracer
     class PointLight : public RayTracer::ILights {
         public:
             PointLight(void) = default;
-            PointLight(Math::Vector3D t_direction);
+            PointLight(Math::Point3D t_position, double t_intensity);
             ~PointLight(void) = default;
             double getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object) override;
             void setIntensity(double t_intensity) override;
@@ -25,6 +25,6 @@ namespace RayTracer
         protected:
         private:
             double m_intensity;
-            Math::Vector3D m_direction;
+            Math::Point3D m_position;
     };
 }

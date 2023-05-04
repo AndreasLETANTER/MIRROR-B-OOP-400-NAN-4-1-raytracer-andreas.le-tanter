@@ -12,6 +12,7 @@
 #include "RayTracer/Renderer/Renderer.hpp"
 #include "RayTracer/Light/AmbiantLight/AmbiantLight.hpp"
 #include "RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
+#include "RayTracer/Light/PointLight/PointLight.hpp"
 #include "RayTracer/Light/ILights.hpp"
 #include <iostream>
 
@@ -25,14 +26,14 @@ int main(void)
     RayTracer::Sphere sphere(Math::Point3D(0, 0, 0), 0.3, Math::Vector3D(153, 0, 153));
     RayTracer::Plane plane(Math::Point3D(0., 0.4, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(18, 164, 139));
     RayTracer::AmbiantLight ambiantLight(0.2);
-    RayTracer::DirectionalLight directionalLight(Math::Vector3D(-1, 1, 1.5));
+    RayTracer::PointLight pointLight(Math::Vector3D(-1, 1, 1.5));
     std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
     objects.push_back(std::make_shared<RayTracer::Plane>(plane));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
-    lights.push_back(std::make_shared<RayTracer::DirectionalLight>(directionalLight));
+    lights.push_back(std::make_shared<RayTracer::PointLight>(pointLight));
     cam.setResolution(WIDTH, HEIGHT);
     cam.setScreen(40, Rectangle3D(Math::Point3D(-0.25, -0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0)));
     renderer.setCamera(cam);

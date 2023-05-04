@@ -2,10 +2,10 @@
 ** EPITECH PROJECT, 2023
 ** MIRROR-B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter
 ** File description:
-** DirectionalLight
+** PointLight
 */
 
-#include "DirectionalLight.hpp"
+#include "PointLight.hpp"
 #include <iostream>
 
 /**
@@ -13,7 +13,7 @@
  * @details set the direction of the light to the given parameter and normalize it
  * @param t_direction
 */
-RayTracer::DirectionalLight::DirectionalLight(Math::Vector3D t_direction)
+RayTracer::PointLight::PointLight(Math::Vector3D t_direction)
 {
     m_direction = t_direction / t_direction.length();
 }
@@ -23,7 +23,7 @@ RayTracer::DirectionalLight::DirectionalLight(Math::Vector3D t_direction)
  * @param t_surfaceNormal Surface normal where the ray hit
  * @return double Intensity of the light
 */
-double RayTracer::DirectionalLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
+double RayTracer::PointLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
 {
     m_intensity = -m_direction.dot_product(t_object->getSurfaceNormal());
     return (m_intensity);
@@ -33,7 +33,7 @@ double RayTracer::DirectionalLight::getIntensityAt(std::shared_ptr<RayTracer::IO
  * @brief Set the Intensity of the light
  * @param t_intensity Intensity of the light
 */
-void RayTracer::DirectionalLight::setIntensity(double t_intensity)
+void RayTracer::PointLight::setIntensity(double t_intensity)
 {
     m_intensity = t_intensity;
 }

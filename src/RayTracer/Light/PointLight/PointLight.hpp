@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** MIRROR-B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter
 ** File description:
-** DirectionalLight
+** PointLight
 */
 
 #pragma once
@@ -14,11 +14,11 @@
  */
 namespace RayTracer
 {
-    class DirectionalLight : public RayTracer::ILights {
+    class PointLight : public RayTracer::ILights {
         public:
-            DirectionalLight(void) = default;
-            DirectionalLight(Math::Vector3D t_direction);
-            ~DirectionalLight(void) = default;
+            PointLight(void) = default;
+            PointLight(Math::Vector3D t_direction);
+            ~PointLight(void) = default;
             double getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object) override;
             void setIntensity(double t_intensity) override;
 

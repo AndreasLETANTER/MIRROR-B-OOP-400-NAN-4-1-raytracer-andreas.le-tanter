@@ -18,6 +18,7 @@ set(SRC
     src/RayTracer/Objects/Plane/Plane.cpp
     src/RayTracer/Light/AmbiantLight/AmbiantLight.cpp
     src/RayTracer/Light/DirectionalLight/DirectionalLight.cpp
+    src/RayTracer/Light/PointLight/PointLight.cpp
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
 )

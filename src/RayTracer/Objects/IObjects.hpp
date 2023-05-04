@@ -20,6 +20,7 @@ namespace RayTracer
             virtual double getHitDistance(void) = 0;
             virtual Math::Vector3D getSurfaceNormal(void) = 0;
             virtual Math::Vector3D getColor(void) = 0;
+            virtual Math::Point3D getIntersectionPoint(void) = 0;
         protected:
         private:
     };

@@ -8,6 +8,8 @@
 #pragma once
 #include "../../Math/Point3D/Point3D.hpp"
 #include "../../Math/Rectangle3D/Rectangle3D.hpp"
+#include "../Objects/IObjects.hpp"
+#include <memory>
 
 /**
  * @brief Interface for lights
@@ -19,7 +21,7 @@ namespace RayTracer
     class ILights {
         public:
             virtual ~ILights(void) = default;
-            virtual double getIntensityAt(Math::Vector3D t_surfaceNormal) = 0;
+            virtual double getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object) = 0;
             virtual void setIntensity(double t_intensity) = 0;
 
         protected:

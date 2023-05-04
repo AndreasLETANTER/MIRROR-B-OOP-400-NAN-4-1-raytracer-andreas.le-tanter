@@ -86,3 +86,12 @@ double RayTracer::Sphere::getHitDistance(void)
 {
     return (m_hit_distance);
 }
+
+/**
+ * @brief get the hit point
+ * @return Math::Point3D 
+*/
+Math::Point3D RayTracer::Sphere::getIntersectionPoint(void)
+{
+    return (m_hit_point);
+}

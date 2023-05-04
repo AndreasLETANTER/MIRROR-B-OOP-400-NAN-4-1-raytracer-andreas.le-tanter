@@ -6,6 +6,7 @@
 */
 
 #include "PointLight.hpp"
+#include <cmath>
 #include <iostream>
 
 /**

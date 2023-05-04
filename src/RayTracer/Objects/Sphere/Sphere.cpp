@@ -74,5 +74,6 @@ Math::Vector3D RayTracer::Sphere::getSurfaceNormal(void)
     Math::Vector3D surface_normal = m_hit_point - m_center;
 
     surface_normal = surface_normal / surface_normal.length();
+    surface_normal = surface_normal * -1;
     return (surface_normal);
 }

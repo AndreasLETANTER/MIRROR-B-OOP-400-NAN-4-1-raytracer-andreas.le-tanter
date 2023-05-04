@@ -28,11 +28,12 @@ RayTracer::PointLight::PointLight(Math::Point3D t_position, double t_intensity)
 double RayTracer::PointLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
 {
     Math::Vector3D lightDirection = m_position - t_object->getIntersectionPoint();
+    lightDirection = lightDirection / lightDirection.length();
     double angle = acos(t_object->getSurfaceNormal().dot_product(lightDirection));
     double intensity = 0;
 
     if (angle > 1.5708) {
-        return (0);
+        return (intensity);
     } else {
         intensity = m_intensity * (1.0 - (angle / 1.5708));
         return (intensity);

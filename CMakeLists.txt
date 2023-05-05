@@ -11,12 +11,15 @@ set(CXX_FLAGS -Wall -Wextra -Werror -g)
 set(SRC
     src/Math/Vector3D/Vector3D.cpp
     src/Math/Point3D/Point3D.cpp
+    src/Math/Rectangle3D/Rectangle3D.cpp
+    src/Math/Light/LightCalculation.cpp
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
     src/RayTracer/Objects/Cylindre/Cylindre.cpp
+    src/RayTracer/Light/AmbiantLight/AmbiantLight.cpp
+    src/RayTracer/Light/DirectionalLight/DirectionalLight.cpp
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
-    src/Rectangle3D.cpp
 )
 set(MAIN
     src/main.cpp
@@ -40,7 +43,7 @@ add_executable(${TEST_NAME} ${SRC} ${TESTS})
 #link the tests with the criterion library
 target_link_libraries(${TEST_NAME} ${CRITERION})
 
-###############################CUSTOM TARGETS#####1###############################
+###############################CUSTOM TARGETS#####################################
 add_custom_target(fclean
     COMMAND make clean
     COMMAND find . -name "*~" -delete

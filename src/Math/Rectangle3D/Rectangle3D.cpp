@@ -11,7 +11,7 @@
  * @brief Construct a new Rectangle3D object
  * @details set the origin, the bottom side and the left side of the rectangle to 0
 */
-Rectangle3D::Rectangle3D()
+Rectangle3D::Rectangle3D(void)
 {
     m_origin = Math::Point3D();
     m_bottom_side = Math::Vector3D();
@@ -30,13 +30,6 @@ Rectangle3D::Rectangle3D(Math::Point3D t_origin, Math::Vector3D t_bottom_side, M
     m_origin = t_origin;
     m_bottom_side = t_bottom_side;
     m_left_side = t_left_side;
-}
-
-/**
- * @brief Destroy the Rectangle3D object
-*/
-Rectangle3D::~Rectangle3D()
-{
 }
 
 /**

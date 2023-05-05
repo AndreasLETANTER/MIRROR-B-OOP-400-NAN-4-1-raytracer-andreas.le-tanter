@@ -8,12 +8,17 @@
 #pragma once
 #include "../Ray/Ray.hpp"
 
+/**
+ * @brief IObjects class, used to create an interface for all objects 
+*/
 namespace RayTracer
 {
     class IObjects {
         public:
-            virtual ~IObjects() = default;
+            virtual ~IObjects(void) = default;
             virtual bool hits(Ray &t_ray) = 0;
+            virtual Math::Vector3D getSurfaceNormal(void) = 0;
+            virtual Math::Vector3D getColor(void) = 0;
         protected:
         private:
     };

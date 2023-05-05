@@ -8,6 +8,7 @@
 #include "Renderer.hpp"
 #include "../../Math/Light/LightCalculation.hpp"
 #include <iostream>
+#include <limits>
 
 /**
  * @brief Construct a new Ray Tracer:: Renderer:: Renderer object

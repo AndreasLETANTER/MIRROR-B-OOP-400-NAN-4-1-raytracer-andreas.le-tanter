@@ -23,12 +23,15 @@ namespace RayTracer {
             Cylinder();
             Cylinder(Math::Point3D center, double radius, double height);
             ~Cylinder();
+            Math::Vector3D getColor(void) override;
+            Math::Vector3D getSurfaceNormal(void) override;
+            bool hits(Ray &t_ray) override;
+        public:
             Math::Point3D c_center;
             Math::Vector3D c_axis;
+            Math::Vector3D m_color;
+            Math::Point3D m_hit_point;
             double c_radius;
             double c_height;
-            bool hits(Ray &t_ray) override;
-        protected:
-        private:
     };
 }

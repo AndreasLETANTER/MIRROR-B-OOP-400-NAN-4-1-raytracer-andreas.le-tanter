@@ -56,3 +56,26 @@ bool RayTracer::Cylinder::hits(Ray& t_ray)
     float discriminant = pow(b, 2) - 4 * a * c;
     return (discriminant > 0);
 }
+
+/**
+ * @brief get the surface normal of the cylinder
+ * @details get the surface normal of the cylinder at the given point
+ * @param t_point
+ * @return Math::Vector3D
+*/
+Math::Vector3D RayTracer::Cylinder::getSurfaceNormal(void)
+{
+    Math::Vector3D surface_normal = m_hit_point - c_center;
+
+    surface_normal = surface_normal / surface_normal.length();
+    return (surface_normal);
+}
+
+/**
+ * @brief get the color of the cylinder
+ * @return Math::Vector3D
+*/
+Math::Vector3D RayTracer::Cylinder::getColor(void)
+{
+    return (m_color);
+}

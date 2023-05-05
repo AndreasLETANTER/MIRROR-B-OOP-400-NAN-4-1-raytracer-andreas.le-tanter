@@ -27,6 +27,7 @@ namespace RayTracer {
             Math::Vector3D c_axis;
             double c_radius;
             double c_height;
+            double c_axis;
             bool hits(Ray &t_ray) override;
         protected:
         private:

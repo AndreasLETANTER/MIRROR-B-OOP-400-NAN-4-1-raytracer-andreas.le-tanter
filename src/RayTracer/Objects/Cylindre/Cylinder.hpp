@@ -10,6 +10,8 @@
 #include "../../../Math/Vector3D/Vector3D.hpp"
 #include "../../../Math/Point3D/Point3D.hpp"
 #include "../IObjects.hpp"
+#include <cmath>
+#include <algorithm>
 
 /**
  * @brief Cylindre class, used to create a cylindre in 3D space
@@ -19,9 +21,10 @@ namespace RayTracer {
     class Cylinder : public IObjects {
         public:
             Cylinder();
-            Cylinder(Math::Point3D c_center, double c_radius, double c_height);
+            Cylinder(Math::Point3D center, double radius, double height);
             ~Cylinder();
             Math::Point3D c_center;
+            Math::Vector3D c_axis;
             double c_radius;
             double c_height;
             bool hits(Ray &t_ray) override;

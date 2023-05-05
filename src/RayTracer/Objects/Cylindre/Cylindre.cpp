@@ -47,8 +47,12 @@ RayTracer::Cylinder::~Cylinder()
  * @return true
  * @return false
 */
-bool RayTracer::Cylinder::hits(Ray &t_ray)
+bool RayTracer::Cylinder::hits(Ray& t_ray)
 {
-    (void) t_ray;
-    return (true);
+    Math::Vector3D OC = c_center - t_ray.m_origin;
+    float a = t_ray.m_direction.dot_product(t_ray.m_direction) - pow(t_ray.m_direction.m_z_component, 2);
+    float b = 2 * (OC.dot_product(t_ray.m_direction) - OC.m_z_component * t_ray.m_direction.m_z_component);
+    float c = OC.dot_product(OC) - OC.m_z_component * OC.m_z_component - pow(c_radius, 2);
+    float discriminant = pow(b, 2) - 4 * a * c;
+    return (discriminant > 0);
 }

@@ -57,7 +57,7 @@ bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
     double discriminant = b * b - 4 * a * c;
     double t = (-b - sqrt(discriminant)) / (2.0 * a);
 
-    if (discriminant < 0)
+    if (discriminant <= 0)
         return (false);
     m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
     return (true);
@@ -67,7 +67,7 @@ bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
  * @brief get the surface normal of the sphere
  * @details get the surface normal of the sphere at the given point
  * @param t_point
- * @return Math::Vector3D 
+ * @return Math::Vector3D
 */
 Math::Vector3D RayTracer::Sphere::getSurfaceNormal(void)
 {

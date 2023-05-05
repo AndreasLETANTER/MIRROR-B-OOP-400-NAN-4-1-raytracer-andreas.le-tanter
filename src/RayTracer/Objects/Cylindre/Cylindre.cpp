@@ -26,11 +26,12 @@ RayTracer::Cylinder::Cylinder()
  * @param c_height
  */
 RayTracer::Cylinder::Cylinder(Math::Point3D center, double radius
-, double height)
+, double height, Math::Vector3D color)
 {
     c_center = center;
     c_radius = radius;
     c_height = height;
+    m_color = color;
 }
 
 /**
@@ -49,12 +50,49 @@ RayTracer::Cylinder::~Cylinder()
 */
 bool RayTracer::Cylinder::hits(Ray& t_ray)
 {
-    Math::Vector3D OC = c_center - t_ray.m_origin;
-    float a = t_ray.m_direction.dot_product(t_ray.m_direction) - pow(t_ray.m_direction.m_z_component, 2);
-    float b = 2 * (OC.dot_product(t_ray.m_direction) - OC.m_z_component * t_ray.m_direction.m_z_component);
-    float c = OC.dot_product(OC) - OC.m_z_component * OC.m_z_component - pow(c_radius, 2);
+    double **tab = (double **)malloc(sizeof(double) * 4);
+    double angle = 70.0;
+    double ratio = 1.0;
+    double near = 0.0;
+    double far = 60.0;
+    double o[] = {t_ray.m_origin.m_x_component, t_ray.m_origin.m_y_component
+    , t_ray.m_origin.m_z_component,};
+    double d[] = {t_ray.m_direction.m_x_component, t_ray.m_direction.m_y_component
+    , t_ray.m_direction.m_z_component};
+
+    for (int i = 0; i < 4; i++) {
+        tab[i] = (double *)malloc(sizeof(double) * 4);
+        for (int j = 0; j < 4; j++) {
+            tab[i][j] = 0.0;
+        }
+    }
+    tab[0][0] = (1 / (ratio * tan(angle / 2)));
+    tab[1][1] = (1 / (tan(angle / 2)));
+    tab[2][2] = ((near + far) / (near - far));
+    tab[2][3] = (2 * near + far) / (near - far);
+    tab[3][2] = -1;
+    float a = tab[0][0] * pow(d[0], 2) + 2 * tab[0][1] * d[0] * d[1]
+    + 2 * tab[0][2] * d[0] * d[2] + tab[1][1] * pow(d[1], 2)
+    + 2 * tab[1][2] * d[1] * d[2] + tab[2][2] * pow(d[2], 2);
+    float b = 2 * (tab[0][0] * o[0] * d[0]
+    + tab[0][1] * (o[0] * d[1] + d[0] * o[1])
+    + tab[0][2] * (o[0] * d[2] + d[0] * o[2])
+    + tab[0][3] * d[0] + tab[1][1] * o[1] * o[1] * d[1]
+    + tab[1][2] * (o[1] * d[2] + d[1] * o[2])
+    + tab[1][3] * (d[1]) + tab[2][2] * o[2] * d[2] + tab[2][3] * d[2]);
+    float c = tab[0][0] * pow(o[0], 2) + 2 * tab[0][1] * o[0] * o[1]
+    + 2 * tab[0][2] * (o[0] * o[2] + 2 * tab[0][3] * o[0]
+    + tab[1][1] * o[1] + 2 * tab[1][2] * o[1] * o[2]
+    + 2 * tab[1][3] * o[1] + tab[2][2] * pow(o[2], 2) + 2 * tab[2][3] * o[2]
+    + tab[3][3]);
     float discriminant = pow(b, 2) - 4 * a * c;
-    return (discriminant > 0);
+    const double t = (-b - sqrt(discriminant)) / (2.0 * a);
+
+    if (discriminant <= 0) {
+        return (false);
+    }
+    m_hit_point = t_ray.m_origin + t_ray.m_direction * abs(t);
+    return (true);
 }
 
 /**

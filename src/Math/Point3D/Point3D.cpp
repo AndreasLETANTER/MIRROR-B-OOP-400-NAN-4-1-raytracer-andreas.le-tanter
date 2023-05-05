@@ -35,7 +35,7 @@ Math::Point3D::Point3D(double t_x, double t_y, double t_z)
 /**
  * @brief perform a sum between a point and a vector
  * @param t_other
- * @return Math::Point3D 
+ * @return Math::Point3D
 */
 Math::Point3D Math::Point3D::operator+(const Math::Vector3D &t_other)
 {
@@ -44,8 +44,8 @@ Math::Point3D Math::Point3D::operator+(const Math::Vector3D &t_other)
 
 /**
  * @brief perform a sum between a point and a vector and store the result in the point
- * @param t_other 
- * @return Math::Point3D 
+ * @param t_other
+ * @return Math::Point3D
 */
 Math::Point3D Math::Point3D::operator+=(const Math::Vector3D &t_other)
 {
@@ -57,8 +57,8 @@ Math::Point3D Math::Point3D::operator+=(const Math::Vector3D &t_other)
 
 /**
  * @brief perform a substraction between two points
- * @param t_other 
- * @return Math::Vector3D 
+ * @param t_other
+ * @return Math::Vector3D
 */
 Math::Vector3D Math::Point3D::operator-(const Math::Point3D &t_other)
 {
@@ -67,13 +67,36 @@ Math::Vector3D Math::Point3D::operator-(const Math::Point3D &t_other)
 
 /**
  * @brief perform a substraction between a point and a vector and store the result in the vector
- * @param t_other 
- * @return Math::Point3D 
+ * @param t_other
+ * @return Math::Point3D
 */
 Math::Vector3D Math::Point3D::operator-=(const Math::Point3D &t_other)
 {
     m_x_component -= t_other.m_x_component;
     m_y_component -= t_other.m_y_component;
     m_z_component -= t_other.m_z_component;
+    return (Math::Vector3D(m_x_component, m_y_component, m_z_component));
+}
+
+/**
+ * @brief perform a multiplication between a point and a vector and store the result in the vector
+ * @param t_other
+ * @return Math::Vector3D
+*/
+Math::Vector3D Math::Point3D::operator*(const Math::Vector3D &t_other)
+{
+    return (Math::Vector3D(m_x_component * t_other.m_x_component, m_y_component * t_other.m_y_component, m_z_component * t_other.m_z_component));
+}
+
+/**
+ * @brief perform a multiplication between a point and a vector and store the result in the vector
+ * @param t_other
+ * @return Math::Vector3D
+*/
+Math::Vector3D Math::Point3D::operator*=(const Math::Vector3D &t_other)
+{
+    m_x_component *= t_other.m_x_component;
+    m_y_component *= t_other.m_y_component;
+    m_z_component *= t_other.m_z_component;
     return (Math::Vector3D(m_x_component, m_y_component, m_z_component));
 }

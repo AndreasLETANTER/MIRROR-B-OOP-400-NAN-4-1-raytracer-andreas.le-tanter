@@ -12,9 +12,9 @@
 /**
  * @brief get the ray at the given coordinates
  * @details the ray is defined by the origin of the camera and the point at the given coordinates on the screen
- * @param u 
- * @param v 
- * @return RayTracer::Ray 
+ * @param u
+ * @param v
+ * @return RayTracer::Ray
 */
 RayTracer::Ray RayTracer::Camera::rayAt(double u, double v)
 {
@@ -23,7 +23,7 @@ RayTracer::Ray RayTracer::Camera::rayAt(double u, double v)
 
 /**
  * @brief set the position of the camera
- * @param t_origin 
+ * @param t_origin
 */
 void RayTracer::Camera::setOrigin(Math::Point3D t_origin)
 {
@@ -44,8 +44,8 @@ void RayTracer::Camera::setScreen(double t_fov, const Rectangle3D &t_screen)
 
 /**
  * @brief set the resolution of the camera
- * @param t_width 
- * @param t_height 
+ * @param t_width
+ * @param t_height
 */
 void RayTracer::Camera::setResolution(unsigned int t_width, unsigned int t_height)
 {
@@ -56,7 +56,7 @@ void RayTracer::Camera::setResolution(unsigned int t_width, unsigned int t_heigh
 /**
  * @brief rotate the screen of the camera
  * @details rotate the screen of the camera by the given rotation
- * @param t_rotation 
+ * @param t_rotation
 */
 void RayTracer::Camera::rotateScreen(Math::Vector3D t_rotation)
 {

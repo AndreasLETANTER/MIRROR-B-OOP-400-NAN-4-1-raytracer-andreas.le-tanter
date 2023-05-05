@@ -27,11 +27,13 @@ namespace Math
             Point3D operator+=(const Vector3D &t_other);
             Vector3D operator-(const Point3D &t_other);
             Vector3D operator-=(const Point3D &t_other);
+            Vector3D operator*(const Vector3D &t_other);
+            Vector3D operator*=(const Vector3D &t_other);
             double m_x_component;
             double m_y_component;
             double m_z_component;
 
         protected:
         private:
-    };   
+    };
 }

@@ -21,7 +21,8 @@ namespace RayTracer {
     class Cylinder : public IObjects {
         public:
             Cylinder();
-            Cylinder(Math::Point3D center, double radius, double height);
+            Cylinder(Math::Point3D center, double radius, double height
+            , Math::Vector3D color);
             ~Cylinder();
             Math::Vector3D getColor(void) override;
             Math::Vector3D getSurfaceNormal(void) override;

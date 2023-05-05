@@ -35,7 +35,7 @@ int main(void)
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
     lights.push_back(std::make_shared<RayTracer::PointLight>(pointLight));
     cam.setResolution(WIDTH, HEIGHT);
-    cam.setScreen(40, Rectangle3D(Math::Point3D(-0.25, -0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0)));
+    cam.setScreen(25, Rectangle3D(Math::Point3D(-0.5, -0.5, -4), Math::Vector3D(1., 0, 0), Math::Vector3D(0, 1., 0)));
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(105, 105, 105));
     renderer.setObjects(objects);

@@ -7,6 +7,7 @@
 
 #pragma once
 #include "../ILights.hpp"
+#include <memory>
 
 /**
  * @brief Class for ambiant light
@@ -18,7 +19,7 @@ namespace RayTracer
             AmbiantLight(void);
             AmbiantLight(double t_intensity);
             ~AmbiantLight(void) = default;
-            double getIntensityAt(Math::Vector3D t_surfaceNormal) override;
+            double getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object) override;
             void setIntensity(double t_intensity) override;
 
         protected:

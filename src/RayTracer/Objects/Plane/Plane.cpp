@@ -72,3 +72,12 @@ double RayTracer::Plane::getHitDistance(void)
 {
     return (m_hit_distance);
 }
+
+/**
+ * @brief get the intersection point between the ray and the plane
+ * @return Math::Point3D 
+*/
+Math::Point3D RayTracer::Plane::getIntersectionPoint(void)
+{
+    return (m_hit_point);
+}

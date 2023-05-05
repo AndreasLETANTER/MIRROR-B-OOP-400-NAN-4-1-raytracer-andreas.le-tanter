@@ -111,7 +111,7 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
         }
     }
     if (hit_something) {
-        print_pixel(light_calculation.calculateLightEffect(m_objects[closest_object.second]->getColor(), m_lights, m_objects[closest_object.second]->getSurfaceNormal()));
+        print_pixel(light_calculation.calculateLightEffect(m_objects[closest_object.second]->getColor(), m_lights, m_objects[closest_object.second]));
     } else if (!hit_something) {
         print_pixel(m_miss_color);
     }

@@ -9,6 +9,8 @@
 #include <cmath>
 #include <iostream>
 
+#define POINT_LIGHT_ANGLE 2.35619
+
 /**
  * @brief Construct a new Point Light:: Point Light object
  * @details set the position and the intensity of the light to the given parameters
@@ -33,10 +35,10 @@ double RayTracer::PointLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects
     double angle = acos(t_object->getSurfaceNormal().dot_product(lightDirection));
     double intensity = 0;
 
-    if (angle > 2.35619) {
+    if (angle > POINT_LIGHT_ANGLE) {
         return (intensity);
     } else {
-        intensity = m_intensity * (1.0 - (angle / 2.35619));
+        intensity = m_intensity * (1.0 - (angle / POINT_LIGHT_ANGLE));
         return (intensity);
     }
 }

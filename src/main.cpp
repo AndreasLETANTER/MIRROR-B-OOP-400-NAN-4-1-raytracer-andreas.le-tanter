@@ -26,7 +26,7 @@ int main(void)
     RayTracer::Sphere sphere(Math::Point3D(0, -0.2, 0), 0.3, Math::Vector3D(153, 0, 153));
     RayTracer::Plane plane(Math::Point3D(0., 0.4, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(18, 164, 139));
     RayTracer::AmbiantLight ambiantLight(0.2);
-    RayTracer::PointLight pointLight(Math::Point3D(3, -7, -6), 2);
+    RayTracer::PointLight pointLight(Math::Point3D(0, -10, 0), 2);
     std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 

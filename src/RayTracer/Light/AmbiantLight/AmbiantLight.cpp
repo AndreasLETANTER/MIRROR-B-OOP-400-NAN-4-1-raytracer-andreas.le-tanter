@@ -29,9 +29,9 @@ RayTracer::AmbiantLight::AmbiantLight(double t_intensity)
  * @param t_surfaceNormal Surface normal where the ray hit
  * @return double Intensity of the light
 */
-double RayTracer::AmbiantLight::getIntensityAt(Math::Vector3D t_surfaceNormal)
+double RayTracer::AmbiantLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
 {
-    (void)t_surfaceNormal;
+    (void) t_object;
     return (m_intensity);
 }
 

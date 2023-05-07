@@ -5,6 +5,7 @@ The goal of a configuration file defines the properties of a 3D scene, including
 ## Global Configuration
 
 For the sake of unification all values must be in **sizeof(double)** format.
+You can put a comment in the configuration file by using the **#** character.
 
 # Object types
 
@@ -50,7 +51,7 @@ plane-Luchooooo = {
 
 2 - **position/normal/color** : the properties of the plane he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that define the normal of the plane. The color property is a vector of three values (r, g, b) that define the color of the plane.
 
-# Lights
+# Lights types
 
 ## Create a point light
 

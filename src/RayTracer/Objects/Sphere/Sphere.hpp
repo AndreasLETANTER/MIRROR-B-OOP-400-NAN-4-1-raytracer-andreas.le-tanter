@@ -27,6 +27,9 @@ namespace RayTracer {
             Math::Vector3D m_color;
             bool hits(Ray &t_ray) override;
             Math::Vector3D getSurfaceNormal(void) override;
+            double getHitDistance(void) override;
+            Math::Point3D getIntersectionPoint(void) override;
+            double m_hit_distance;
 
         protected:
             Math::Point3D m_hit_point;

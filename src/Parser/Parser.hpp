@@ -37,6 +37,7 @@ namespace Parser
             Math::Vector3D parse_color(libconfig::Setting &root, std::string path);
             double parse_intensity(libconfig::Setting &root, std::string path);
             Math::Vector3D parse_direction(libconfig::Setting &root, std::string path);
+            Math::Vector3D parse_normal(libconfig::Setting &root, std::string path);
         private:
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             RayTracer::Camera m_cam;

@@ -16,6 +16,7 @@
 #include "../RayTracer/Camera/Camera.hpp"
 #include "../RayTracer/Light/AmbiantLight/AmbiantLight.hpp"
 #include "../RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
+#include "../RayTracer/Light/PointLight/PointLight.hpp"
 
 namespace Factory
 {
@@ -32,7 +33,9 @@ namespace Factory
             RayTracer::Camera createCamera(libconfig::Setting &setting);
             std::shared_ptr<RayTracer::AmbiantLight> createAmbiantLight(double intensity);
             std::shared_ptr<RayTracer::DirectionalLight> createDirectionalLight(Math::Vector3D direction);
+            std::shared_ptr<RayTracer::PointLight> createPointLight(Math::Point3D position, double intensity);
             std::shared_ptr<RayTracer::IObjects> createSphere(Math::Point3D position, double radius, Math::Vector3D color);
+            std::shared_ptr<RayTracer::IObjects> createPlane(Math::Point3D position, Math::Vector3D normal, Math::Vector3D color);
 
         protected:
             void open_and_read_config_file(const char *filepath);

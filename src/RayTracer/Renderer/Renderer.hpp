@@ -24,11 +24,9 @@ namespace RayTracer
     class Renderer {
         public:
             Renderer(void) = default;
-            Renderer(int t_width, int t_height, RayTracer::Camera t_cam);
+            Renderer(RayTracer::Camera t_cam);
             ~Renderer(void) = default;
             void setMissColor(Math::Vector3D t_color);
-            void setWidth(int t_width);
-            void setHeight(int t_height);
             void setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects);
             void setLights(std::vector<std::shared_ptr<RayTracer::ILights>> t_lights);
             void setCamera(RayTracer::Camera t_cam);
@@ -43,7 +41,5 @@ namespace RayTracer
             RayTracer::Camera m_cam;
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             std::vector<std::shared_ptr<RayTracer::ILights>> m_lights;
-            int m_width;
-            int m_height;
     };
 } // namespace RayTracer

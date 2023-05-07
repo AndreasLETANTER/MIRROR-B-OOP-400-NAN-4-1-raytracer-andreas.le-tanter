@@ -15,7 +15,7 @@
  * @param t_surfaceNormal the normal of the surface
  * @return Math::Vector3D the color after the light effect
 */
-Math::Vector3D Math::LightCalculation::calculateLightEffect(Math::Vector3D t_base_color, std::vector<std::shared_ptr<RayTracer::ILights>> t_lights, Math::Vector3D t_surfaceNormal)
+Math::Vector3D Math::LightCalculation::calculateLightEffect(Math::Vector3D t_base_color, std::vector<std::shared_ptr<RayTracer::ILights>> t_lights, std::shared_ptr<RayTracer::IObjects> t_object)
 {
     std::vector<Math::Vector3D> colors;
     Math::Vector3D color_result;
@@ -23,7 +23,7 @@ Math::Vector3D Math::LightCalculation::calculateLightEffect(Math::Vector3D t_bas
 
     for (size_t i = 0; i < t_lights.size(); i++) {
         colors.push_back(t_base_color);
-        intensity = t_lights[i]->getIntensityAt(t_surfaceNormal);
+        intensity = t_lights[i]->getIntensityAt(t_object);
         colors[i] *= intensity;
     }
     for (auto color : colors) {

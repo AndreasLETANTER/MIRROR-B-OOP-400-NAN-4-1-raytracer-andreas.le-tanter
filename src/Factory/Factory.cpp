@@ -10,6 +10,7 @@
 
 #include "Factory.hpp"
 #include "../RayTracer/Objects/Sphere/Sphere.hpp"
+#include "../RayTracer/Objects/Plane/Plane.hpp"
 
 Factory::Factory::Factory()
 {
@@ -32,6 +33,12 @@ std::shared_ptr<RayTracer::AmbiantLight> Factory::Factory::createAmbiantLight(do
     return std::make_shared<RayTracer::AmbiantLight>(light);
 }
 
+std::shared_ptr<RayTracer::PointLight> Factory::Factory::createPointLight(Math::Point3D position, double intensity)
+{
+    RayTracer::PointLight light(position, intensity);
+    return std::make_shared<RayTracer::PointLight>(light);
+}
+
 std::shared_ptr<RayTracer::DirectionalLight> Factory::Factory::createDirectionalLight(Math::Vector3D direction)
 {
     RayTracer::DirectionalLight light(direction);
@@ -41,4 +48,9 @@ std::shared_ptr<RayTracer::DirectionalLight> Factory::Factory::createDirectional
 std::shared_ptr<RayTracer::IObjects> Factory::Factory::createSphere(Math::Point3D position, double radius, Math::Vector3D color)
 {
     return std::make_shared<RayTracer::Sphere>(position, radius, color);
+}
+
+std::shared_ptr<RayTracer::IObjects> Factory::Factory::createPlane(Math::Point3D position, Math::Vector3D normal, Math::Vector3D color)
+{
+    return std::make_shared<RayTracer::Plane>(position, normal, color);
 }

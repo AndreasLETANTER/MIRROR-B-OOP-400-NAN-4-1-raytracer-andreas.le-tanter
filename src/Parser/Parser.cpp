@@ -56,6 +56,11 @@ void Parser::Parser::parse_lights(libconfig::Setting &root)
                 std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
                 Math::Vector3D position = parse_direction(root, path);
                 m_lights.push_back(m_factory->createDirectionalLight(position));
+            } else if (type.find("point-") == 0) {
+                std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
+                Math::Point3D position = parse_position(root, path);
+                double intensity = parse_intensity(root, path);
+                m_lights.push_back(m_factory->createPointLight(position, intensity));
             }
         }
     }
@@ -67,7 +72,7 @@ void Parser::Parser::parse_camera(libconfig::Setting &root)
         std::string type = root[i].getName();
         if (type == "objects" || type == "lights")
             continue;
-        m_cam.m_origin = parse_position(root, "camera");
+        // m_cam.m_origin = parse_position(root, "camera");
         double fov = root.lookup("camera.fov");
         (void)fov;
     }
@@ -98,6 +103,16 @@ Math::Point3D Parser::Parser::parse_position(libconfig::Setting &root, std::stri
     double z = root.lookup(name + "z");
     Math::Point3D position(x, y, z);
     return position;
+}
+
+Math::Vector3D Parser::Parser::parse_normal(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".normal.";
+    double x = root.lookup(name + "x");
+    double y = root.lookup(name + "y");
+    double z = root.lookup(name + "z");
+    Math::Vector3D normal(x, y, z);
+    return normal;
 }
 
 double Parser::Parser::parse_radius(libconfig::Setting &root, std::string path)
@@ -131,6 +146,13 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 double radius = parse_radius(root, path);
                 Math::Vector3D color = parse_color(root, path);
                 m_objects.push_back(m_factory->createSphere(position, radius, color));
+            }
+            if (type.find("plane-") == 0) {
+                std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
+                Math::Point3D position = parse_position(root, path);
+                Math::Vector3D normal = parse_normal(root, path);
+                Math::Vector3D color = parse_color(root, path);
+                m_objects.push_back(m_factory->createPlane(position, normal, color));
             }
         }
     }

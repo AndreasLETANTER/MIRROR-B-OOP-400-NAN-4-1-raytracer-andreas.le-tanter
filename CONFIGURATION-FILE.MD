@@ -85,4 +85,18 @@ directional-pipe = {
 
 2 - **direction** : the properties of the directional light he must be present to be valid. The direction property is a vector of three values (x, y, z) that define the direction of the directional light in the scene.
 
+## Create an ambient light
+
+The ambient light is defined as a dictionary that contains one property:
+
+```JSON
+ambient-moon = {
+    intensity = 0.2
+}
+```
+
+1 - **ambient-moon** : the name of the ambient light in the scene, it must be unique and he need to have "ambient-" prefix
+
+2 - **intensity** : the properties of the ambient light he must be present to be valid. The intensity property is a double that define the intensity of the ambient light.
+
 ## Exemples of configurations files

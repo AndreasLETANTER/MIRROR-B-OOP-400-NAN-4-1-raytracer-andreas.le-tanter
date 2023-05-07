@@ -6,16 +6,18 @@ The goal of a configuration file defines the properties of a 3D scene, including
 
 For the sake of unification all values must be in **sizeof(double)** format.
 
-## Configuration of the camera
+# Object types
 
-The camera is defined as a dictionary that contains four properties:
+## Create a sphere
+
+The sphere is defined as a dictionary that contains four properties:
 
 ```JSON
 sphere-Brown = {
     position = {
         x = 0.5, y = 0.5, z = 0.0
-    }
-    radius = 0.3
+    },
+    radius = 0.3,
     color = {
         r = 153.0, g = 0.0, b = 153.0
     }
@@ -25,5 +27,27 @@ sphere-Brown = {
 1 - **shere-Brown** : the name of the sphere in the scene, it must be unique and he need to have "sphere-" prefix
 
 2 - **position/radius/color** : the properties of the sphere he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the sphere in the scene. The radius property is a double that define the radius of the sphere. The color property is a vector of three values (r, g, b) that define the color of the sphere.
+
+## Create a plane
+
+The plane is defined as a dictionary that contains four properties:
+
+```JSON
+plane-Luchoo = {
+    position = {
+        x = 2.5, y = 2.5, z = 3.0
+    },
+    normal = {
+        x = 5.0, y = 5.0, z = 3.0
+    },
+    color = {
+        r = 255.0, g = 10.0, b = 35.0
+    }
+}
+```
+
+1 - **plane-Luchoo** : the name of the plane in the scene, it must be unique and he need to have "plane-" prefix
+
+2 - **position/normal/color** : the properties of the plane he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that define the normal of the plane. The color property is a vector of three values (r, g, b) that define the color of the plane.
 
 ## Exemples of configurations files

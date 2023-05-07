@@ -14,13 +14,15 @@
 #include "RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "RayTracer/Light/PointLight/PointLight.hpp"
 #include "RayTracer/Light/ILights.hpp"
+#include "RayTracer/Viewer/Viewer.hpp"
 #include <iostream>
 
-#define WIDTH 2000
-#define HEIGHT 2000
+#define WIDTH 500
+#define HEIGHT 500
 
 int main(void)
 {
+    RayTracer::Viewer viewer;
     RayTracer::Camera cam;
     RayTracer::Renderer renderer;
     RayTracer::Sphere sphere(Math::Point3D(0, -0.2, 0), 0.3, Math::Vector3D(153, 0, 153));

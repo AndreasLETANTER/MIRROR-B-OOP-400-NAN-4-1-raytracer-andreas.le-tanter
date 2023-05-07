@@ -69,4 +69,20 @@ point-Sun = {
 
 2 - **position/intensity** : the properties of the point light he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the point light in the scene. The intensity property is a double that define the intensity of the point light.
 
+## Create a directional light
+
+The directional light is defined as a dictionary that contains three properties:
+
+```JSON
+directional-pipe = {
+    direction = {
+        x = -1.0, y = 1.0, z = 1.5
+    }
+}
+```
+
+1 - **directional-pipe** : the name of the directional light in the scene, it must be unique and he need to have "directional-" prefix
+
+2 - **direction** : the properties of the directional light he must be present to be valid. The direction property is a vector of three values (x, y, z) that define the direction of the directional light in the scene.
+
 ## Exemples of configurations files

@@ -33,7 +33,7 @@ sphere-Brown = {
 The plane is defined as a dictionary that contains four properties:
 
 ```JSON
-plane-Luchoo = {
+plane-Luchooooo = {
     position = {
         x = 2.5, y = 2.5, z = 3.0
     },
@@ -46,8 +46,27 @@ plane-Luchoo = {
 }
 ```
 
-1 - **plane-Luchoo** : the name of the plane in the scene, it must be unique and he need to have "plane-" prefix
+1 - **plane-Luchooooo** : the name of the plane in the scene, it must be unique and he need to have "plane-" prefix
 
 2 - **position/normal/color** : the properties of the plane he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that define the normal of the plane. The color property is a vector of three values (r, g, b) that define the color of the plane.
+
+# Lights
+
+## Create a point light
+
+The point light is defined as a dictionary that contains three properties:
+
+```JSON
+point-Sun = {
+    position = {
+        x = -10.0, y = 2.0, z = 2.0
+    },
+    intensity = 0.6
+}
+```
+
+1 - **point-Sun** : the name of the point light in the scene, it must be unique and he need to have "point-" prefix
+
+2 - **position/intensity** : the properties of the point light he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the point light in the scene. The intensity property is a double that define the intensity of the point light.
 
 ## Exemples of configurations files

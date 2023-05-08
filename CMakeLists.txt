@@ -13,6 +13,7 @@ set(SRC
     src/Math/Point3D/Point3D.cpp
     src/Math/Rectangle3D/Rectangle3D.cpp
     src/Math/Light/LightCalculation.cpp
+    src/Math/Matrix4D/Matrix4D.cpp
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
     src/RayTracer/Objects/Cylinder/Cylinder.cpp

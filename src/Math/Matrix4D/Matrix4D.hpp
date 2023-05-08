@@ -17,15 +17,17 @@ namespace Math
     class Matrix4D {
         public:
             Matrix4D(void);
-            Matrix4D(std::map<int, std::vector<std::pair<double, double>
-            , std::pair<double, double>>> mat4D);
+            Matrix4D(double element[4][4]);
             Matrix4D(const Matrix4D &t_other) = default;
             Matrix4D &operator=(const Matrix4D &t_other) = default;
             Matrix4D(Matrix4D &&t_other) = default;
             Matrix4D &operator=(Matrix4D &&t_other) = default;
             ~Matrix4D(void) = default;
+            double &get_elements(int row, int col);
+            Math::Matrix4D inverse(void);
+            double get_determinant(void);
+            double getCofactor(int row, int col);
         public:
-            std::map<int, std::vector<std::pair<double, double>
-            , std::pair<double, double>>> _mat4D;
+            double _m_elements[4][4];
     };
 }

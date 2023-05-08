@@ -27,18 +27,18 @@ int main(void)
     RayTracer::Camera cam;
     RayTracer::Renderer renderer;
     RayTracer::AmbiantLight ambiantLight(0.2);
-    // RayTracer::Sphere sphere(Math::Point3D(0.5, 0.5, 0), 0.3, Math::Vector3D(153, 0, 153));
-    RayTracer::Cylinder cylinder(Math::Point3D(0.1, 0.1, 0.1), 0.05, 0.1, Math::Vector3D(153, 0, 153));
+    RayTracer::Sphere sphere(Math::Point3D(0.5, 0.5, 0), 0.3, Math::Vector3D(153, 0, 153));
+    RayTracer::Cylinder cylinder(Math::Point3D(0, 0, 0.5), 0.1, 0.5, Math::Vector3D(153, 0, 153));
     RayTracer::DirectionalLight directionalLight(Math::Vector3D(-1, 1, 1.5));
     std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 
     objects.push_back(std::make_shared<RayTracer::Cylinder>(cylinder));
-    // objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
+    objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
     lights.push_back(std::make_shared<RayTracer::DirectionalLight>(directionalLight));
     cam.setResolution(WIDTH, HEIGHT);
-    cam.setScreen(40, Rectangle3D(Math::Point3D(-0.03, 0, -0.16), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0)));
+    cam.setScreen(40, Rectangle3D(Math::Point3D(-0.25, -0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0)));
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(0, 0, 0));
     renderer.setMissColor(Math::Vector3D(105, 105, 105));

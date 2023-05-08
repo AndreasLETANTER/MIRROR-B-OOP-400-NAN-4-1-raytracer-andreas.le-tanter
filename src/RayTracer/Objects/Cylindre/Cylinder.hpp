@@ -18,12 +18,12 @@
  * @details the cylindre is defined by its center, its height and its radius
 */
 namespace RayTracer {
-    class Cylinder : public IObjects {
+    class FCylinder : public IObjects {
         public:
-            Cylinder();
-            Cylinder(Math::Point3D center, double radius, double height
+            FCylinder();
+            FCylinder(Math::Point3D center, double radius, double height
             , Math::Vector3D color);
-            ~Cylinder();
+            ~FCylinder();
             Math::Vector3D getColor(void) override;
             Math::Vector3D getSurfaceNormal(void) override;
             bool hits(Ray &t_ray) override;

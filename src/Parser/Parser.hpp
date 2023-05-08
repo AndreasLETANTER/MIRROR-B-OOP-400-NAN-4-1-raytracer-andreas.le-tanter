@@ -29,15 +29,19 @@ namespace Parser
             void open_and_read_config_file(const char *filepath);
             void parse_config_file();
             void check_config_file();
-            void parse_camera(libconfig::Setting &camera);
             void parse_objects(libconfig::Setting &objects);
             void parse_lights(libconfig::Setting &lights);
+            void parse_camera(libconfig::Setting &camera);
             Math::Point3D parse_position(libconfig::Setting &root, std::string path);
             double parse_radius(libconfig::Setting &root, std::string path);
             Math::Vector3D parse_color(libconfig::Setting &root, std::string path);
             double parse_intensity(libconfig::Setting &root, std::string path);
             Math::Vector3D parse_direction(libconfig::Setting &root, std::string path);
             Math::Vector3D parse_normal(libconfig::Setting &root, std::string path);
+            Rectangle3D parse_screen(libconfig::Setting &root, std::string path);
+            Math::Point3D parse_origin(libconfig::Setting &root, std::string path);
+            Math::Vector3D parse_max_x(libconfig::Setting &root, std::string path);
+            Math::Vector3D parse_max_y(libconfig::Setting &root, std::string path);
         private:
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             RayTracer::Camera m_cam;

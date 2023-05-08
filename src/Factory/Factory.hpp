@@ -30,7 +30,7 @@ namespace Factory
             RayTracer::Camera getCamera();
 
             // Setters
-            RayTracer::Camera createCamera(libconfig::Setting &setting);
+            RayTracer::Camera createCamera(double width, double heigth, Rectangle3D screen, double fov);
             std::shared_ptr<RayTracer::AmbiantLight> createAmbiantLight(double intensity);
             std::shared_ptr<RayTracer::DirectionalLight> createDirectionalLight(Math::Vector3D direction);
             std::shared_ptr<RayTracer::PointLight> createPointLight(Math::Point3D position, double intensity);

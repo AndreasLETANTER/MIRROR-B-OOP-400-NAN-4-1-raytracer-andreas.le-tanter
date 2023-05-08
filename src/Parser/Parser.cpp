@@ -66,18 +66,6 @@ void Parser::Parser::parse_lights(libconfig::Setting &root)
     }
 }
 
-void Parser::Parser::parse_camera(libconfig::Setting &root)
-{
-    for (int i = 0; i != root.getLength(); i++) {
-        std::string type = root[i].getName();
-        if (type == "objects" || type == "lights")
-            continue;
-        // m_cam.m_origin = parse_position(root, "camera");
-        double fov = root.lookup("camera.fov");
-        (void)fov;
-    }
-}
-
 Math::Vector3D Parser::Parser::parse_direction(libconfig::Setting &root, std::string path)
 {
     std::string name = path + ".direction.";
@@ -113,6 +101,46 @@ Math::Vector3D Parser::Parser::parse_normal(libconfig::Setting &root, std::strin
     double z = root.lookup(name + "z");
     Math::Vector3D normal(x, y, z);
     return normal;
+}
+
+Math::Point3D Parser::Parser::parse_origin(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".origin.";
+    double x = root.lookup(name + "x");
+    double y = root.lookup(name + "y");
+    double z = root.lookup(name + "z");
+    Math::Point3D origin(x, y, z);
+    return origin;
+}
+
+Math::Vector3D Parser::Parser::parse_max_x(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".max_x.";
+    double x = root.lookup(name + "x");
+    double y = root.lookup(name + "y");
+    double z = root.lookup(name + "z");
+    Math::Vector3D max_x(x, y, z);
+    return max_x;
+}
+
+Math::Vector3D Parser::Parser::parse_max_y(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".max_y.";
+    double x = root.lookup(name + "x");
+    double y = root.lookup(name + "y");
+    double z = root.lookup(name + "z");
+    Math::Vector3D max_y(x, y, z);
+    return max_y;
+}
+
+Rectangle3D Parser::Parser::parse_screen(libconfig::Setting &root, std::string path)
+{
+    std::string name = path + ".screen.";
+    Math::Point3D origin = parse_origin(root, name);
+    Math::Vector3D max_x = parse_max_x(root, name);
+    Math::Vector3D max_y = parse_max_y(root, name);
+    Rectangle3D screen(origin, max_x, max_y);
+    return screen;
 }
 
 double Parser::Parser::parse_radius(libconfig::Setting &root, std::string path)
@@ -154,6 +182,24 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 Math::Vector3D color = parse_color(root, path);
                 m_objects.push_back(m_factory->createPlane(position, normal, color));
             }
+        }
+    }
+}
+
+void Parser::Parser::parse_camera(libconfig::Setting &root)
+{
+    for (int i = 0; i != root.getLength(); i++) {
+        std::string type = root[i].getName();
+        if (type == "lights" || type == "objects")
+            continue;
+        std::string name = root[i].getName();
+        for (int j = 0; j != root[i].getLength(); j++) {
+            std::string type = root[i][j].getName();
+            double width = root.lookup(name + ".resolution.width");
+            double height = root.lookup(name + ".resolution.height");
+            Rectangle3D screen = parse_screen(root, name);
+            double fov = root.lookup(name + ".fov");
+            m_cam = m_factory->createCamera(width, height, screen, fov);
         }
     }
 }

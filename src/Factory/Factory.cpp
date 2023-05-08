@@ -20,10 +20,13 @@ Factory::Factory::~Factory()
 {
 }
 
-RayTracer::Camera Factory::Factory::createCamera(libconfig::Setting &setting)
+
+RayTracer::Camera Factory::Factory::createCamera(double width, double heigth, Rectangle3D screen, double fov)
 {
-    (void)setting;
     RayTracer::Camera cam;
+
+    cam.setResolution(width, heigth);
+    cam.setScreen(fov, screen);
     return cam;
 }
 

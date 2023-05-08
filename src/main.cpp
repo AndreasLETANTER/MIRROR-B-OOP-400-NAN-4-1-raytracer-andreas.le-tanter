@@ -27,8 +27,6 @@ int main(const int ac, const char **av)
     RayTracer::Camera cam = parser.getCamera();
     RayTracer::Renderer renderer;
 
-    cam.setResolution(WIDTH, HEIGHT);
-    cam.setScreen(25, Rectangle3D(Math::Point3D(-0.5, -0.5, -4), Math::Vector3D(1., 0, 0), Math::Vector3D(0, 1., 0)));
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(105, 105, 105));
     renderer.setObjects(parser.getObjects());

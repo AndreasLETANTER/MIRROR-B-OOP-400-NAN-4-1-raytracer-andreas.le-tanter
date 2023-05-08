@@ -53,8 +53,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install libconfig-dev
-        run: |
-          apt-get install -y libconfig-dev
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libconfig-dev
+          version: 1.0
       - name: Build project
         run: |
           cmake .

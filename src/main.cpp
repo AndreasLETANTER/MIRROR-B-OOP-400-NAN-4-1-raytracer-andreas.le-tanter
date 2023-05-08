@@ -16,8 +16,8 @@
 #include "RayTracer/Light/ILights.hpp"
 #include <iostream>
 
-#define WIDTH 2000
-#define HEIGHT 2000
+#define WIDTH 1920
+#define HEIGHT 1080
 
 int main(void)
 {

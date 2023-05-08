@@ -17,10 +17,10 @@
  * @param t_filepath Path to the config file
  * @return Parser
 */
-Parser::Parser::Parser(const char *t_filepath)
+Parser::Parser::Parser(const std::string &t_filepath)
 {
-    m_factory = new Factory::Factory();
-    open_and_read_config_file(t_filepath);
+    m_factory = std::make_shared<Factory::Factory>();
+    open_and_read_config_file(t_filepath.c_str());
     parse_config_file();
 }
 
@@ -347,10 +347,10 @@ void Parser::Parser::check_config_file(void)
  * @param t_filepath The path of the config file
  * @return void
 */
-void Parser::Parser::open_and_read_config_file(const char *t_filepath)
+void Parser::Parser::open_and_read_config_file(const std::string &t_filepath)
 {
     try{
-        m_config.readFile(t_filepath);
+        m_config.readFile(t_filepath.c_str());
     } catch (const libconfig::FileIOException &e) {
         std::cerr << "Error: " << e.what() << std::endl;
         exit(EXIT_FAILURE);

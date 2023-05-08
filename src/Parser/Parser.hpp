@@ -20,7 +20,7 @@ namespace Parser
         public:
             // Constructor / Destructor
             Parser(void) = default;
-            Parser(const char *t_filepath);
+            Parser(const std::string &t_filepath);
             ~Parser(void) = default;
             // Getters
             RayTracer::Camera getCamera(void);
@@ -28,7 +28,7 @@ namespace Parser
             std::vector<std::shared_ptr<RayTracer::ILights>> getLights(void);
         protected:
             // Main functions of parser
-            void open_and_read_config_file(const char *t_filepath);
+            void open_and_read_config_file(const std::string &t_filepath);
             void parse_config_file(void);
             void check_config_file(void);
             // Parser of 3 main objects
@@ -51,6 +51,6 @@ namespace Parser
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             std::vector<std::shared_ptr<RayTracer::ILights>> m_lights;
             libconfig::Config m_config;
-            Factory::Factory *m_factory;
+            std::shared_ptr<Factory::Factory> m_factory;
     };
 }

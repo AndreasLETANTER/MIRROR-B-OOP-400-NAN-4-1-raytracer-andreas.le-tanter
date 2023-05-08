@@ -15,8 +15,8 @@ set(SRC
     src/Math/Light/LightCalculation.cpp
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
-    src/RayTracer/Objects/Cylindre/FCylindre.cpp
-    src/RayTracer/Objects/Cylindre/IFCylindre.cpp
+    src/RayTracer/Objects/Cylindre/Cylinder.cpp
+    src/RayTracer/Objects/Cylindre/LCylinder.cpp
     src/RayTracer/Light/AmbiantLight/AmbiantLight.cpp
     src/RayTracer/Light/DirectionalLight/DirectionalLight.cpp
     src/RayTracer/Camera/Camera.cpp

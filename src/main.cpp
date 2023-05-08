@@ -31,6 +31,7 @@ int main(void)
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 
     sphere.translate(Math::Point3D(0.5, 0.5, 2));
+    plane.translate(Math::Point3D(0.5, 0.5, 2));
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
     objects.push_back(std::make_shared<RayTracer::Plane>(plane));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));

@@ -6,22 +6,21 @@
 */
 
 #pragma once
-#include "../RayTracer/Objects/IObjects.hpp"
-#include "../RayTracer/Camera/Camera.hpp"
+
 #include <libconfig.h++>
 #include <vector>
+#include <memory>
+
+#include "../RayTracer/Camera/Camera.hpp"
+#include "../RayTracer/Light/ILights.hpp"
 
 namespace Parser
 {
     class IParser {
         public:
             virtual ~IParser() = default;
-            virtual std::vector<RayTracer::IObjects *> getObjects() = 0;
             virtual RayTracer::Camera getCamera() = 0;
-
-        protected:
-            virtual void parse_config_file() = 0;
-
-        private:
+            virtual std::vector<std::shared_ptr<RayTracer::IObjects>> getObjects() = 0;
+            virtual std::vector<std::shared_ptr<RayTracer::ILights>> getLights() = 0;
     };
 }

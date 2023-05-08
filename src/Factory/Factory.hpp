@@ -12,33 +12,30 @@
 #include <vector>
 #include <memory>
 
+#include "IFactory.hpp"
 #include "../RayTracer/Objects/IObjects.hpp"
-#include "../RayTracer/Camera/Camera.hpp"
 #include "../RayTracer/Light/AmbiantLight/AmbiantLight.hpp"
-#include "../RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
-#include "../RayTracer/Light/PointLight/PointLight.hpp"
+#include "../RayTracer/Camera/Camera.hpp"
 
 namespace Factory
 {
-    class Factory {
+    class Factory : IFactory {
         public:
-            Factory();
-            ~Factory();
+            Factory() = default;
+            ~Factory() = default;
 
             // Getters
             std::vector<RayTracer::IObjects *> getObjects();
             RayTracer::Camera getCamera();
 
-            // Setters
-            RayTracer::Camera createCamera(double width, double heigth, Rectangle3D screen, double fov);
-            std::shared_ptr<RayTracer::AmbiantLight> createAmbiantLight(double intensity);
-            std::shared_ptr<RayTracer::DirectionalLight> createDirectionalLight(Math::Vector3D direction);
-            std::shared_ptr<RayTracer::PointLight> createPointLight(Math::Point3D position, double intensity);
-            std::shared_ptr<RayTracer::IObjects> createSphere(Math::Point3D position, double radius, Math::Vector3D color);
-            std::shared_ptr<RayTracer::IObjects> createPlane(Math::Point3D position, Math::Vector3D normal, Math::Vector3D color);
-
+            // Creator
+            RayTracer::Camera createCamera(double t_width, double t_heigth, Rectangle3D t_screen, double t_fov);
+            std::shared_ptr<RayTracer::AmbiantLight> createAmbiantLight(double t_intensity);
+            std::shared_ptr<RayTracer::DirectionalLight> createDirectionalLight(Math::Vector3D t_direction);
+            std::shared_ptr<RayTracer::PointLight> createPointLight(Math::Point3D t_position, double t_intensity);
+            std::shared_ptr<RayTracer::IObjects> createSphere(Math::Point3D t_position, double t_radius, Math::Vector3D t_color);
+            std::shared_ptr<RayTracer::IObjects> createPlane(Math::Point3D t_position, Math::Vector3D t_normal, Math::Vector3D t_color);
         protected:
-            void open_and_read_config_file(const char *filepath);
         private:
             std::vector<RayTracer::IObjects *> m_objects;
             RayTracer::Camera m_cam;

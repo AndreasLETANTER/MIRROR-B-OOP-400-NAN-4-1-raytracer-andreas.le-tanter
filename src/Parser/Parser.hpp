@@ -11,42 +11,45 @@
 #include <libconfig.h++>
 #include <vector>
 
-#include "../RayTracer/Objects/IObjects.hpp"
-#include "../RayTracer/Camera/Camera.hpp"
+#include "IParser.hpp"
 #include "../Factory/Factory.hpp"
 
 namespace Parser
 {
-    class Parser {
+    class Parser : public IParser {
         public:
-            Parser() = default;
-            Parser(const char *filepath);
-            ~Parser();
-            std::vector<std::shared_ptr<RayTracer::IObjects>> getObjects();
-            RayTracer::Camera getCamera();
-            std::vector<std::shared_ptr<RayTracer::ILights>> getLights();
+            // Constructor / Destructor
+            Parser(void) = default;
+            Parser(const char *t_filepath);
+            ~Parser(void) = default;
+            // Getters
+            RayTracer::Camera getCamera(void);
+            std::vector<std::shared_ptr<RayTracer::IObjects>> getObjects(void);
+            std::vector<std::shared_ptr<RayTracer::ILights>> getLights(void);
         protected:
-            void open_and_read_config_file(const char *filepath);
-            void parse_config_file();
-            void check_config_file();
-            void parse_objects(libconfig::Setting &objects);
-            void parse_lights(libconfig::Setting &lights);
-            void parse_camera(libconfig::Setting &camera);
-            Math::Point3D parse_position(libconfig::Setting &root, std::string path);
-            double parse_radius(libconfig::Setting &root, std::string path);
-            Math::Vector3D parse_color(libconfig::Setting &root, std::string path);
-            double parse_intensity(libconfig::Setting &root, std::string path);
-            Math::Vector3D parse_direction(libconfig::Setting &root, std::string path);
-            Math::Vector3D parse_normal(libconfig::Setting &root, std::string path);
-            Rectangle3D parse_screen(libconfig::Setting &root, std::string path);
-            Math::Point3D parse_origin(libconfig::Setting &root, std::string path);
-            Math::Vector3D parse_max_x(libconfig::Setting &root, std::string path);
-            Math::Vector3D parse_max_y(libconfig::Setting &root, std::string path);
+            // Main functions of parser
+            void open_and_read_config_file(const char *t_filepath);
+            void parse_config_file(void);
+            void check_config_file(void);
+            // Parser of 3 main objects
+            void parse_objects(libconfig::Setting &t_objects);
+            void parse_lights(libconfig::Setting &t_lights);
+            void parse_camera(libconfig::Setting &t_camera);
+            // Utils parse objects
+            double parse_radius(libconfig::Setting &t_root, std::string t_path);
+            double parse_intensity(libconfig::Setting &t_root, std::string t_path);
+            Math::Point3D parse_position(libconfig::Setting &t_root, std::string t_path);
+            Math::Point3D parse_origin(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_color(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_direction(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_normal(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_max_x(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_max_y(libconfig::Setting &t_root, std::string t_path);
+            Rectangle3D parse_screen(libconfig::Setting &t_root, std::string t_path);
         private:
-            std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             RayTracer::Camera m_cam;
+            std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;
             std::vector<std::shared_ptr<RayTracer::ILights>> m_lights;
-            std::string m_file_path;
             libconfig::Config m_config;
             Factory::Factory *m_factory;
     };

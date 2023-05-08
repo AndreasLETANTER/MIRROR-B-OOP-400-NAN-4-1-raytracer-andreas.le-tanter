@@ -8,6 +8,7 @@
 #include "Renderer.hpp"
 #include "../../Math/Light/LightCalculation.hpp"
 #include <iostream>
+#include <limits>
 
 /**
  * @brief Construct a new Ray Tracer:: Renderer:: Renderer object
@@ -101,16 +102,19 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r)
 {
     bool hit_something = false;
     Math::LightCalculation light_calculation;
+    std::pair<double, int> closest_object = std::make_pair(std::numeric_limits<double>::max(), -1);
 
     for (size_t i = 0; i < m_objects.size(); i++) {
-        if (m_objects[i]->hits(r)) {
-            print_pixel(light_calculation.calculateLightEffect(m_objects[i]->getColor(), m_lights, m_objects[i]->getSurfaceNormal()));
+        if (m_objects[i]->hits(r) && m_objects[i]->getHitDistance() < closest_object.first) {
+            closest_object = std::make_pair(m_objects[i]->getHitDistance(), i);
             hit_something = true;
-            return;
         }
     }
-    if (!hit_something)
+    if (hit_something) {
+        print_pixel(light_calculation.calculateLightEffect(m_objects[closest_object.second]->getColor(), m_lights, m_objects[closest_object.second]));
+    } else if (!hit_something) {
         print_pixel(m_miss_color);
+    }
 }
 
 /**

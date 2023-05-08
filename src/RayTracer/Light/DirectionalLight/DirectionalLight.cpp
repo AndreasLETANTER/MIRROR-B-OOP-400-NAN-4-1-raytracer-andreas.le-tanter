@@ -23,9 +23,9 @@ RayTracer::DirectionalLight::DirectionalLight(Math::Vector3D t_direction)
  * @param t_surfaceNormal Surface normal where the ray hit
  * @return double Intensity of the light
 */
-double RayTracer::DirectionalLight::getIntensityAt(Math::Vector3D t_surfaceNormal)
+double RayTracer::DirectionalLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
 {
-    m_intensity = -m_direction.dot_product(t_surfaceNormal);
+    m_intensity = -m_direction.dot_product(t_object->getSurfaceNormal());
     return (m_intensity);
 }
 

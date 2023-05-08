@@ -98,3 +98,21 @@ Math::Vector3D RayTracer::Cylinder::getColor(void)
 {
     return (m_color);
 }
+
+/**
+ * @brief get the distance between the ray origin and the hit point
+ * @return double
+*/
+double RayTracer::Cylinder::getHitDistance(void)
+{
+    return (m_hit_distance);
+}
+
+/**
+ * @brief get the hit point
+ * @return Math::Point3D
+*/
+Math::Point3D RayTracer::Cylinder::getIntersectionPoint(void)
+{
+    return (m_hit_point);
+}

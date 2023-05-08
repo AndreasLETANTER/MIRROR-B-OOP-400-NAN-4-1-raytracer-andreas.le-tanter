@@ -80,6 +80,54 @@ bool RayTracer::LCylinder::hits(Ray& t_ray)
     return true;
 }
 
+// bool RayTracer::LCylinder::hits(Ray& t_ray, const Math::Matrix4& projectionMatrix)
+// {
+//     // Transform t_ray.m_origin and c_center to camera space using the projectionMatrix
+//     Math::Vector4 originCameraSpace = projectionMatrix * Math::Vector4(t_ray.m_origin, 1.0);
+//     Math::Vector4 centerCameraSpace = projectionMatrix * Math::Vector4(c_center, 1.0);
+
+//     // Convert to 3D vectors in camera space
+//     Math::Vector3D OC(originCameraSpace.x, originCameraSpace.y, originCameraSpace.z);
+//     Math::Vector3D CC(centerCameraSpace.x, centerCameraSpace.y, centerCameraSpace.z);
+
+//     // Perform ray-cylinder intersection calculation in camera space
+//     float a = pow(t_ray.m_direction.m_x_component, 2) + pow(t_ray.m_direction.m_z_component, 2);
+//     float b = 2 * (t_ray.m_direction.m_x_component * OC.m_x_component + t_ray.m_direction.m_z_component * OC.m_z_component);
+//     float c = pow(OC.m_x_component, 2) + pow(OC.m_z_component, 2) - pow(c_radius, 2);
+//     float discriminant = pow(b, 2) - 4 * a * c;
+
+//     if (discriminant <= 0) {
+//         return false;
+//     }
+
+//     double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
+//     double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
+//     double t;
+
+//     if (t1 > 0) {
+//         t = t1;
+//     } else if (t2 > 0) {
+//         t = t2;
+//     } else {
+//         return false;
+//     }
+
+//     // Calculate the intersection point in camera space
+//     Math::Vector3D hitPointCameraSpace = OC + t * t_ray.m_direction;
+
+//     // Check if the intersection point is within the finite height of the cylinder
+//     if (hitPointCameraSpace.m_y_component < CC.m_y_component || hitPointCameraSpace.m_y_component > CC.m_y_component + c_height) {
+//         return false;
+//     }
+
+//     // Transform the intersection point back to world space
+//     Math::Vector4 hitPointWorldSpace = projectionMatrix.inverse() * Math::Vector4(hitPointCameraSpace, 1.0);
+//     m_hit_point = Math::Vector3D(hitPointWorldSpace.x, hitPointWorldSpace.y, hitPointWorldSpace.z);
+
+//     return true;
+// }
+
+
 /**
  * @brief get the surface normal of the cylinder
  * @details get the surface normal of the cylinder at the given point
@@ -101,4 +149,22 @@ Math::Vector3D RayTracer::LCylinder::getSurfaceNormal(void)
 Math::Vector3D RayTracer::LCylinder::getColor(void)
 {
     return (m_color);
+}
+
+/**
+ * @brief get the distance between the ray origin and the hit point
+ * @return double 
+*/
+double RayTracer::LCylinder::getHitDistance(void)
+{
+    return (m_hit_distance);
+}
+
+/**
+ * @brief get the hit point
+ * @return Math::Point3D 
+*/
+Math::Point3D RayTracer::LCylinder::getIntersectionPoint(void)
+{
+    return (m_hit_point);
 }

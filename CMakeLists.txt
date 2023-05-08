@@ -15,10 +15,12 @@ set(SRC
     src/Math/Light/LightCalculation.cpp
     src/RayTracer/Ray/Ray.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
-    src/RayTracer/Objects/Cylindre/Cylinder.cpp
-    src/RayTracer/Objects/Cylindre/LCylinder.cpp
+    src/RayTracer/Objects/Cylinder/Cylinder.cpp
+    src/RayTracer/Objects/Cylinder/LCylinder.cpp
+    src/RayTracer/Objects/Plane/Plane.cpp
     src/RayTracer/Light/AmbiantLight/AmbiantLight.cpp
     src/RayTracer/Light/DirectionalLight/DirectionalLight.cpp
+    src/RayTracer/Light/PointLight/PointLight.cpp
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
 )

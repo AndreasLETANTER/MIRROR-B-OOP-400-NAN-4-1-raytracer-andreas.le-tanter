@@ -27,11 +27,14 @@ namespace RayTracer {
             Math::Vector3D getColor(void) override;
             Math::Vector3D getSurfaceNormal(void) override;
             bool hits(Ray &t_ray) override;
+            double getHitDistance(void) override;
+            Math::Point3D getIntersectionPoint(void) override;
         public:
             Math::Point3D c_center;
             Math::Vector3D c_axis;
             Math::Vector3D m_color;
             Math::Point3D m_hit_point;
+            double m_hit_distance;
             double c_radius;
             double c_height;
     };
@@ -44,11 +47,14 @@ namespace RayTracer {
             Math::Vector3D getColor(void) override;
             Math::Vector3D getSurfaceNormal(void) override;
             bool hits(Ray &t_ray) override;
+            double getHitDistance(void) override;
+            Math::Point3D getIntersectionPoint(void) override;
         public:
             Math::Point3D c_center;
             Math::Vector3D c_axis;
             Math::Vector3D m_color;
             Math::Point3D m_hit_point;
+            double m_hit_distance;
             double c_radius;
             double c_height;
     };

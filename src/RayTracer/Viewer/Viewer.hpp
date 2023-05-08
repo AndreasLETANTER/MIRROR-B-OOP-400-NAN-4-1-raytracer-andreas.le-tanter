@@ -9,6 +9,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <list>
 
 namespace RayTracer {
     class Viewer {
@@ -18,6 +19,9 @@ namespace RayTracer {
         protected:
             unsigned int count_files_in_dir(void) const;
             void create_all_scenes_buttons(void);
+            void draw_all(void);
+            void check_mouse_position(int x, int y, bool click);
+            sf::Image get_image_from_file() const;
         private:
             sf::RenderWindow *_window;
             sf::Texture _background_texture;
@@ -26,5 +30,8 @@ namespace RayTracer {
             sf::Font _font;
             sf::Text *_text;
             sf::RectangleShape *_rect;
+            sf::Image _render;
+            sf::Texture _render_texture;
+            sf::Sprite _render_sprite;
     };
 }

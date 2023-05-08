@@ -9,6 +9,8 @@
 #include <iostream>
 #include <exception>
 #include <dirent.h>
+#include <sys/types.h>
+#include <fstream>
 
 RayTracer::Viewer::Viewer()
 {
@@ -40,20 +42,87 @@ RayTracer::Viewer::Viewer()
         {
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 _window->close();
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || event.type == sf::Event::MouseMoved) {
+                check_mouse_position(event.mouseMove.x, event.mouseMove.y, sf::Mouse::isButtonPressed(sf::Mouse::Left));
+            }
+            if (event.type == sf::Event::Resized) {
+                _window->setPosition(sf::Vector2i(448, 156));
+                _window->setSize(sf::Vector2u(1024, 768));
+            }
         }
-        _window->draw(_background_sprite);
-        _window->draw(_title);
-        for (unsigned int i = 0; i < count_files_in_dir(); i++) {
-            _window->draw(_rect[i]);
-            _window->draw(_text[i]);
-        }
-        _window->display();
+        draw_all();
     }
-    
 }
 
 RayTracer::Viewer::~Viewer()
 {
+}
+
+void RayTracer::Viewer::draw_all(void)
+{
+    _window->draw(_background_sprite);
+    _window->draw(_title);
+    for (unsigned int i = 0; i < count_files_in_dir(); i++) {
+        _window->draw(_rect[i]);
+        _window->draw(_text[i]);
+    }
+    _window->draw(_render_sprite);
+    _window->display();
+}
+
+void RayTracer::Viewer::check_mouse_position(int x, int y, bool click)
+{
+    for (unsigned int i = 0; i < count_files_in_dir(); i++) {
+        if (x >= 275 && x <= 775 && y >= 200 + (int(i) * 75) && y <= 250 + (int(i) * 75)) {
+            _rect[i].setFillColor(sf::Color::White);
+            _text[i].setFillColor(sf::Color::Black);
+            if (click) {
+                exit(0);
+            }
+        } else {
+            _rect[i].setFillColor(sf::Color::Transparent);
+            _text[i].setFillColor(sf::Color::White);
+        }
+    }
+}
+
+sf::Image RayTracer::Viewer::get_image_from_file() const
+{
+    // Open the ppm file.
+    std::ifstream file("output.ppm");
+    if (!file.is_open()) {
+        std::cerr << "Could not open image file!" << std::endl;
+        return sf::Image();
+    }
+
+    // Read the header of the ppm file.
+    std::string magic;
+    file >> magic;
+    if (magic != "P3") {
+        std::cerr << "Invalid ppm file format!" << std::endl;
+        return sf::Image();
+    }
+
+    int width, height, max_value;
+    file >> width >> height >> max_value;
+
+    // Create a new sf::Image with the same dimensions as the ppm file.
+    sf::Image image;
+    image.create(width, height);
+
+    // Read the pixels from the ppm file.
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            unsigned char r, g, b;
+            file >> r >> g >> b;
+            image.setPixel(x, y, sf::Color(r, g, b));
+        }
+    }
+    // Close the ppm file.
+    file.close();
+
+    // Return the sf::Image.
+    return image;
 }
 
 unsigned int RayTracer::Viewer::count_files_in_dir(void) const
@@ -91,7 +160,7 @@ void RayTracer::Viewer::create_all_scenes_buttons(void)
             _text[count].setString(dir->d_name);
             _text[count].setCharacterSize(25);
             _text[count].setFillColor(sf::Color::White);
-            _text[count].setPosition(550 - (std::string(dir->d_name).length() * 7.5), 208 + (count * 75));
+            _text[count].setPosition(540 - (std::string(dir->d_name).length() * 7), 208 + (count * 75));
             _rect[count].setSize(sf::Vector2f(500, 50));
             _rect[count].setFillColor(sf::Color::Transparent);
             _rect[count].setOutlineThickness(2);

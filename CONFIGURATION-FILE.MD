@@ -7,6 +7,37 @@ The goal of a configuration file defines the properties of a 3D scene, including
 For the sake of unification all values must be in **sizeof(double)** format.
 You can put a comment in the configuration file by using the **#** character.
 
+## Create a camera
+
+The camera is defined as a dictionary that contains three properties:
+
+```JSON
+camera = {
+    resolution = {
+        width = 1000.0,
+        height = 1000.0
+    },
+    screen = {
+        origin = {
+            x = -0.5, y = -0.5, z = -4.0
+        },
+        max_x = {
+            x = 1.0, y = 0.0, z = 0.0
+        },
+        max_y = {
+            x = 0.0, y = 1.0, z = 0.0
+        }
+    },
+    fov = 25.0
+}
+```
+
+1 - **camera** : the name of the camera in the scene, it must be unique and he need to have "camera" prefix
+
+2 - **resolution** : the resolution of the camera, it must be present to be valid. The resolution property is a vector of two values (width, height) that define the resolution of the camera.
+
+3 - **screen** : the screen of the camera, it must be present to be valid. The screen property is a dictionary that contains three properties (origin, max_x, max_y). The origin property is a vector of three values (x, y, z) that define the origin of the screen. The max_x property is a vector of three values (x, y, z) that define the max_x of the screen. The max_y property is a vector of three values (x, y, z) that define the max_y of the screen.
+
 # Object types
 
 ## Create a sphere

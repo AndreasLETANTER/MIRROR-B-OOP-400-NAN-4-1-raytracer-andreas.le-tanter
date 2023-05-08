@@ -54,7 +54,7 @@ jobs:
           fetch-depth: 0
       - name: Install libconfig-dev
         run: |
-          sudo apt-get install -y libconfig-dev
+          apt-get install -y libconfig-dev
       - name: Build project
         run: |
           cmake .
@@ -88,7 +88,7 @@ jobs:
           fetch-depth: 0
       - name: Install libconfig-dev
         run: |
-          sudo apt-get install -y libconfig-dev
+          apt-get install -y libconfig-dev
       - name: Build project
         run: |
           cmake .
@@ -120,7 +120,7 @@ jobs:
           fetch-depth: 0
       - name: Install libconfig-dev
         run: |
-          sudo apt-get install -y libconfig-dev
+          apt-get install -y libconfig-dev
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:

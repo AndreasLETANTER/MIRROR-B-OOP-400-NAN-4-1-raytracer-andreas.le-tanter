@@ -58,10 +58,11 @@ Math::Vector3D RayTracer::Cone::getColor(void)
 */
 bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
 {
+    t_ray.m_direction = t_ray.m_direction / t_ray.m_direction.length();
     Math::Vector3D co = t_ray.m_origin - this->c;
-    double a = t_ray.m_direction.dot_product(this->v) * t_ray.m_direction.dot_product(this->v) - this->cosa * this->cosa;
-    double b = 2. * (t_ray.m_direction.dot_product(this->v) * co.dot_product(this->v) - t_ray.m_direction.dot_product(co) * this->cosa * this->cosa);
-    double c1 = co.dot_product(this->v) * co.dot_product(this->v) - co.dot_product(co) * this->cosa * this->cosa;
+    double a = this->v.dot_product(t_ray.m_direction) * this->v.dot_product(t_ray.m_direction) - this->cosa * this->cosa;
+    double b = 2. * (this->v.dot_product(t_ray.m_direction) * this->v.dot_product(co) - co.dot_product(t_ray.m_direction) * this->cosa * this->cosa);
+    double c1 = this->v.dot_product(co) * this->v.dot_product(co) - co.dot_product(co) * this->cosa * this->cosa;
     double det = b * b - 4. * a * c1;
 
     if (det < 0.) {
@@ -77,11 +78,11 @@ bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
         return (false);
     }
     Math::Vector3D cp = t_ray.m_origin + t_ray.m_direction * t - this->c;
-    double h1 = cp.dot_product(this->v);
+    double h1 = this->v.dot_product(cp);
     if (h1 < 0. || h1 > this->h) {
         return (false);
     }
-    Math::Vector3D n = cp * this->v.dot_product(cp) / cp.dot_product(cp) - this->v;
+    Math::Vector3D n = cp * cp.dot_product(this->v) / cp.dot_product(cp) - this->v;
     n = n / n.length();
     m_n = n;
     m_hit_distance = t;

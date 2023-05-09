@@ -19,20 +19,23 @@ namespace RayTracer {
     class Cone : public IObjects {
         public:
             Cone(void);
-            Cone(Math::Point3D t_center, double t_radius, Math::Vector3D t_color);
+            Cone(double t_cosa, double t_h, Math::Vector3D t_c, Math::Vector3D t_v, Math::Vector3D t_color);
             ~Cone(void) = default;
             Math::Vector3D getColor(void) override;
-            Math::Point3D m_center;
-            double m_radius;
-            Math::Vector3D m_color;
             bool hits(Ray &t_ray) override;
             Math::Vector3D getSurfaceNormal(void) override;
             double getHitDistance(void) override;
             Math::Point3D getIntersectionPoint(void) override;
-            double m_hit_distance;
+            double cosa;
+            double h;
+            Math::Vector3D c;
+            Math::Vector3D v;
+            Math::Vector3D m_color;
+            Math::Vector3D m_n;
 
         protected:
             Math::Point3D m_hit_point;
+            double m_hit_distance;
         private:
     };
 }

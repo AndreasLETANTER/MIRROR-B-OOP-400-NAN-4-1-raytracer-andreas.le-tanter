@@ -24,7 +24,7 @@ int main(void)
 {
     RayTracer::Camera cam;
     RayTracer::Renderer renderer;
-    RayTracer::Cone cone(Math::Point3D(0, -0.2, 0), 0.3, Math::Vector3D(153, 0, 153));
+    RayTracer::Cone cone(0.90, 0.5, Math::Vector3D(0., 0., 0.5), Math::Vector3D(0., -1, 0.), Math::Vector3D(153, 0, 153));
     RayTracer::Plane plane(Math::Point3D(0., 0.4, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(18, 164, 139));
     RayTracer::AmbiantLight ambiantLight(0.2);
     RayTracer::PointLight pointLight(Math::Point3D(0, -10, 0), 2);

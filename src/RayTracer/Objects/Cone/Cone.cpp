@@ -10,25 +10,33 @@
 #include <iostream>
 
 /**
- * @brief Construct a new Cone object
- * @details set the center and the radius of the Cone to 0
+ * @brief Construct a new Ray Tracer:: Cone:: Cone object
+ * @details set the color, the center, the height, the angle and the vector of the Cone to 0
 */
 RayTracer::Cone::Cone(void)
 {
-    m_center = Math::Point3D(0, 0, 0);
-    m_radius = 0;
+    cosa = 0;
+    c = Math::Vector3D(0, 0, 0);
+    v = Math::Vector3D(0, 0, 0);
+    m_color = Math::Vector3D(0, 0, 0);
+    h = 0;
 }
 
 /**
- * @brief Construct a new Cone object
- * @details set the center and the radius of the Cone to the given parameters
- * @param t_center 
- * @param t_radius 
+ * @brief Construct a new Ray Tracer:: Cone:: Cone object
+ * @details set the color, the center, the height, the angle and the vector of the Cone to the given parameters
+ * @param t_cosa 
+ * @param t_h 
+ * @param t_c 
+ * @param t_v 
+ * @param t_color 
  */
-RayTracer::Cone::Cone(Math::Point3D t_center, double t_radius, Math::Vector3D t_color)
+RayTracer::Cone::Cone(double t_cosa, double t_h, Math::Vector3D t_c, Math::Vector3D t_v, Math::Vector3D t_color)
 {
-    m_center = t_center;
-    m_radius = t_radius;
+    cosa = t_cosa;
+    h = t_h;
+    c = t_c;
+    v = t_v;
     m_color = t_color;
 }
 
@@ -50,17 +58,34 @@ Math::Vector3D RayTracer::Cone::getColor(void)
 */
 bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
 {
-    Math::Vector3D oc = t_ray.m_origin - m_center;
-    double a = t_ray.m_direction.dot_product(t_ray.m_direction);
-    double b = 2.0 * oc.dot_product(t_ray.m_direction);
-    double c = oc.dot_product(oc) - m_radius * m_radius;
-    double discriminant = b * b - 4 * a * c;
-    double t = (-b - sqrt(discriminant)) / (2.0 * a);
+    Math::Vector3D co = t_ray.m_origin - this->c;
+    double a = t_ray.m_direction.dot_product(this->v) * t_ray.m_direction.dot_product(this->v) - this->cosa * this->cosa;
+    double b = 2. * (t_ray.m_direction.dot_product(this->v) * co.dot_product(this->v) - t_ray.m_direction.dot_product(co) * this->cosa * this->cosa);
+    double c1 = co.dot_product(this->v) * co.dot_product(this->v) - co.dot_product(co) * this->cosa * this->cosa;
+    double det = b * b - 4. * a * c1;
 
-    if (discriminant < 0)
+    if (det < 0.) {
         return (false);
-    m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
+    }
+    det = sqrt(det);
+    double t1 = (-b - det) / (2. * a);
+    double t2 = (-b + det) / (2. * a);
+    double t = t1;
+    if (t < 0. || (t2 > 0. && t2 < t))
+        t = t2;
+    if (t < 0.) {
+        return (false);
+    }
+    Math::Vector3D cp = t_ray.m_origin + t_ray.m_direction * t - this->c;
+    double h1 = cp.dot_product(this->v);
+    if (h1 < 0. || h1 > this->h) {
+        return (false);
+    }
+    Math::Vector3D n = cp * this->v.dot_product(cp) / cp.dot_product(cp) - this->v;
+    n = n / n.length();
+    m_n = n;
     m_hit_distance = t;
+    m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
     return (true);
 }
 
@@ -72,10 +97,7 @@ bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
 */
 Math::Vector3D RayTracer::Cone::getSurfaceNormal(void)
 {
-    Math::Vector3D surface_normal = m_hit_point - m_center;
-
-    surface_normal = surface_normal / surface_normal.length();
-    return (surface_normal);
+    return (m_n);
 }
 
 /**

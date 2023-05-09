@@ -1,4 +1,4 @@
-name: chocolatine
+name: CI
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter.git
   EXECUTABLE: "raytracer"
@@ -52,6 +52,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Install libconfig-dev
+        run: |
+          dnf install -y libconfig
       - name: Build project
         run: |
           cmake .
@@ -83,6 +86,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Install libconfig-dev
+        run: |
+          dnf install -y libconfig
       - name: Build project
         run: |
           cmake .
@@ -112,6 +118,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Install libconfig-dev
+        run: |
+          dnf install -y libconfig
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:

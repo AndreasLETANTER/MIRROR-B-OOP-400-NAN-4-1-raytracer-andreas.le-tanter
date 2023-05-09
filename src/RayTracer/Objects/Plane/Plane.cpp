@@ -14,7 +14,7 @@
 */
 RayTracer::Plane::Plane(Math::Point3D t_plane_position, Math::Vector3D t_plane_normal, Math::Vector3D t_color)
 {
-    m_plane_position = t_plane_position;
+    m_position = t_plane_position;
     m_plane_normal = t_plane_normal;
     m_color = t_color;
 }
@@ -44,7 +44,7 @@ bool RayTracer::Plane::hits(RayTracer::Ray &t_ray)
     if (std::abs(denom) < 1e-6) {
         return false;
     }
-    Math::Vector3D p0l0 = m_plane_position - t_ray.m_origin;
+    Math::Vector3D p0l0 = m_position - t_ray.m_origin;
     t = p0l0.dot_product(m_plane_normal) / denom;
     m_hit_point = t_ray.m_origin + RayDirection * t;
     m_hit_distance = t;

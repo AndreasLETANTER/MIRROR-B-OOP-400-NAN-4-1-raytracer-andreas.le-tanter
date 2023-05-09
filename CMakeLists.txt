@@ -14,6 +14,7 @@ set(SRC
     src/Math/Rectangle3D/Rectangle3D.cpp
     src/Math/Light/LightCalculation.cpp
     src/RayTracer/Ray/Ray.cpp
+    src/RayTracer/Objects/AObjects.cpp
     src/RayTracer/Objects/Sphere/Sphere.cpp
     src/RayTracer/Objects/Cylinder/Cylinder.cpp
     src/RayTracer/Objects/Cylinder/LCylinder.cpp
@@ -23,7 +24,11 @@ set(SRC
     src/RayTracer/Light/PointLight/PointLight.cpp
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
+    src/Parser/Parser.cpp
+    src/Parser/Parser.cpp
+    src/Factory/Factory.cpp
 )
+
 set(MAIN
     src/main.cpp
 )
@@ -33,18 +38,18 @@ set(TESTS
 
 ###############################COMPILATION MAIN PROGRAM###########################
 add_compile_options(${CXX_FLAGS})
+include_directories("/usr/local/include")
+link_directories("/usr/local/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(${NAME} ${SRC} ${MAIN})
-add_custom_target(core
-    COMMAND make ${NAME}
-)
+target_link_libraries(${NAME} config++)
 
 ###############################COMPILATION TESTS##################################
 find_library(CRITERION criterion)
 #create the tests executable
 add_executable(${TEST_NAME} ${SRC} ${TESTS})
 #link the tests with the criterion library
-target_link_libraries(${TEST_NAME} ${CRITERION})
+target_link_libraries(${TEST_NAME} ${CRITERION} config++)
 
 ###############################CUSTOM TARGETS#####################################
 add_custom_target(fclean
@@ -56,6 +61,7 @@ add_custom_target(fclean
     COMMAND find . -name "*.o" -delete
     COMMAND find . -name "*.so" -delete
     COMMAND find . -name "CMakeCache.txt" -delete
+    COMMAND rm -rf CMakeFiles
     COMMAND find . -name "cmake_install.cmake" -delete
     COMMAND find . -name "Makefile" -delete
     COMMAND find . -name ${NAME} -delete

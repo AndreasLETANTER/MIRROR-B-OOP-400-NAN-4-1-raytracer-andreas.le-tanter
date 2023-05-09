@@ -15,7 +15,7 @@
 */
 RayTracer::Sphere::Sphere(void)
 {
-    m_center = Math::Point3D(0, 0, 0);
+    m_position = Math::Point3D(0, 0, 0);
     m_radius = 0;
 }
 
@@ -27,7 +27,7 @@ RayTracer::Sphere::Sphere(void)
  */
 RayTracer::Sphere::Sphere(Math::Point3D t_center, double t_radius, Math::Vector3D t_color)
 {
-    m_center = t_center;
+    m_position = t_center;
     m_radius = t_radius;
     m_color = t_color;
 }
@@ -50,7 +50,7 @@ Math::Vector3D RayTracer::Sphere::getColor(void)
 */
 bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
 {
-    Math::Vector3D oc = t_ray.m_origin - m_center;
+    Math::Vector3D oc = t_ray.m_origin - m_position;
     double a = t_ray.m_direction.dot_product(t_ray.m_direction);
     double b = 2.0 * oc.dot_product(t_ray.m_direction);
     double c = oc.dot_product(oc) - m_radius * m_radius;
@@ -72,7 +72,7 @@ bool RayTracer::Sphere::hits(RayTracer::Ray &t_ray)
 */
 Math::Vector3D RayTracer::Sphere::getSurfaceNormal(void)
 {
-    Math::Vector3D surface_normal = m_hit_point - m_center;
+    Math::Vector3D surface_normal = m_hit_point - m_position;
 
     surface_normal = surface_normal / surface_normal.length();
     return (surface_normal);

@@ -1,4 +1,4 @@
-name: chocolatine
+name: CI
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter.git
   EXECUTABLE: "raytracer"

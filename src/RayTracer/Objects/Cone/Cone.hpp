@@ -26,16 +26,16 @@ namespace RayTracer {
             Math::Vector3D getSurfaceNormal(void) override;
             double getHitDistance(void) override;
             Math::Point3D getIntersectionPoint(void) override;
-            double cosa;
-            double h;
-            Math::Vector3D c;
-            Math::Vector3D v;
-            Math::Vector3D m_color;
-            Math::Vector3D m_n;
 
         protected:
             Math::Point3D m_hit_point;
             double m_hit_distance;
+            double m_cosa;
+            double m_h;
+            Math::Vector3D m_c;
+            Math::Vector3D m_v;
+            Math::Vector3D m_color;
+            Math::Vector3D m_n;
         private:
     };
 }

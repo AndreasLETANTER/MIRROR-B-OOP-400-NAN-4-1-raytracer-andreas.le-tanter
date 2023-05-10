@@ -15,11 +15,11 @@
 */
 RayTracer::Cone::Cone(void)
 {
-    cosa = 0;
-    c = Math::Vector3D(0, 0, 0);
-    v = Math::Vector3D(0, 0, 0);
+    m_cosa = 0;
+    m_c = Math::Vector3D(0, 0, 0);
+    m_v = Math::Vector3D(0, 0, 0);
     m_color = Math::Vector3D(0, 0, 0);
-    h = 0;
+    m_h = 0;
 }
 
 /**
@@ -33,10 +33,10 @@ RayTracer::Cone::Cone(void)
  */
 RayTracer::Cone::Cone(double t_cosa, double t_h, Math::Vector3D t_c, Math::Vector3D t_v, Math::Vector3D t_color)
 {
-    cosa = t_cosa;
-    h = t_h;
-    c = t_c;
-    v = t_v;
+    m_cosa = t_cosa;
+    m_h = t_h;
+    m_c = t_c;
+    m_v = t_v;
     m_color = t_color;
 }
 
@@ -59,10 +59,10 @@ Math::Vector3D RayTracer::Cone::getColor(void)
 bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
 {
     t_ray.m_direction = t_ray.m_direction / t_ray.m_direction.length();
-    Math::Vector3D co = t_ray.m_origin - this->c;
-    double a = this->v.dot_product(t_ray.m_direction) * this->v.dot_product(t_ray.m_direction) - this->cosa * this->cosa;
-    double b = 2. * (this->v.dot_product(t_ray.m_direction) * this->v.dot_product(co) - co.dot_product(t_ray.m_direction) * this->cosa * this->cosa);
-    double c1 = this->v.dot_product(co) * this->v.dot_product(co) - co.dot_product(co) * this->cosa * this->cosa;
+    Math::Vector3D co = t_ray.m_origin - m_c;
+    double a = m_v.dot_product(t_ray.m_direction) * m_v.dot_product(t_ray.m_direction) - m_cosa * m_cosa;
+    double b = 2. * (m_v.dot_product(t_ray.m_direction) * m_v.dot_product(co) - co.dot_product(t_ray.m_direction) * m_cosa * m_cosa);
+    double c1 = m_v.dot_product(co) * m_v.dot_product(co) - co.dot_product(co) * m_cosa * m_cosa;
     double det = b * b - 4. * a * c1;
 
     if (det < 0.) {
@@ -77,12 +77,12 @@ bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
     if (t < 0.) {
         return (false);
     }
-    Math::Vector3D cp = t_ray.m_origin + t_ray.m_direction * t - this->c;
-    double h1 = this->v.dot_product(cp);
-    if (h1 < 0. || h1 > this->h) {
+    Math::Vector3D cp = t_ray.m_origin + t_ray.m_direction * t - m_c;
+    double h1 = m_v.dot_product(cp);
+    if (h1 < 0. || h1 > m_h) {
         return (false);
     }
-    Math::Vector3D n = cp * cp.dot_product(this->v) / cp.dot_product(cp) - this->v;
+    Math::Vector3D n = cp * cp.dot_product(m_v) / cp.dot_product(cp) - m_v;
     n = n / n.length();
     m_n = n;
     m_hit_distance = t;

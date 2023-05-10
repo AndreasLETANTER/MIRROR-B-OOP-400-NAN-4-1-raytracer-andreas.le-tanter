@@ -86,7 +86,7 @@ bool RayTracer::Cone::hits(RayTracer::Ray &t_ray)
     n = n / n.length();
     m_n = n;
     m_hit_distance = t;
-    m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
+    m_hit_point = Math::Point3D(t_ray.m_origin + t_ray.m_direction * t);
     return (true);
 }
 

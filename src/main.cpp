@@ -24,14 +24,16 @@ int main(void)
 {
     RayTracer::Camera cam;
     RayTracer::Renderer renderer;
-    RayTracer::Cone cone(0.90, 0.7, Math::Vector3D(0., -0.6, 0.), Math::Vector3D(0., 1., 0.), Math::Vector3D(153, 0, 153));
+    RayTracer::Cone cone1(0.90, 0.7, Math::Vector3D(0.6, -0.6, 0.), Math::Vector3D(0., 1., 0.), Math::Vector3D(153, 0, 153));
+    RayTracer::Cone cone2(0.90, 0.7, Math::Vector3D(-0.6, 0.1, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(153, 0, 153));
     RayTracer::Plane plane(Math::Point3D(0., 0.4, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(18, 164, 139));
     RayTracer::AmbiantLight ambiantLight(0.2);
-    RayTracer::PointLight pointLight(Math::Point3D(0, -10, 0), 2);
+    RayTracer::PointLight pointLight(Math::Point3D(5, -10, 0), 2);
     std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 
-    objects.push_back(std::make_shared<RayTracer::Cone>(cone));
+    objects.push_back(std::make_shared<RayTracer::Cone>(cone1));
+    objects.push_back(std::make_shared<RayTracer::Cone>(cone2));
     objects.push_back(std::make_shared<RayTracer::Plane>(plane));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
     lights.push_back(std::make_shared<RayTracer::PointLight>(pointLight));

@@ -25,11 +25,11 @@ RayTracer::Cone::Cone(void)
 /**
  * @brief Construct a new Ray Tracer:: Cone:: Cone object
  * @details set the color, the center, the height, the angle and the vector of the Cone to the given parameters
- * @param t_cosa 
- * @param t_h 
- * @param t_c 
- * @param t_v 
- * @param t_color 
+ * @param t_cosa half cone angle
+ * @param t_h height
+ * @param t_c tip of the Cone
+ * @param t_v axis of the Cone
+ * @param t_color color of the Cone
  */
 RayTracer::Cone::Cone(double t_cosa, double t_h, Math::Vector3D t_c, Math::Vector3D t_v, Math::Vector3D t_color)
 {

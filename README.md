@@ -1,10 +1,10 @@
 # RayTracer
 
-The goal of this project is to create a scene in 3D with a camera, lights (ambient, point, directional..), spheres, cylinder and plane. Then, we need to render the scene in a .ppm file.
+The goal of this project is to create a scene in 3D with a camera, lights (ambient, point, directional..), spheres, cylinders and planes. Then, we need to render the scene in a .ppm file.
 
 ## Installation
 
-To install this project, you need to follow this steps:
+To install this project, you need to follow these steps:
 
 ```bash
 git clone git@github.com:AndreasLETANTER/MIRROR-B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter.git
@@ -15,13 +15,13 @@ make
 
 ## Usage
 
-To use this project, you need to follow this steps:
+To use this project, you need to follow these steps:
 
 ```bash
 ./raytracer [configuration file] > [output file]
 ```
 
-- **configuration file** : the path of the configuration file, the file must be follow the configuration file documentation
+- **configuration file** : the path of the configuration file, the file must follow the configuration file documentation
 
 - **output file** : the path of the output file, the file must be a .ppm file
 
@@ -40,6 +40,6 @@ To use this project, you need to follow this steps:
 
 ## Documentation
 
-You can find configuration file Documentation here -> [Configuration](CONFIGURATION-FILE.md)
+You can find the configuration file Documentation here -> [Configuration](CONFIGURATION-FILE.md)
 
-Also all our code was compatible with Doxygen
+Also all our code is compatible with Doxygen

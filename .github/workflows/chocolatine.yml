@@ -56,8 +56,6 @@ jobs:
         run: |
           dnf install -y libconfig
           dnf install -y libconfig-devel
-          dnf install -y libconfig++
-          dnf install -y libconfig++-devel
       - name: Build project
         run: |
           cmake .

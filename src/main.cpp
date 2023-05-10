@@ -10,6 +10,7 @@
 #include "RayTracer/Objects/Plane/Plane.hpp"
 #include "RayTracer/Camera/Camera.hpp"
 #include "RayTracer/Renderer/Renderer.hpp"
+#include "Parser/Parser.hpp"
 #include "RayTracer/Light/AmbiantLight/AmbiantLight.hpp"
 #include "RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "RayTracer/Light/PointLight/PointLight.hpp"
@@ -20,28 +21,17 @@
 #define WIDTH 500
 #define HEIGHT 500
 
-int main(void)
+int main(const int ac, const char **av)
 {
-    RayTracer::Viewer viewer;
-    RayTracer::Camera cam;
+    (void)ac;
+    Parser::Parser parser(av[1]);
+    RayTracer::Camera cam = parser.getCamera();
     RayTracer::Renderer renderer;
-    RayTracer::Sphere sphere(Math::Point3D(0, -0.2, 0), 0.3, Math::Vector3D(153, 0, 153));
-    RayTracer::Plane plane(Math::Point3D(0., 0.4, 0.), Math::Vector3D(0., -1., 0.), Math::Vector3D(18, 164, 139));
-    RayTracer::AmbiantLight ambiantLight(0.2);
-    RayTracer::PointLight pointLight(Math::Point3D(0, -10, 0), 2);
-    std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
-    std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 
-    objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
-    objects.push_back(std::make_shared<RayTracer::Plane>(plane));
-    lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
-    lights.push_back(std::make_shared<RayTracer::PointLight>(pointLight));
-    cam.setResolution(WIDTH, HEIGHT);
-    cam.setScreen(25, Rectangle3D(Math::Point3D(-0.5, -0.5, -4), Math::Vector3D(1., 0, 0), Math::Vector3D(0, 1., 0)));
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(105, 105, 105));
-    renderer.setObjects(objects);
-    renderer.setLights(lights);
+    renderer.setObjects(parser.getObjects());
+    renderer.setLights(parser.getLights());
     renderer.renderScene();
     return 0;
 }

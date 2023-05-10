@@ -14,44 +14,7 @@
 
 RayTracer::Viewer::Viewer()
 {
-    _window = new sf::RenderWindow(sf::VideoMode(1024, 768), "RayTracer Viewer");
-    _window->setPosition(sf::Vector2i(448, 156));
-    try {
-        if (!_background_texture.loadFromFile("src/RayTracer/Viewer/Assets/background.jpg"))
-            throw std::exception();
-        _background_sprite.setTexture(_background_texture);
-        _background_sprite.setScale(2, 2);
-        _background_sprite.setPosition(0, 0);
-        if (!_font.loadFromFile("src/RayTracer/Viewer/Assets/arial.ttf"))
-            throw std::exception();
-        _title.setFont(_font);
-        _title.setString("RayTracer Viewer");
-        _title.setCharacterSize(75);
-        _title.setFillColor(sf::Color::White);
-        _title.setPosition(225, 50);
-        create_all_scenes_buttons();
-
-    } catch (std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        exit(84);
-    }
-    while (_window->isOpen())
-    {
-        sf::Event event;
-        while (_window->pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                _window->close();
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || event.type == sf::Event::MouseMoved) {
-                check_mouse_position(event.mouseMove.x, event.mouseMove.y, sf::Mouse::isButtonPressed(sf::Mouse::Left));
-            }
-            if (event.type == sf::Event::Resized) {
-                _window->setPosition(sf::Vector2i(448, 156));
-                _window->setSize(sf::Vector2u(1024, 768));
-            }
-        }
-        draw_all();
-    }
+    _scene_name = "";
 }
 
 RayTracer::Viewer::~Viewer()
@@ -73,56 +36,77 @@ void RayTracer::Viewer::draw_all(void)
 void RayTracer::Viewer::check_mouse_position(int x, int y, bool click)
 {
     for (unsigned int i = 0; i < count_files_in_dir(); i++) {
-        if (x >= 275 && x <= 775 && y >= 200 + (int(i) * 75) && y <= 250 + (int(i) * 75)) {
-            _rect[i].setFillColor(sf::Color::White);
-            _text[i].setFillColor(sf::Color::Black);
-            if (click) {
-                exit(0);
+        if (x >= _rect[i].getPosition().x && x <= _rect[i].getPosition().x + _rect[i].getSize().x &&
+            y >= _rect[i].getPosition().y && y <= _rect[i].getPosition().y + _rect[i].getSize().y) {
+            _text[i].setFillColor(sf::Color::Red);
+            if (click == true) {
+                std::cout << "click" << std::endl;
+                sf::String path = "scenes/" + _text[i].getString();
+                std::string str = path;
+                // get text[i] and convert it to std::string
+                // print _text[i] to check if it's the right scene
+                // _scene_name.setString(_text[i].getString());
+                return;
             }
-        } else {
-            _rect[i].setFillColor(sf::Color::Transparent);
+        } else
             _text[i].setFillColor(sf::Color::White);
-        }
     }
 }
 
 sf::Image RayTracer::Viewer::get_image_from_file() const
 {
-    // Open the ppm file.
-    std::ifstream file("output.ppm");
-    if (!file.is_open()) {
-        std::cerr << "Could not open image file!" << std::endl;
-        return sf::Image();
-    }
-
-    // Read the header of the ppm file.
-    std::string magic;
-    file >> magic;
-    if (magic != "P3") {
-        std::cerr << "Invalid ppm file format!" << std::endl;
-        return sf::Image();
-    }
-
-    int width, height, max_value;
-    file >> width >> height >> max_value;
-
-    // Create a new sf::Image with the same dimensions as the ppm file.
     sf::Image image;
-    image.create(width, height);
+    return (image);
+}
 
-    // Read the pixels from the ppm file.
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            unsigned char r, g, b;
-            file >> r >> g >> b;
-            image.setPixel(x, y, sf::Color(r, g, b));
+void RayTracer::Viewer::init_menu(void)
+{
+    _window = new sf::RenderWindow(sf::VideoMode(1024, 768), "RayTracer Viewer");
+    _window->setPosition(sf::Vector2i(448, 156));
+    try {
+        if (!_background_texture.loadFromFile("src/RayTracer/Viewer/Assets/background.jpg"))
+            throw std::exception();
+        _background_sprite.setTexture(_background_texture);
+        _background_sprite.setScale(2, 2);
+        _background_sprite.setPosition(0, 0);
+        if (!_font.loadFromFile("src/RayTracer/Viewer/Assets/arial.ttf"))
+            throw std::exception();
+        _title.setFont(_font);
+        _title.setString("RayTracer Viewer");
+        _title.setCharacterSize(75);
+        _title.setFillColor(sf::Color::White);
+        _title.setPosition(225, 50);
+        create_all_scenes_buttons();
+
+    } catch (std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        exit(84);
+    }
+    _scene_name = "";
+    while (_window->isOpen()) {
+        sf::Event event;
+        while (_window->pollEvent(event)) {
+            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                _window->close();
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || event.type == sf::Event::MouseMoved) {
+                check_mouse_position(sf::Mouse::getPosition(*_window).x, sf::Mouse::getPosition(*_window).y, sf::Mouse::isButtonPressed(sf::Mouse::Left));
+            }
+            if (event.type == sf::Event::Resized) {
+                _window->setPosition(sf::Vector2i(448, 156));
+                _window->setSize(sf::Vector2u(1024, 768));
+            }
+        }
+        draw_all();
+        if (_scene_name != "") {
+            _window->close();
+            return;
         }
     }
-    // Close the ppm file.
-    file.close();
+}
 
-    // Return the sf::Image.
-    return image;
+std::string RayTracer::Viewer::get_scene_name(void) const
+{
+    return (_scene_name);
 }
 
 unsigned int RayTracer::Viewer::count_files_in_dir(void) const

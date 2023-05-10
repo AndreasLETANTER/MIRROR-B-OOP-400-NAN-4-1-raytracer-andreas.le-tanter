@@ -16,6 +16,8 @@ namespace RayTracer {
         public:
             Viewer();
             ~Viewer();
+            void init_menu(void);
+            std::string get_scene_name(void) const;
         protected:
             unsigned int count_files_in_dir(void) const;
             void create_all_scenes_buttons(void);
@@ -33,5 +35,6 @@ namespace RayTracer {
             sf::Image _render;
             sf::Texture _render_texture;
             sf::Sprite _render_sprite;
+            std::string _scene_name;
     };
 }

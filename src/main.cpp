@@ -23,15 +23,22 @@
 
 int main(const int ac, const char **av)
 {
-    (void)ac;
-    Parser::Parser parser(av[1]);
-    RayTracer::Camera cam = parser.getCamera();
-    RayTracer::Renderer renderer;
+    (void)av;
+    if (ac != 1) {
+        std::cerr << "The program takes no arguments" << std::endl;
+        return 84;
+    }
+    RayTracer::Viewer viewer;
+    viewer.init_menu();
+    // std::cout << viewer.get_scene_name() << std::endl;
+    // Parser::Parser parser(av[1]);
+    // RayTracer::Camera cam = parser.getCamera();
+    // RayTracer::Renderer renderer;
 
-    renderer.setCamera(cam);
-    renderer.setMissColor(Math::Vector3D(105, 105, 105));
-    renderer.setObjects(parser.getObjects());
-    renderer.setLights(parser.getLights());
-    renderer.renderScene();
+    // renderer.setCamera(cam);
+    // renderer.setMissColor(Math::Vector3D(105, 105, 105));
+    // renderer.setObjects(parser.getObjects());
+    // renderer.setLights(parser.getLights());
+    // renderer.renderScene();
     return 0;
 }

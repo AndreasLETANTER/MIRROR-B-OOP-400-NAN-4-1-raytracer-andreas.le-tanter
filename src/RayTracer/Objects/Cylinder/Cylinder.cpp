@@ -21,18 +21,18 @@ RayTracer::Cylinder::Cylinder()
 /**
  * @brief Construct a new Cylinder object
  * @details set the center, the radius and the height of the cylinder to the given parameters
- * @param center
- * @param radius
- * @param height
- * @param color
+ * @param t_center
+ * @param t_radius
+ * @param t_height
+ * @param t_color
  */
-RayTracer::Cylinder::Cylinder(Math::Point3D center, double radius
-, double height, Math::Vector3D color)
+RayTracer::Cylinder::Cylinder(Math::Point3D t_center, double t_radius
+, double t_height, Math::Vector3D t_color)
 {
-    m_center = center;
-    m_radius = radius;
-    m_height = height;
-    m_color = color;
+    m_center = t_center;
+    m_radius = t_radius;
+    m_height = t_height;
+    m_color = t_color;
 }
 
 /**

@@ -13,9 +13,9 @@
 */
 RayTracer::Cylinder::Cylinder()
 {
-    c_center = Math::Point3D(0, 0, 0);
-    c_radius = 0;
-    c_height = 0;
+    m_center = Math::Point3D(0, 0, 0);
+    m_radius = 0;
+    m_height = 0;
 }
 
 /**
@@ -29,9 +29,9 @@ RayTracer::Cylinder::Cylinder()
 RayTracer::Cylinder::Cylinder(Math::Point3D center, double radius
 , double height, Math::Vector3D color)
 {
-    c_center = center;
-    c_radius = radius;
-    c_height = height;
+    m_center = center;
+    m_radius = radius;
+    m_height = height;
     m_color = color;
 }
 
@@ -51,13 +51,13 @@ RayTracer::Cylinder::~Cylinder()
 */
 bool RayTracer::Cylinder::hits(Ray& t_ray)
 {
-    Math::Vector3D OC = t_ray.m_origin - c_center;
+    Math::Vector3D OC = t_ray.m_origin - m_center;
     float a = pow(t_ray.m_direction.m_x_component, 2)
     + pow(t_ray.m_direction.m_z_component, 2);
     float b = 2 * (t_ray.m_direction.m_x_component * OC.m_x_component
     + t_ray.m_direction.m_z_component * OC.m_z_component);
     float c = pow(OC.m_x_component, 2) + pow(OC.m_z_component, 2)
-    - pow(c_radius, 2);
+    - pow(m_radius, 2);
     float discriminant = pow(b, 2) - 4 * a * c;
     if (discriminant <= 0) {
         return (false);
@@ -84,7 +84,7 @@ bool RayTracer::Cylinder::hits(Ray& t_ray)
 */
 Math::Vector3D RayTracer::Cylinder::getSurfaceNormal(void)
 {
-    Math::Vector3D surface_normal = m_hit_point - c_center;
+    Math::Vector3D surface_normal = m_hit_point - m_center;
 
     surface_normal = surface_normal / surface_normal.length();
     return (surface_normal);

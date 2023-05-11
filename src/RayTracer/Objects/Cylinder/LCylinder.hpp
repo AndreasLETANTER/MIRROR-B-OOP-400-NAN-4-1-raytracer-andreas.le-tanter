@@ -14,16 +14,16 @@
 #include <algorithm>
 
 /**
- * @brief Cylinder class, used to create a cylinder in 3D space
- * @details the cylinder is defined by its center, its height and its radius
+ * @brief LCylinder class, used to create a limited cylinder in 3D space
+ * @details the Lcylinder is defined by its center, its height and its radius
 */
 namespace RayTracer {
-    class Cylinder : public IObjects {
+    class LCylinder : public IObjects {
         public:
-            Cylinder();
-            Cylinder(Math::Point3D t_center, double t_radius, double t_height
+            LCylinder();
+            LCylinder(Math::Point3D t_center, double t_radius, double t_height
             , Math::Vector3D t_color);
-            ~Cylinder();
+            ~LCylinder();
             Math::Vector3D getColor(void) override;
             Math::Vector3D getSurfaceNormal(void) override;
             bool hits(Ray &t_ray) override;

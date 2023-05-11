@@ -1,6 +1,6 @@
 # Configuration file
 
-The goal of a configuration file is to defines the properties of a 3D scene, including the camera, lights, spheres, cylinder in the scene. The configuration file is written in a custom format which is described below.
+The goal of a configuration file is to define the properties of a 3D scene, including the camera, lights, spheres, cylinder in the scene. The configuration file is written in a custom format which is described below.
 
 ## Global Configuration
 

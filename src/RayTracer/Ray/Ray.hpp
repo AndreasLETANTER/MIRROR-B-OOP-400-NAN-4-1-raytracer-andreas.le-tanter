@@ -26,7 +26,6 @@ namespace RayTracer
             ~Ray(void) = default;
             Math::Point3D m_origin;
             Math::Vector3D m_direction;
-
         protected:
         private:
     };

@@ -12,8 +12,8 @@
 #include "../IObjects.hpp"
 #include <cmath>
 #include <algorithm>
-#define WIDTH 4500
-#define HEIGHT 4500
+#define WIDTH 1500
+#define HEIGHT 1500
 /**
  * @brief Cylinder class, used to create a cylinder in 3D space
  * @details the cylinder is defined by its center, its height and its radius
@@ -35,6 +35,7 @@ namespace RayTracer {
             Math::Vector3D m_axis;
             Math::Vector3D m_color;
             Math::Point3D m_hit_point;
+            Math::Vector3D m_surface_normal;
             double m_hit_distance;
             double m_radius;
             double m_height;

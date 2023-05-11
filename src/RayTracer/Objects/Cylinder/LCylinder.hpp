@@ -34,6 +34,7 @@ namespace RayTracer {
             Math::Vector3D m_axis;
             Math::Vector3D m_color;
             Math::Point3D m_hit_point;
+            Math::Vector3D m_surface_normal;
             double m_hit_distance;
             double m_radius;
             double m_height;

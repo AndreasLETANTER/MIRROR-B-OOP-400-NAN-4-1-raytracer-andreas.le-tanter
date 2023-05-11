@@ -52,29 +52,38 @@ RayTracer::Cylinder::~Cylinder()
 bool RayTracer::Cylinder::hits(Ray& t_ray)
 {
     Math::Vector3D OC = t_ray.m_origin - m_center;
-    float a = pow(t_ray.m_direction.m_x_component, 2)
-    + pow(t_ray.m_direction.m_z_component, 2);
-    float b = 2 * (t_ray.m_direction.m_x_component * OC.m_x_component
-    + t_ray.m_direction.m_z_component * OC.m_z_component);
-    float c = pow(OC.m_x_component, 2) + pow(OC.m_z_component, 2)
-    - pow(m_radius, 2);
-    float discriminant = pow(b, 2) - 4 * a * c;
+    double a = pow(t_ray.m_direction.m_x_component, 2) + pow(t_ray.m_direction.m_z_component, 2);
+    double b = 2 * (t_ray.m_direction.m_x_component * OC.m_x_component + t_ray.m_direction.m_z_component * OC.m_z_component);
+    double c = pow(OC.m_x_component, 2) + pow(OC.m_z_component, 2) - pow(m_radius, 2);
+    double discriminant = pow(b, 2) - 4 * a * c;
     if (discriminant <= 0) {
-        return (false);
+        return false;
     }
     double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
-    double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
     double t;
     if (t1 > 0) {
         t = t1;
-    } else if (t2 > 0) {
-        t = t2;
     } else {
-        return (false);
+        return false;
     }
     m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
-    return (true);
+    // Calculate the surface normal at the hit point
+    Math::Vector3D hitPointOnCylinder;
+    hitPointOnCylinder.m_x_component = m_center.m_x_component + 0;
+    hitPointOnCylinder.m_y_component = m_center.m_y_component +  m_hit_point.m_y_component;
+    hitPointOnCylinder.m_z_component = m_center.m_z_component + 0;
+    Math::Vector3D surfaceNormal;
+    surfaceNormal.m_x_component = m_hit_point.m_x_component - hitPointOnCylinder.m_x_component;
+    surfaceNormal.m_y_component = m_hit_point.m_y_component - hitPointOnCylinder.m_y_component;
+    surfaceNormal.m_z_component = m_hit_point.m_z_component - hitPointOnCylinder.m_z_component;
+    surfaceNormal.normalize();
+    m_surface_normal = surfaceNormal;
+    m_hit_point.m_x_component = m_surface_normal.m_x_component;
+    m_hit_point.m_y_component = m_surface_normal.m_y_component;
+    m_hit_point.m_z_component = m_surface_normal.m_z_component;
+    return true;
 }
+
 
 /**
  * @brief get the surface normal of the cylinder

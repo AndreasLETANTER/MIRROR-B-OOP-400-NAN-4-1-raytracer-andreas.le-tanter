@@ -17,9 +17,6 @@
 #include "RayTracer/Light/ILights.hpp"
 #include <iostream>
 
-#define WIDTH 1000
-#define HEIGHT 1000
-
 int main(const int ac, const char **av)
 {
     (void)ac;

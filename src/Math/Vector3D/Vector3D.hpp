@@ -22,6 +22,7 @@ namespace Math
             Vector3D &operator=(Vector3D &&t_other) = default;
             ~Vector3D(void);
             Vector3D operator+(const Vector3D &t_other);
+            Vector3D operator+(const double &t_other);
             Vector3D operator+=(const Vector3D &t_other);
             Vector3D operator-(const Vector3D &t_other);
             Vector3D operator-=(const Vector3D &t_other);

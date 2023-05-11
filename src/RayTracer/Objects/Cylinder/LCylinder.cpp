@@ -62,7 +62,6 @@ bool RayTracer::LCylinder::hits(Ray& t_ray)
     double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
     double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
     double t;
-
     if (t1 > 0) {
         t = t1;
     } else if (t2 > 0) {
@@ -70,14 +69,22 @@ bool RayTracer::LCylinder::hits(Ray& t_ray)
     } else {
         return false;
     }
-    m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
-    Math::Vector3D cylinderCenter;
-    cylinderCenter.m_x_component = m_center.m_x_component + 0;
-    cylinderCenter.m_y_component = m_center.m_y_component + (m_height / 2);
-    cylinderCenter.m_z_component = m_center.m_z_component + 0;
-    Math::Vector3D relativeHitPoint = m_hit_point - cylinderCenter;
+    Math::Vector3D hit_point;
+    hit_point.m_x_component  = t_ray.m_origin.m_x_component + t_ray.m_direction.m_x_component * t;
+    hit_point.m_y_component  = t_ray.m_origin.m_y_component + t_ray.m_direction.m_y_component * t;
+    hit_point.m_z_component  = t_ray.m_origin.m_z_component + t_ray.m_direction.m_z_component * t;
+    Math::Vector3D cylinderCenter(m_center.m_x_component, m_center.m_y_component, m_center.m_z_component);
+    Math::Vector3D relativeHitPoint = hit_point - cylinderCenter;
     double hitY = relativeHitPoint.m_y_component;
     if (hitY < -m_height / 2 || hitY > m_height / 2) {
+        return false;
+    }
+    double distanceSquaredBottom = pow(relativeHitPoint.m_x_component, 2) + pow(relativeHitPoint.m_z_component, 2);
+    if (hitY < -m_height / 2 && distanceSquaredBottom > pow(m_radius, 2)) {
+        return false;
+    }
+    double distanceSquaredTop = pow(relativeHitPoint.m_x_component, 2) + pow(relativeHitPoint.m_z_component, 2);
+    if (hitY > m_height / 2 && distanceSquaredTop > pow(m_radius, 2)) {
         return false;
     }
     Math::Vector3D surfaceNormal;
@@ -85,12 +92,13 @@ bool RayTracer::LCylinder::hits(Ray& t_ray)
     surfaceNormal.m_y_component = 2 * 3.14 * pow(m_radius, 2) * relativeHitPoint.m_y_component;
     surfaceNormal.m_z_component = 2 * relativeHitPoint.m_z_component;
     surfaceNormal.normalize();
+    m_hit_point.m_x_component = hit_point.m_x_component;
+    m_hit_point.m_y_component = hit_point.m_y_component;
+    m_hit_point.m_z_component = hit_point.m_z_component;
     m_surface_normal = surfaceNormal;
-    m_hit_point.m_x_component = m_surface_normal.m_x_component;
-    m_hit_point.m_y_component = m_surface_normal.m_y_component;
-    m_hit_point.m_z_component = m_surface_normal.m_z_component;
     return true;
 }
+
 
 /**
  * @brief get the surface normal of the cylinder

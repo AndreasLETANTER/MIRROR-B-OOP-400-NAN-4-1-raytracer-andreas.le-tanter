@@ -44,7 +44,8 @@ RayTracer::Cylinder::~Cylinder()
 
 /**
  * @brief check if the ray hits the cylinder
- * @details check if the ray hits the cylinder using a quadratic equation
+ * @details check if the ray hits the cylinder using a quadratic equation and
+ * @details calcul the normal surface of the cylinder to have the right hit points
  * @param t_ray
  * @return true
  * @return false
@@ -67,7 +68,6 @@ bool RayTracer::Cylinder::hits(Ray& t_ray)
         return false;
     }
     m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
-    // Calculate the surface normal at the hit point
     Math::Vector3D hitPointOnCylinder;
     hitPointOnCylinder.m_x_component = m_center.m_x_component + 0;
     hitPointOnCylinder.m_y_component = m_center.m_y_component +  m_hit_point.m_y_component;
@@ -83,7 +83,6 @@ bool RayTracer::Cylinder::hits(Ray& t_ray)
     m_hit_point.m_z_component = m_surface_normal.m_z_component;
     return true;
 }
-
 
 /**
  * @brief get the surface normal of the cylinder

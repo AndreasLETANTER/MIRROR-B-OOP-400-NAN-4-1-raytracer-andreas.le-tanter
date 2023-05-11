@@ -9,6 +9,7 @@
 #include "RayTracer/Objects/Sphere/Sphere.hpp"
 #include "RayTracer/Objects/Cylinder/Cylinder.hpp"
 #include "RayTracer/Objects/Cylinder/LCylinder.hpp"
+#include "RayTracer/Objects/Cone/Cone.hpp"
 #include "RayTracer/Objects/Plane/Plane.hpp"
 #include "RayTracer/Camera/Camera.hpp"
 #include "RayTracer/Renderer/Renderer.hpp"
@@ -27,14 +28,15 @@ int main(const int ac, const char **av)
     RayTracer::AmbiantLight ambiantLight(0.2);
     RayTracer::Sphere sphere(Math::Point3D(0.5, 0.5, 0), 0.3, Math::Vector3D(153, 0, 153));
     RayTracer::LCylinder cylinder(Math::Point3D(0, 0, 0.5), 0.1, 0.5, Math::Vector3D(153, 0, 153));
-    RayTracer::DirectionalLight directionalLight(Math::Vector3D(-1, 1, 1.5));
+    // RayTracer::DirectionalLight directionalLight(Math::Vector3D(1, -1, 1.5));
+    RayTracer::PointLight PointLight(Math::Point3D(1, 0, -1.5), 1.5);
     std::vector<std::shared_ptr<RayTracer::IObjects>> objects;
     std::vector<std::shared_ptr<RayTracer::ILights>> lights;
 
     objects.push_back(std::make_shared<RayTracer::LCylinder>(cylinder));
     objects.push_back(std::make_shared<RayTracer::Sphere>(sphere));
     lights.push_back(std::make_shared<RayTracer::AmbiantLight>(ambiantLight));
-    lights.push_back(std::make_shared<RayTracer::DirectionalLight>(directionalLight));
+    lights.push_back(std::make_shared<RayTracer::PointLight>(PointLight));
     cam.setResolution(WIDTH, HEIGHT);
     cam.setScreen(40, Rectangle3D(Math::Point3D(-0.25, -0.25, -4), Math::Vector3D(0.5, 0, 0), Math::Vector3D(0, 0.5, 0)));
     renderer.setCamera(cam);

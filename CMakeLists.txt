@@ -19,6 +19,7 @@ set(SRC
     src/RayTracer/Objects/Cylinder/Cylinder.cpp
     src/RayTracer/Objects/Cylinder/LCylinder.cpp
     src/RayTracer/Objects/Plane/Plane.cpp
+    src/RayTracer/Objects/Cone/Cone.cpp
     src/RayTracer/Light/AmbiantLight/AmbiantLight.cpp
     src/RayTracer/Light/DirectionalLight/DirectionalLight.cpp
     src/RayTracer/Light/PointLight/PointLight.cpp

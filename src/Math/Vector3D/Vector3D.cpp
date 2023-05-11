@@ -64,6 +64,19 @@ Math::Vector3D Math::Vector3D::operator+(const Math::Vector3D &t_other)
 
 /**
  * @brief perform a sum between two vectors and affect the result to the first vector
+ * @param t_other
+ * @return Math::Vector3D
+*/
+Math::Vector3D Math::Vector3D::operator+(const double &t_other)
+{
+    m_x_component += t_other;
+    m_y_component += t_other;
+    m_z_component += t_other;
+    return (*this);
+}
+
+/**
+ * @brief perform a sum between two vectors and affect the result to the first vector
  * @param t_other 
  * @return Math::Vector3D 
 */

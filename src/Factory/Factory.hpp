@@ -35,6 +35,7 @@ namespace Factory
             std::shared_ptr<RayTracer::PointLight> createPointLight(Math::Point3D t_position, double t_intensity);
             std::shared_ptr<RayTracer::IObjects> createSphere(Math::Point3D t_position, double t_radius, Math::Vector3D t_color);
             std::shared_ptr<RayTracer::IObjects> createPlane(Math::Point3D t_position, Math::Vector3D t_normal, Math::Vector3D t_color);
+            std::shared_ptr<RayTracer::IObjects> createCone(double t_angle, double t_height, Math::Vector3D t_tip, Math::Vector3D t_axis, Math::Vector3D t_color);
         protected:
         private:
             std::vector<RayTracer::IObjects *> m_objects;

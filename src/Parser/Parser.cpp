@@ -188,6 +188,44 @@ Math::Vector3D Parser::Parser::parse_color(libconfig::Setting &t_root, std::stri
     return color;
 }
 
+double Parser::Parser::parse_angle(libconfig::Setting &t_root, std::string t_path)
+{
+    std::string name = t_path + ".angle";
+    double angle = t_root.lookup(name);
+
+    return angle;
+}
+
+double Parser::Parser::parse_height(libconfig::Setting &t_root, std::string t_path)
+{
+    std::string name = t_path + ".height";
+    double height = t_root.lookup(name);
+
+    return height;
+}
+
+Math::Vector3D Parser::Parser::parse_tip(libconfig::Setting &t_root, std::string t_path)
+{
+    std::string name = t_path + ".tip_position.";
+    double x = t_root.lookup(name + "x");
+    double y = t_root.lookup(name + "y");
+    double z = t_root.lookup(name + "z");
+    Math::Vector3D tip(x, y, z);
+
+    return tip;
+}
+
+Math::Vector3D Parser::Parser::parse_axis(libconfig::Setting &t_root, std::string t_path)
+{
+    std::string name = t_path + ".axis.";
+    double x = t_root.lookup(name + "x");
+    double y = t_root.lookup(name + "y");
+    double z = t_root.lookup(name + "z");
+    Math::Vector3D axis(x, y, z);
+
+    return axis;
+}
+
 /**
  * @brief Parse lights
  * @details Parse lights from config file
@@ -247,6 +285,15 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 Math::Vector3D normal = parse_normal(root, path);
                 Math::Vector3D color = parse_color(root, path);
                 m_objects.push_back(m_factory->createPlane(position, normal, color));
+            }
+            if (type.find("cone-") == 0) {
+                std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
+                double angle = parse_angle(root, path);
+                double height = parse_height(root, path);
+                Math::Vector3D tip = parse_tip(root, path);
+                Math::Vector3D axis = parse_axis(root, path);
+                Math::Vector3D color = parse_color(root, path);
+                m_objects.push_back(m_factory->createCone(angle, height, tip, axis, color));
             }
         }
     }

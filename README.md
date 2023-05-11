@@ -1,6 +1,6 @@
 # RayTracer
 
-The goal of this project is to create a scene in 3D with a camera, lights (ambient, point, directional..), spheres, cylinders and planes. Then, we need to render the scene in a .ppm file.
+The goal of this project is to create a 3D scene with a camera, lights (ambient, point, directional..), spheres, cylinders and planes. Then, we need to render the scene in a .ppm file.
 
 ## Installation
 

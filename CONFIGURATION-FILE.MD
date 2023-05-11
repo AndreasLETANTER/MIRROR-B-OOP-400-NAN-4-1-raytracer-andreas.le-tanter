@@ -58,7 +58,7 @@ sphere-Brown = {
 
 1 - **sphere-Brown** : the name of the sphere in the scene, must be unique and need to have "sphere-" prefix.
 
-2 - **position/radius/color** : the properties of the sphere must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the sphere in the scene. The radius property is a double that define the radius of the sphere. The color property is a vector of three values (r, g, b) that define the color of the sphere.
+2 - **position/radius/color** : the properties of the sphere must be present to be valid. The position property is a vector of three values (x, y, z) that defines the position of the sphere in the scene. The radius property is a double that defines the radius of the sphere. The color property is a vector of three values (r, g, b) that defines the color of the sphere.
 
 ## Create a plane
 
@@ -80,7 +80,7 @@ plane-Luchooooo = {
 
 1 - **plane-Luchooooo** : the name of the plane in the scene, must be unique and need to have "plane-" prefix
 
-2 - **position/normal/color** : the properties of the plane must be present. The position property is a vector of three values (x, y, z) that define the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that define the normal of the plane. The color property is a vector of three values (r, g, b) that define the color of the plane.
+2 - **position/normal/color** : the properties of the plane must be present. The position property is a vector of three values (x, y, z) that defines the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that defines the normal of the plane. The color property is a vector of three values (r, g, b) that defines the color of the plane.
 
 # Lights types
 
@@ -99,7 +99,7 @@ point-Sun = {
 
 1 - **point-Sun** : the name of the point light in the scene, must be unique and need to have "point-" prefix
 
-2 - **position/intensity** : the properties of the point light must be present. The position property is a vector of three values (x, y, z) that define the position of the point light in the scene. The intensity property is a double that define the intensity of the point light.
+2 - **position/intensity** : the properties of the point light must be present. The position property is a vector of three values (x, y, z) that defines the position of the point light in the scene. The intensity property is a double that defines the intensity of the point light.
 
 ## Create a directional light
 
@@ -115,7 +115,7 @@ directional-pipe = {
 
 1 - **directional-pipe** : the name of the directional light in the scene, must be unique and need to have "directional-" prefix
 
-2 - **direction** : the properties of the directional light must be present. The direction property is a vector of three values (x, y, z) that define the direction of the directional light in the scene.
+2 - **direction** : the properties of the directional light must be present. The direction property is a vector of three values (x, y, z) that defines the direction of the directional light in the scene.
 
 ## Create an ambient light
 

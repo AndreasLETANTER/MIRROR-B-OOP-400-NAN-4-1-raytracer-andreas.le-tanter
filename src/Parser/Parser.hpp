@@ -38,13 +38,18 @@ namespace Parser
             // Utils parse objects
             double parse_radius(libconfig::Setting &t_root, std::string t_path);
             double parse_intensity(libconfig::Setting &t_root, std::string t_path);
+            double parse_angle(libconfig::Setting &t_root, std::string t_path);
+            double parse_height(libconfig::Setting &t_root, std::string t_path);
             Math::Point3D parse_position(libconfig::Setting &t_root, std::string t_path);
             Math::Point3D parse_origin(libconfig::Setting &t_root, std::string t_path);
+            Math::Point3D parse_translation(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_color(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_direction(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_normal(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_max_x(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_max_y(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_tip(libconfig::Setting &t_root, std::string t_path);
+            Math::Vector3D parse_axis(libconfig::Setting &t_root, std::string t_path);
             Rectangle3D parse_screen(libconfig::Setting &t_root, std::string t_path);
         private:
             RayTracer::Camera m_cam;

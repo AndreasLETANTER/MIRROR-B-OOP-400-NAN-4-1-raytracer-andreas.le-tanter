@@ -13,7 +13,7 @@ namespace RayTracer
 {
     class AObjects : public IObjects {
         public:
-            virtual void translate(Math::Point3D m_origin);
+            void translate(Math::Point3D m_origin);
             Math::Point3D m_position;
         protected:
         private:

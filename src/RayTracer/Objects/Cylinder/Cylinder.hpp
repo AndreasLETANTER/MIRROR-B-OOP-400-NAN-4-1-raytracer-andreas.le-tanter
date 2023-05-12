@@ -12,8 +12,7 @@
 #include "../IObjects.hpp"
 #include <cmath>
 #include <algorithm>
-#define WIDTH 1500
-#define HEIGHT 1500
+
 /**
  * @brief Cylinder class, used to create a cylinder in 3D space
  * @details the cylinder is defined by its center, its height and its radius

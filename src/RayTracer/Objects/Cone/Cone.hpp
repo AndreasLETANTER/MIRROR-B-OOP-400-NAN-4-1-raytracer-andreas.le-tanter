@@ -9,14 +9,14 @@
 #include "../../../RayTracer/Ray/Ray.hpp"
 #include "../../../Math/Vector3D/Vector3D.hpp"
 #include "../../../Math/Point3D/Point3D.hpp"
-#include "../IObjects.hpp"
+#include "../AObjects.hpp"
 
 /**
  * @brief Cone class, used to create a Cone in 3D space
  * @details the Cone is defined by its center and its radius
 */
 namespace RayTracer {
-    class Cone : public IObjects {
+    class Cone : public AObjects {
         public:
             Cone(void);
             Cone(double t_cosa, double t_h, Math::Vector3D t_c, Math::Vector3D t_v, Math::Vector3D t_color);

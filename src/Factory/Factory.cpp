@@ -11,6 +11,7 @@
 #include "Factory.hpp"
 #include "../RayTracer/Objects/Sphere/Sphere.hpp"
 #include "../RayTracer/Objects/Plane/Plane.hpp"
+#include "../RayTracer/Objects/Cone/Cone.hpp"
 
 /**
  * @brief Create camera
@@ -85,4 +86,18 @@ std::shared_ptr<RayTracer::IObjects> Factory::Factory::createSphere(Math::Point3
 std::shared_ptr<RayTracer::IObjects> Factory::Factory::createPlane(Math::Point3D t_position, Math::Vector3D t_normal, Math::Vector3D t_color)
 {
     return std::make_shared<RayTracer::Plane>(t_position, t_normal, t_color);
+}
+
+/**
+ * @brief Create cone
+ * @param t_angle of cone
+ * @param t_height of cone
+ * @param t_tip of cone
+ * @param t_axis of cone
+ * @param t_color of cone
+ * @return std::shared_ptr<RayTracer::IObjects>
+*/
+std::shared_ptr<RayTracer::IObjects> Factory::Factory::createCone(double t_angle, double t_height, Math::Vector3D t_tip, Math::Vector3D t_axis, Math::Vector3D t_color)
+{
+    return std::make_shared<RayTracer::Cone>(t_angle, t_height, t_tip, t_axis, t_color);
 }

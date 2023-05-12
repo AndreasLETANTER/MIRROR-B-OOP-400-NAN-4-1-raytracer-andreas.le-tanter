@@ -226,6 +226,20 @@ Math::Vector3D Parser::Parser::parse_axis(libconfig::Setting &t_root, std::strin
     return axis;
 }
 
+Math::Point3D Parser::Parser::parse_translation(libconfig::Setting &t_root, std::string t_path)
+{
+    std::string name = t_path + ".translation.";
+    try {
+        double x = t_root.lookup(name + "x");
+        double y = t_root.lookup(name + "y");
+        double z = t_root.lookup(name + "z");
+        Math::Point3D translation(x, y, z);
+        return translation;
+    } catch (libconfig::SettingNotFoundException &nfex) {
+        return Math::Point3D(0, 0, 0);
+    }
+}
+
 /**
  * @brief Parse lights
  * @details Parse lights from config file
@@ -277,14 +291,24 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 Math::Point3D position = parse_position(root, path);
                 double radius = parse_radius(root, path);
                 Math::Vector3D color = parse_color(root, path);
-                m_objects.push_back(m_factory->createSphere(position, radius, color));
+                Math::Point3D translation = parse_translation(root, path);
+                std::shared_ptr<RayTracer::IObjects> sphere = m_factory->createSphere(position, radius, color);
+                if (translation.m_x_component != 0 || translation.m_y_component != 0 || translation.m_z_component != 0) {
+                    sphere->translate(translation);
+                }
+                m_objects.push_back(sphere);
             }
             if (type.find("plane-") == 0) {
                 std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
                 Math::Point3D position = parse_position(root, path);
                 Math::Vector3D normal = parse_normal(root, path);
                 Math::Vector3D color = parse_color(root, path);
-                m_objects.push_back(m_factory->createPlane(position, normal, color));
+                Math::Point3D translation = parse_translation(root, path);
+                std::shared_ptr<RayTracer::IObjects> plane = m_factory->createPlane(position, normal, color);
+                if (translation.m_x_component != 0 || translation.m_y_component != 0 || translation.m_z_component != 0) {
+                    plane->translate(translation);
+                }
+                m_objects.push_back(plane);
             }
             if (type.find("cone-") == 0) {
                 std::string path = std::string(root[i].getName()) + "." + root[i][j].getName();
@@ -293,7 +317,12 @@ void Parser::Parser::parse_objects(libconfig::Setting &root)
                 Math::Vector3D tip = parse_tip(root, path);
                 Math::Vector3D axis = parse_axis(root, path);
                 Math::Vector3D color = parse_color(root, path);
-                m_objects.push_back(m_factory->createCone(angle, height, tip, axis, color));
+                Math::Point3D translation = parse_translation(root, path);
+                std::shared_ptr<RayTracer::IObjects> cone = m_factory->createCone(angle, height, tip, axis, color);
+                if (translation.m_x_component != 0 || translation.m_y_component != 0 || translation.m_z_component != 0) {
+                    cone->translate(translation);
+                }
+                m_objects.push_back(cone);
             }
         }
     }

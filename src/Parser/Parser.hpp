@@ -42,6 +42,7 @@ namespace Parser
             double parse_height(libconfig::Setting &t_root, std::string t_path);
             Math::Point3D parse_position(libconfig::Setting &t_root, std::string t_path);
             Math::Point3D parse_origin(libconfig::Setting &t_root, std::string t_path);
+            Math::Point3D parse_translation(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_color(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_direction(libconfig::Setting &t_root, std::string t_path);
             Math::Vector3D parse_normal(libconfig::Setting &t_root, std::string t_path);

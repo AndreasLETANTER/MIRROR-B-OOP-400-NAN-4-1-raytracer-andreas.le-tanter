@@ -88,7 +88,6 @@ bool RayTracer::LCylinder::hits(Ray& t_ray)
     return true;
 }
 
-
 /**
  * @brief get the surface normal of the cylinder
  * @details get the surface normal of the cylinder at the given point

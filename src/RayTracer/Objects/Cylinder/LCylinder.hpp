@@ -16,6 +16,7 @@
 /**
  * @brief LCylinder class, used to create a limited cylinder in 3D space
  * @details the Lcylinder is defined by its center, its height and its radius
+ * @details and it's color
 */
 namespace RayTracer {
     class LCylinder : public AObjects {

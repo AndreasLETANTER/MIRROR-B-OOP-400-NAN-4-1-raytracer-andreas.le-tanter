@@ -25,11 +25,12 @@ RayTracer::LCylinder::LCylinder()
  * @param m_radius
  * @param m_height
  */
-RayTracer::LCylinder::LCylinder(Math::Point3D t_center, double t_radius
+RayTracer::LCylinder::LCylinder(Math::Point3D t_center, std::pair<double, bool> t_radius
 , double t_height, Math::Vector3D t_color)
 {
     m_center = t_center;
-    m_radius = t_radius;
+    m_radius = t_radius.first;
+    m_is_point_light = t_radius.second;
     m_height = t_height;
     m_color = t_color;
 }
@@ -87,15 +88,15 @@ bool RayTracer::LCylinder::hits(Ray& t_ray)
     if (hitY > m_height / 2 && distanceSquaredTop > pow(m_radius, 2)) {
         return false;
     }
-    Math::Vector3D surfaceNormal;
-    surfaceNormal.m_x_component = 2 * relativeHitPoint.m_x_component;
-    surfaceNormal.m_y_component = 2 * 3.14 * pow(m_radius, 2) * relativeHitPoint.m_y_component;
-    surfaceNormal.m_z_component = 2 * relativeHitPoint.m_z_component;
-    surfaceNormal.normalize();
     m_hit_point.m_x_component = hit_point.m_x_component;
-    m_hit_point.m_y_component = hit_point.m_y_component;
+    if (m_is_point_light ==  true) {
+        m_hit_point.m_y_component = hit_point.m_y_component * 3.14 * pow(m_radius, 2) * relativeHitPoint.m_y_component;
+    } else {
+        m_hit_point.m_y_component = hit_point.m_y_component;
+    }
     m_hit_point.m_z_component = hit_point.m_z_component;
-    m_surface_normal = surfaceNormal;
+    Math::Vector3D hitToLight = m_hit_point - t_ray.m_origin;
+    m_hit_distance = hitToLight.length();
     return true;
 }
 

@@ -21,8 +21,8 @@ namespace RayTracer {
     class Cylinder : public AObjects {
         public:
             Cylinder();
-            Cylinder(Math::Point3D t_center, double t_radius, double t_height
-            , Math::Vector3D t_color);
+            Cylinder(Math::Point3D t_center, std::pair<double, bool> t_radius
+            , double t_height, Math::Vector3D t_color);
             ~Cylinder();
             Math::Vector3D getColor(void);
             Math::Vector3D getSurfaceNormal(void);
@@ -38,5 +38,6 @@ namespace RayTracer {
             double m_hit_distance;
             double m_radius;
             double m_height;
+            bool m_is_point_light;
     };
 }

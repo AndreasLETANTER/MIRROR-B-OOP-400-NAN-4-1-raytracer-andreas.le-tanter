@@ -70,7 +70,7 @@ bool RayTracer::Cylinder::hits(Ray& t_ray)
     m_hit_point = t_ray.m_origin + t_ray.m_direction * t;
     Math::Vector3D hitPointOnCylinder;
     hitPointOnCylinder.m_x_component = m_center.m_x_component + 0;
-    hitPointOnCylinder.m_y_component = m_center.m_y_component +  m_hit_point.m_y_component;
+    hitPointOnCylinder.m_y_component = m_center.m_y_component + m_hit_point.m_y_component;
     hitPointOnCylinder.m_z_component = m_center.m_z_component + 0;
     Math::Vector3D surfaceNormal;
     surfaceNormal.m_x_component = m_hit_point.m_x_component - hitPointOnCylinder.m_x_component;
@@ -81,6 +81,8 @@ bool RayTracer::Cylinder::hits(Ray& t_ray)
     m_hit_point.m_x_component = m_surface_normal.m_x_component;
     m_hit_point.m_y_component = m_surface_normal.m_y_component;
     m_hit_point.m_z_component = m_surface_normal.m_z_component;
+    Math::Vector3D hitToRayOrigin = m_hit_point - t_ray.m_origin;
+    m_hit_distance = hitToRayOrigin.length();
     return true;
 }
 

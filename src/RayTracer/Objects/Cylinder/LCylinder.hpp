@@ -9,7 +9,7 @@
 #include "../../../RayTracer/Ray/Ray.hpp"
 #include "../../../Math/Vector3D/Vector3D.hpp"
 #include "../../../Math/Point3D/Point3D.hpp"
-#include "../IObjects.hpp"
+#include "../AObjects.hpp"
 #include <cmath>
 #include <algorithm>
 
@@ -18,7 +18,7 @@
  * @details the Lcylinder is defined by its center, its height and its radius
 */
 namespace RayTracer {
-    class LCylinder : public IObjects {
+    class LCylinder : public AObjects {
         public:
             LCylinder();
             LCylinder(Math::Point3D t_center, std::pair<double, bool> t_radius

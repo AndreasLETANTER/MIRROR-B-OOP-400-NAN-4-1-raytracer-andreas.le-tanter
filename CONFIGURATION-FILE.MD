@@ -1,6 +1,6 @@
 # Configuration file
 
-The goal of a configuration file defines the properties of a 3D scene, including the camera, lights, spheres, cylinder in the scene. The configuration is written in a custom format that described below.
+The goal of a configuration file is to define the properties of a 3D scene, including the camera, lights, spheres, cylinder in the scene. The configuration file is written in a custom format which is described below.
 
 ## Global Configuration
 
@@ -32,11 +32,11 @@ camera = {
 }
 ```
 
-1 - **camera** : the name of the camera in the scene, it must be unique and he need to have "camera" prefix
+1 - **camera** : the name of the camera in the scene, must be unique and need to have the "camera" prefix
 
-2 - **resolution** : the resolution of the camera, it must be present to be valid. The resolution property is a vector of two values (width, height) that define the resolution of the camera.
+2 - **resolution** : the resolution of the camera, must be present. The resolution property is a vector of two values (width, height) that define the resolution of the camera.
 
-3 - **screen** : the screen of the camera, it must be present to be valid. The screen property is a dictionary that contains three properties (origin, max_x, max_y). The origin property is a vector of three values (x, y, z) that define the origin of the screen. The max_x property is a vector of three values (x, y, z) that define the max_x of the screen. The max_y property is a vector of three values (x, y, z) that define the max_y of the screen.
+3 - **screen** : the screen of the camera, must be present. The screen property is a dictionary that contains three properties (origin, max_x, max_y). The origin property is a vector of three values (x, y, z) that define the origin of the screen. The max_x property is a vector of three values (x, y, z) that define the max_x of the screen. The max_y property is a vector of three values (x, y, z) that define the max_y of the screen.
 
 # Object types
 
@@ -56,9 +56,9 @@ sphere-Brown = {
 }
 ```
 
-1 - **shere-Brown** : the name of the sphere in the scene, it must be unique and he need to have "sphere-" prefix
+1 - **sphere-Brown** : the name of the sphere in the scene, must be unique and need to have "sphere-" prefix.
 
-2 - **position/radius/color** : the properties of the sphere he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the sphere in the scene. The radius property is a double that define the radius of the sphere. The color property is a vector of three values (r, g, b) that define the color of the sphere.
+2 - **position/radius/color** : the properties of the sphere must be present to be valid. The position property is a vector of three values (x, y, z) that defines the position of the sphere in the scene. The radius property is a double that defines the radius of the sphere. The color property is a vector of three values (r, g, b) that defines the color of the sphere.
 
 ## Create a plane
 
@@ -78,9 +78,9 @@ plane-Luchooooo = {
 }
 ```
 
-1 - **plane-Luchooooo** : the name of the plane in the scene, it must be unique and he need to have "plane-" prefix
+1 - **plane-Luchooooo** : the name of the plane in the scene, must be unique and need to have "plane-" prefix
 
-2 - **position/normal/color** : the properties of the plane he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that define the normal of the plane. The color property is a vector of three values (r, g, b) that define the color of the plane.
+2 - **position/normal/color** : the properties of the plane must be present. The position property is a vector of three values (x, y, z) that defines the position of the plane in the scene. The normal property is a vector of three values (x, y, z) that defines the normal of the plane. The color property is a vector of three values (r, g, b) that defines the color of the plane.
 
 # Lights types
 
@@ -97,9 +97,9 @@ point-Sun = {
 }
 ```
 
-1 - **point-Sun** : the name of the point light in the scene, it must be unique and he need to have "point-" prefix
+1 - **point-Sun** : the name of the point light in the scene, must be unique and need to have "point-" prefix
 
-2 - **position/intensity** : the properties of the point light he must be present to be valid. The position property is a vector of three values (x, y, z) that define the position of the point light in the scene. The intensity property is a double that define the intensity of the point light.
+2 - **position/intensity** : the properties of the point light must be present. The position property is a vector of three values (x, y, z) that defines the position of the point light in the scene. The intensity property is a double that defines the intensity of the point light.
 
 ## Create a directional light
 
@@ -113,9 +113,9 @@ directional-pipe = {
 }
 ```
 
-1 - **directional-pipe** : the name of the directional light in the scene, it must be unique and he need to have "directional-" prefix
+1 - **directional-pipe** : the name of the directional light in the scene, must be unique and need to have "directional-" prefix
 
-2 - **direction** : the properties of the directional light he must be present to be valid. The direction property is a vector of three values (x, y, z) that define the direction of the directional light in the scene.
+2 - **direction** : the properties of the directional light must be present. The direction property is a vector of three values (x, y, z) that defines the direction of the directional light in the scene.
 
 ## Create an ambient light
 
@@ -127,8 +127,8 @@ ambient-moon = {
 }
 ```
 
-1 - **ambient-moon** : the name of the ambient light in the scene, it must be unique and he need to have "ambient-" prefix
+1 - **ambient-moon** : the name of the ambient light in the scene, must be unique and need to have "ambient-" prefix
 
-2 - **intensity** : the properties of the ambient light he must be present to be valid. The intensity property is a double that define the intensity of the ambient light.
+2 - **intensity** : the properties of the ambient light must be present. The intensity property is a double that define the intensity of the ambient light.
 
 ## Exemples of configurations files

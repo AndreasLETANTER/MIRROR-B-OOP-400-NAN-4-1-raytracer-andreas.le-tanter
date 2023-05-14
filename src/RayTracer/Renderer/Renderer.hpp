@@ -30,13 +30,13 @@ namespace RayTracer
             void setObjects(std::vector<std::shared_ptr<RayTracer::IObjects>> t_objects);
             void setLights(std::vector<std::shared_ptr<RayTracer::ILights>> t_lights);
             void setCamera(RayTracer::Camera t_cam);
-            void renderScene(void);
+            void renderScene(std::string t_file_path);
 
         protected:
         private:
-            void check_hit(RayTracer::Ray r);
-            void print_pixel(Math::Vector3D t_color);
-            void print_header(void);
+            void check_hit(RayTracer::Ray r, std::fstream &t_file);
+            void print_pixel(Math::Vector3D t_color, std::fstream &t_file);
+            void print_header(std::fstream &t_file);
             Math::Vector3D m_miss_color;
             RayTracer::Camera m_cam;
             std::vector<std::shared_ptr<RayTracer::IObjects>> m_objects;

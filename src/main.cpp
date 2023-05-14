@@ -18,27 +18,24 @@
 #include "RayTracer/Viewer/Viewer.hpp"
 #include <iostream>
 
-#define WIDTH 500
-#define HEIGHT 500
-
 int main(const int ac, const char **av)
 {
-    (void)av;
-    if (ac != 1) {
-        std::cerr << "The program takes no arguments" << std::endl;
-        return 84;
-    }
     RayTracer::Viewer viewer;
-    viewer.init_menu();
-    // std::cout << viewer.get_scene_name() << std::endl;
-    // Parser::Parser parser(av[1]);
-    // RayTracer::Camera cam = parser.getCamera();
-    // RayTracer::Renderer renderer;
-
-    // renderer.setCamera(cam);
-    // renderer.setMissColor(Math::Vector3D(105, 105, 105));
-    // renderer.setObjects(parser.getObjects());
-    // renderer.setLights(parser.getLights());
-    // renderer.renderScene();
+    std::string input;
+    if (ac == 1)
+        input = viewer.init_menu();
+    else
+        input = std::string(av[1]);
+    Parser::Parser parser(input);
+    RayTracer::Camera cam = parser.getCamera();
+    RayTracer::Renderer renderer;
+    renderer.setCamera(cam);
+    renderer.setMissColor(Math::Vector3D(105, 105, 105));
+    renderer.setObjects(parser.getObjects());
+    renderer.setLights(parser.getLights());
+    std::string output = "scenes/output.ppm";
+    if (ac == 1)
+        output = viewer.getOutput();
+    renderer.renderScene(output);
     return 0;
 }

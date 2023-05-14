@@ -16,20 +16,22 @@ namespace RayTracer {
         public:
             Viewer();
             ~Viewer();
-            void init_menu(void);
+            std::string init_menu(void);
+            std::string getOutput(void);
             std::string get_scene_name(void) const;
         protected:
             unsigned int count_files_in_dir(void) const;
             void create_all_scenes_buttons(void);
             void draw_all(void);
-            void check_mouse_position(int x, int y, bool click);
-            sf::Image get_image_from_file() const;
+            std::string check_mouse_position(int x, int y, sf::Event t_event);
         private:
             sf::RenderWindow *_window;
             sf::Texture _background_texture;
             sf::Sprite _background_sprite;
-            sf::Text _title;
+            sf::Text *_title;
+            sf::Text *_output_name;
             sf::Font _font;
+            sf::Font _font2;
             sf::Text *_text;
             sf::RectangleShape *_rect;
             sf::Image _render;

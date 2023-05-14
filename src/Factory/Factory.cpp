@@ -33,12 +33,12 @@ RayTracer::Camera Factory::Factory::createCamera(double t_width, double t_heigth
 /**
  * @brief Create ambient light
  * @param t_intensity of light
- * @return std::shared_ptr<RayTracer::AmbiantLight>
+ * @return std::shared_ptr<RayTracer::AmbientLight>
 */
-std::shared_ptr<RayTracer::AmbiantLight> Factory::Factory::createAmbiantLight(double t_intensity)
+std::shared_ptr<RayTracer::AmbientLight> Factory::Factory::createAmbientLight(double t_intensity)
 {
-    RayTracer::AmbiantLight light(t_intensity);
-    return std::make_shared<RayTracer::AmbiantLight>(light);
+    RayTracer::AmbientLight light(t_intensity);
+    return std::make_shared<RayTracer::AmbientLight>(light);
 }
 
 /**

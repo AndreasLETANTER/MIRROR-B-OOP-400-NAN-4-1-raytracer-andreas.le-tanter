@@ -23,7 +23,7 @@ To use this project, you need to follow these steps:
 
 - **configuration file** : the path of the configuration file, the file must follow the configuration file documentation
 
-By default, the program will render the scene in output.ppm in scenes folder
+By default, the program will render the scene in an output.ppm file in scenes folder
 
 If you want graphics, you can run the program without any argument
 

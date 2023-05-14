@@ -127,15 +127,15 @@ void RayTracer::Renderer::check_hit(RayTracer::Ray r, std::fstream &t_file)
 void RayTracer::Renderer::renderScene(std::string t_file_name)
 {
     std::fstream file;
+    unsigned int m_width = get<0>(m_cam.getResolution());
+    unsigned int m_height = get<1>(m_cam.getResolution());
+
     file.open(t_file_name, std::fstream::out);
     if (!file.is_open()) {
         std::cerr << "Error: could not open file" << std::endl;
         exit(84);
     }
     print_header(file);
-    unsigned int m_width = get<0>(m_cam.getResolution());
-    unsigned int m_height = get<1>(m_cam.getResolution());
-
     for (unsigned int y = 0; y < m_height; y++) {
         for (unsigned int x = 0; x < m_width; x++) {
             double u = (double)x / m_height;

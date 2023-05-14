@@ -11,7 +11,7 @@
 #include "RayTracer/Camera/Camera.hpp"
 #include "RayTracer/Renderer/Renderer.hpp"
 #include "Parser/Parser.hpp"
-#include "RayTracer/Light/AmbiantLight/AmbiantLight.hpp"
+#include "RayTracer/Light/AmbientLight/AmbientLight.hpp"
 #include "RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "RayTracer/Light/PointLight/PointLight.hpp"
 #include "RayTracer/Light/ILights.hpp"

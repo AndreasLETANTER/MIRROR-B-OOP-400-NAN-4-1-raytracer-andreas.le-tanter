@@ -18,7 +18,7 @@ set(SRC
     src/RayTracer/Objects/Sphere/Sphere.cpp
     src/RayTracer/Objects/Plane/Plane.cpp
     src/RayTracer/Objects/Cone/Cone.cpp
-    src/RayTracer/Light/AmbiantLight/AmbiantLight.cpp
+    src/RayTracer/Light/AmbientLight/AmbientLight.cpp
     src/RayTracer/Light/DirectionalLight/DirectionalLight.cpp
     src/RayTracer/Light/PointLight/PointLight.cpp
     src/RayTracer/Camera/Camera.cpp

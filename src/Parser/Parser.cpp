@@ -257,7 +257,7 @@ void Parser::Parser::parse_lights(libconfig::Setting &t_root)
             if (type.find("ambient-") == 0) {
                 std::string path = std::string(t_root[i].getName()) + "." + t_root[i][j].getName();
                 double intensity = parse_intensity(t_root, path);
-                m_lights.push_back(m_factory->createAmbiantLight(intensity));
+                m_lights.push_back(m_factory->createAmbientLight(intensity));
             } else if (type.find("directional-") == 0) {
                 std::string path = std::string(t_root[i].getName()) + "." + t_root[i][j].getName();
                 Math::Vector3D position = parse_direction(t_root, path);

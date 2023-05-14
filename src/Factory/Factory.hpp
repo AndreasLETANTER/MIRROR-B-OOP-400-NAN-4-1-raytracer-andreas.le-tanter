@@ -14,7 +14,7 @@
 
 #include "IFactory.hpp"
 #include "../RayTracer/Objects/IObjects.hpp"
-#include "../RayTracer/Light/AmbiantLight/AmbiantLight.hpp"
+#include "../RayTracer/Light/AmbientLight/AmbientLight.hpp"
 #include "../RayTracer/Camera/Camera.hpp"
 
 namespace Factory
@@ -30,7 +30,7 @@ namespace Factory
 
             // Creator
             RayTracer::Camera createCamera(double t_width, double t_heigth, Rectangle3D t_screen, double t_fov);
-            std::shared_ptr<RayTracer::AmbiantLight> createAmbiantLight(double t_intensity);
+            std::shared_ptr<RayTracer::AmbientLight> createAmbientLight(double t_intensity);
             std::shared_ptr<RayTracer::DirectionalLight> createDirectionalLight(Math::Vector3D t_direction);
             std::shared_ptr<RayTracer::PointLight> createPointLight(Math::Point3D t_position, double t_intensity);
             std::shared_ptr<RayTracer::IObjects> createSphere(Math::Point3D t_position, double t_radius, Math::Vector3D t_color);

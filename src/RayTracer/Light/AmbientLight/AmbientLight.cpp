@@ -2,24 +2,24 @@
 ** EPITECH PROJECT, 2023
 ** MIRROR-B-OOP-400-NAN-4-1-raytracer-andreas.le-tanter
 ** File description:
-** AmbiantLight
+** AmbientLight
 */
 
-#include "AmbiantLight.hpp"
+#include "AmbientLight.hpp"
 
 /**
- * @brief Construct a new Ray Tracer:: Ambiant Light:: Ambiant Light object
+ * @brief Construct a new Ray Tracer:: Ambient Light:: Ambient Light object
 */
-RayTracer::AmbiantLight::AmbiantLight(void)
+RayTracer::AmbientLight::AmbientLight(void)
 {
     m_intensity = 0;
 }
 
 /**
- * @brief Construct a new Ray Tracer:: Ambiant Light:: Ambiant Light object
+ * @brief Construct a new Ray Tracer:: Ambient Light:: Ambient Light object
  * @param t_intensity Intensity of the light
 */
-RayTracer::AmbiantLight::AmbiantLight(double t_intensity)
+RayTracer::AmbientLight::AmbientLight(double t_intensity)
 {
     m_intensity = t_intensity;
 }
@@ -29,7 +29,7 @@ RayTracer::AmbiantLight::AmbiantLight(double t_intensity)
  * @param t_surfaceNormal Surface normal where the ray hit
  * @return double Intensity of the light
 */
-double RayTracer::AmbiantLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
+double RayTracer::AmbientLight::getIntensityAt(std::shared_ptr<RayTracer::IObjects> t_object)
 {
     (void) t_object;
     return (m_intensity);
@@ -39,7 +39,7 @@ double RayTracer::AmbiantLight::getIntensityAt(std::shared_ptr<RayTracer::IObjec
  * @brief Set the Intensity object
  * @param t_intensity Intensity of the light
 */
-void RayTracer::AmbiantLight::setIntensity(double t_intensity)
+void RayTracer::AmbientLight::setIntensity(double t_intensity)
 {
     m_intensity = t_intensity;
 }

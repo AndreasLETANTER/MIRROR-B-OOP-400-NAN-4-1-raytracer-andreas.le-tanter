@@ -87,5 +87,4 @@ output.ppm
 doxygen_output
 .vscode
 .DS_Store
-raytracer
 .idea

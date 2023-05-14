@@ -1601,12 +1601,12 @@ ENUM_VALUES_PER_LINE   = 4
 
 TREEVIEW_WIDTH         = 250
 
-# If the EXT_LINKS_INm_window option is set to YES, doxygen will open links to
+# If the EXT_LINKS_IN_WINDOW option is set to YES, doxygen will open links to
 # external symbols imported via tag files in a separate window.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-EXT_LINKS_INm_window    = NO
+EXT_LINKS_IN_WINDOW    = NO
 
 # If the HTML_FORMULA_FORMAT option is set to svg, doxygen will use the pdf2svg
 # tool (see https://github.com/dawbarton/pdf2svg) or inkscape (see

@@ -27,6 +27,8 @@ By default, the program will render the scene in an output.ppm file in scenes fo
 
 If you want graphics, you can run the program without any argument
 
+After that, you can choose the config file you want to load, and you can change the name of the output file
+
 ```bash
 ./raytracer
 ```

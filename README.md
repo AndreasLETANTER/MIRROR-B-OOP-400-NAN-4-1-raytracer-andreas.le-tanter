@@ -18,12 +18,18 @@ make
 To use this project, you need to follow these steps:
 
 ```bash
-./raytracer [configuration file] > [output file]
+./raytracer [configuration file]
 ```
 
 - **configuration file** : the path of the configuration file, the file must follow the configuration file documentation
 
-- **output file** : the path of the output file, the file must be a .ppm file
+By default, the program will render the scene in output.ppm in scenes folder
+
+If you want graphics, you can run the program without any argument
+
+```bash
+./raytracer
+```
 
 ## Example
 

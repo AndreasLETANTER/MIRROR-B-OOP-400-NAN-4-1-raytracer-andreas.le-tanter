@@ -19,7 +19,11 @@
 
 int main(const int ac, const char **av)
 {
-    (void)ac;
+    if (ac != 2) {
+        std::cerr << "Usage: ./raytracer [scene.cfg]" << std::endl;
+        return 84;
+    }
+
     Parser::Parser parser(av[1]);
     RayTracer::Camera cam = parser.getCamera();
     RayTracer::Renderer renderer;

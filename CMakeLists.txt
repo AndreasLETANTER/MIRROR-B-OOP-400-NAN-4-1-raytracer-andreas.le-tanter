@@ -6,7 +6,7 @@ project("raytracer" VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(NAME "raytracer")
 set(TEST_NAME "unit_tests")
-set(CXX_FLAGS -Wall -Wextra -Werror -g)
+set(CXX_FLAGS -Wall -Wextra -Werror -lsfml-graphics -lsfml-window -lsfml-system)
 ###############################DIRECTORIES SRC####################################
 set(SRC
     src/Math/Vector3D/Vector3D.cpp
@@ -23,6 +23,7 @@ set(SRC
     src/RayTracer/Light/PointLight/PointLight.cpp
     src/RayTracer/Camera/Camera.cpp
     src/RayTracer/Renderer/Renderer.cpp
+    src/RayTracer/Viewer/Viewer.cpp
     src/Parser/Parser.cpp
     src/Parser/Parser.cpp
     src/Factory/Factory.cpp
@@ -40,13 +41,19 @@ add_compile_options(${CXX_FLAGS})
 include_directories("/usr/local/include")
 link_directories("/usr/local/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 add_executable(${NAME} ${SRC} ${MAIN})
-target_link_libraries(${NAME} config++)
+target_link_libraries(${NAME} config++ sfml-graphics sfml-window sfml-system)
+add_custom_target(core
+    COMMAND make ${NAME}
+)
 
 ###############################COMPILATION TESTS##################################
 find_library(CRITERION criterion)
+find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 #create the tests executable
 add_executable(${TEST_NAME} ${SRC} ${TESTS})
+target_link_libraries(${TEST_NAME} sfml-graphics sfml-window sfml-system)
 #link the tests with the criterion library
 target_link_libraries(${TEST_NAME} ${CRITERION} config++)
 

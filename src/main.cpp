@@ -15,23 +15,27 @@
 #include "RayTracer/Light/DirectionalLight/DirectionalLight.hpp"
 #include "RayTracer/Light/PointLight/PointLight.hpp"
 #include "RayTracer/Light/ILights.hpp"
+#include "RayTracer/Viewer/Viewer.hpp"
 #include <iostream>
 
 int main(const int ac, const char **av)
 {
-    if (ac != 2) {
-        std::cerr << "Usage: ./raytracer [scene.cfg]" << std::endl;
-        return 84;
-    }
-
-    Parser::Parser parser(av[1]);
+    RayTracer::Viewer viewer;
+    std::string input;
+    if (ac == 1)
+        input = viewer.init_menu();
+    else
+        input = std::string(av[1]);
+    Parser::Parser parser(input);
     RayTracer::Camera cam = parser.getCamera();
     RayTracer::Renderer renderer;
-
     renderer.setCamera(cam);
     renderer.setMissColor(Math::Vector3D(105, 105, 105));
     renderer.setObjects(parser.getObjects());
     renderer.setLights(parser.getLights());
-    renderer.renderScene();
+    std::string output = "scenes/output.ppm";
+    if (ac == 1)
+        output = viewer.getOutput();
+    renderer.renderScene(output);
     return 0;
 }

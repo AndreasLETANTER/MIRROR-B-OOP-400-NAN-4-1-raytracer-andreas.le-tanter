@@ -44,7 +44,6 @@ After that, you can choose the config file you want to load, and you can change 
 - [@HugoN1](https://www.github.com/HugoN1)
 - [@Luchooooo](https://www.github.com/lbarreteau)
 - [@Andréas LE TANTER](https://www.github.com/AndreasLETANTER)
-- [@Ycuzou22](https://www.github.com/ycuzou22)
 
 ## Documentation
 
